@@ -12,7 +12,7 @@ var action_count = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player.did_action.connect(on_player_action)
-	
+
 	var list = []
 	for e in self.get_children():
 		if e == player:
@@ -32,7 +32,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta: float):
 	if Input.is_action_just_pressed("undo"):
 		if player.input_lock:
 			return
@@ -61,4 +61,4 @@ func on_player_action():
 				dic[i] = pos
 				list.append(dic)
 	action_list[action_count] = list
-	
+

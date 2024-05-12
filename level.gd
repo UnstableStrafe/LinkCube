@@ -35,10 +35,10 @@ func win():
 	can_progress = true
 	player.input_lock = true
 	prompt.visible = true
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta: float):
 	if can_progress and Input.is_action_just_pressed("wait"):
 		if level_id + 1 == level_index.levels.size():
 			print_rich("[font_size=30][wave amp=50.0 freq=-5.0 connected=1]YOU WIN!! YIPPEEEEE!![/wave][/font_size]")

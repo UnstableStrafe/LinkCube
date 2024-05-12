@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var tile_map = $"../../TileMap"
-@onready var sprite_2d = $Sprite2D
-@onready var ray_cast_2d = $RayCast2D
+@onready var tile_map: TileMap = $"../../TileMap"
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 var can_move := true
 var is_moving := false
@@ -17,7 +17,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta: float):
 	if is_moving:
 		return
 	if input_lock:
@@ -37,18 +37,21 @@ func _physics_process(delta):
 		await timer.timeout
 		did_action.emit()
 		input_lock = false
-	
+
 func move(direction : Vector2):
-	var current_tile : Vector2i = tile_map.local_to_map(global_position)
-	var target_tile : Vector2i = Vector2i(current_tile.x + direction.x, current_tile.y + direction.y)
-	var tile_data  : TileData = tile_map.get_cell_tile_data(0, target_tile)
-	
+	var current_tile := tile_map.local_to_map(global_position)
+	var target_tile := Vector2i(
+		round(current_tile.x + direction.x),
+		round(current_tile.y + direction.y)
+	)
+	var tile_data  := tile_map.get_cell_tile_data(0, target_tile)
+
 	if tile_data.get_custom_data("walkable") == false:
 		return
-	
+
 	ray_cast_2d.target_position = direction * 16
 	ray_cast_2d.force_raycast_update()
-	
+
 	if ray_cast_2d.is_colliding():
 		if ray_cast_2d.get_collider().get_parent() is PushableCube:
 			var cube = ray_cast_2d.get_collider().get_parent()
@@ -65,10 +68,10 @@ func move(direction : Vector2):
 	await tween.finished
 
 	is_moving = false
-	
+
 	did_action.emit()
-	
+
 	#can_move = false
-	
+
 	# get_tree().create_timer(.2).timeout.connect(timer_end)
 
