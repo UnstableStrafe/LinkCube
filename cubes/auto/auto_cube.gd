@@ -49,7 +49,7 @@ func on_player_action():
 	if can_move(mov_dir) and check_space_open(mov_dir):
 		_push(mov_dir)
 	unavaliable_tiles.clear()
-	
+
 
 func check_space_open(direction: Vector2) -> bool:
 	var current_tile : Vector2i = tile_map.local_to_map(global_position)
