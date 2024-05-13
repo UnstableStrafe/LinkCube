@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Level_Index" load_steps=10 format=3 uid="uid://8j8fglxdvy8f"]
+
+[ext_resource type="PackedScene" uid="uid://ns8s5yk0w0vl" path="res://levels/level_1.tscn" id="1_1m4qy"]
+[ext_resource type="Script" path="res://resources/level_index.gd" id="1_do1eb"]
+[ext_resource type="PackedScene" uid="uid://cyi5dg8qskhuo" path="res://levels/level_2.tscn" id="2_3svnv"]
+[ext_resource type="PackedScene" uid="uid://c1sol42hbr2kj" path="res://levels/level_3.tscn" id="3_p7jtf"]
+[ext_resource type="PackedScene" uid="uid://18dkk02m0vr0" path="res://levels/level_4.tscn" id="4_6nmsw"]
+[ext_resource type="PackedScene" uid="uid://crwc8alo03fpe" path="res://levels/level_5.tscn" id="5_yp4x8"]
+[ext_resource type="PackedScene" uid="uid://cv2cx6716me0t" path="res://levels/level_6.tscn" id="6_hnr8p"]
+[ext_resource type="PackedScene" uid="uid://ctqh0n2i87v2a" path="res://levels/level_7.tscn" id="7_gbufi"]
+[ext_resource type="PackedScene" uid="uid://cubxl6us3i5pg" path="res://levels/level_8.tscn" id="8_kdyvj"]
+
+[resource]
+script = ExtResource("1_do1eb")
+levels = Array[PackedScene]([ExtResource("1_1m4qy"), ExtResource("2_3svnv"), ExtResource("3_p7jtf"), ExtResource("4_6nmsw"), ExtResource("5_yp4x8"), ExtResource("6_hnr8p"), ExtResource("7_gbufi"), ExtResource("8_kdyvj")])

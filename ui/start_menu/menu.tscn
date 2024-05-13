@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1i25ktsxvqjn"]
+
+[ext_resource type="Texture2D" uid="uid://rle7rm2i8bx" path="res://ui/start_menu/menu.png" id="1_dwcyi"]
+[ext_resource type="Script" path="res://ui/start_menu/menu.gd" id="1_ugu4e"]
+[ext_resource type="Resource" uid="uid://8j8fglxdvy8f" path="res://resources/level_index.tres" id="3_h7jqy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 432.0
+offset_bottom = 243.0
+texture = ExtResource("1_dwcyi")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 138.0
+offset_top = 127.0
+offset_right = 294.0
+offset_bottom = 189.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+script = ExtResource("1_ugu4e")
+levels = ExtResource("3_h7jqy")

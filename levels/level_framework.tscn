@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://7pbu3m2f4nfr"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_e1tw1"]
+[ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tiles.tres" id="2_nhpp1"]
+[ext_resource type="Script" path="res://entities.gd" id="2_s8lla"]
+[ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player.tscn" id="3_j5vv5"]
+[ext_resource type="Texture2D" uid="uid://c8o30t1vqqgp7" path="res://ui/text/next_level_prompt.png" id="5_o4yjd"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_e1tw1")
+level_name = "test"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_nhpp1")
+format = 2
+
+[node name="entities" type="Node2D" parent="."]
+script = ExtResource("2_s8lla")
+
+[node name="player" parent="entities" instance=ExtResource("3_j5vv5")]
+position = Vector2(56, -8)
+
+[node name="other_cubes" type="Node2D" parent="entities"]
+
+[node name="linked_cubes" type="Node2D" parent="entities"]
+
+[node name="inverted_cubes" type="Node2D" parent="entities"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="NextLevelPrompt" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 88)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_o4yjd")

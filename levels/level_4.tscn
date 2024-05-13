@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://18dkk02m0vr0"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_w44dc"]
+[ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tiles.tres" id="2_3hvk8"]
+[ext_resource type="Script" path="res://entities.gd" id="3_ixmsx"]
+[ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player.tscn" id="4_1ggum"]
+[ext_resource type="PackedScene" uid="uid://mckoa843cmp3" path="res://cubes/inverted_linked/inverted_linked_cube.tscn" id="5_38wgk"]
+[ext_resource type="Texture2D" uid="uid://c8o30t1vqqgp7" path="res://ui/text/next_level_prompt.png" id="5_j8mmg"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_w44dc")
+level_id = 4
+level_name = "WonkyLogic"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_3hvk8")
+format = 2
+layer_0/tile_data = PackedInt32Array(-262138, 65536, 0, -65534, 0, 1, 3, 0, 1, -65533, 0, 1, 65539, 0, 1, 131075, 0, 1, 196611, 0, 1, -196605, 0, 1, -131069, 0, 1, 131070, 0, 1, -131070, 0, 1, 262147, 0, 1, 262146, 0, 1, -65530, 0, 0, -196606, 0, 1, 131069, 0, 1, 262145, 0, 1, 196608, 0, 1, 262144, 0, 1, -196607, 0, 0, -196608, 0, 0, -131073, 0, 0, -131074, 0, 0, -131075, 0, 0, -131076, 0, 0, -131077, 0, 1, -65541, 0, 1, -5, 0, 1, 65531, 0, 1, 131067, 0, 1, 196603, 0, 1, 262139, 0, 1, 327675, 0, 1, 327676, 0, 1, 327677, 0, 1, 327678, 0, 1, 327679, 0, 1, 131076, 0, 1, 131077, 0, 1, 131078, 0, 1, 131079, 0, 1, 131080, 0, 1, 65544, 0, 1, 8, 0, 1, -65528, 0, 1, -131064, 0, 1, -196600, 0, 1, -262136, 0, 1, -327672, 0, 1, -327673, 0, 1, -327674, 0, 1, -327675, 0, 1, -327676, 0, 1, -327677, 0, 1, -262141, 0, 1, -196613, 0, 1, -196612, 0, 1, -196611, 0, 1, -196610, 0, 1, -196609, 0, 1, -262144, 0, 1, -262143, 0, 1, -262142, 0, 1, 6, 0, 0, 5, 0, 0, -65531, 0, 0, -131067, 0, 0, -196603, 0, 0, -262139, 0, 0, -262140, 0, 0, -196604, 0, 0, -131068, 0, 0, -65532, 0, 0, 4, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 7, 0, 0, -65529, 0, 0, -131065, 0, 0, -196601, 0, 0, -262137, 0, 0, -196602, 0, 0, -131066, 0, 0, 196607, 0, 0, 131071, 0, 0, 65535, 0, 0, -1, 0, 0, -65537, 0, 0, -65538, 0, 0, -65539, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 0, 0, 131068, 0, 0, 196604, 0, 0, 262140, 0, 0, 262141, 0, 0, 196605, 0, 0, 196606, 0, 0, 262142, 0, 0, 262143, 0, 0, 65533, 0, 0, -3, 0, 0, -2, 0, 0, 65534, 0, 0, -131072, 0, 0, -65536, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 65537, 0, 0, 1, 0, 0, -65535, 0, 0, -131071, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 196609, 0, 0)
+
+[node name="entities" type="Node2D" parent="."]
+script = ExtResource("3_ixmsx")
+
+[node name="player" parent="entities" instance=ExtResource("4_1ggum")]
+unique_name_in_owner = true
+position = Vector2(8, 8)
+
+[node name="other_cubes" type="Node2D" parent="entities"]
+
+[node name="linked_cubes" type="Node2D" parent="entities"]
+
+[node name="inverted_cubes" type="Node2D" parent="entities"]
+
+[node name="InvertedLinkedCube" parent="entities/inverted_cubes" instance=ExtResource("5_38wgk")]
+position = Vector2(40, 8)
+
+[node name="InvertedLinkedCube2" parent="entities/inverted_cubes" instance=ExtResource("5_38wgk")]
+position = Vector2(104, -8)
+is_goal_cube = true
+
+[node name="InvertedLinkedCube3" parent="entities/inverted_cubes" instance=ExtResource("5_38wgk")]
+position = Vector2(-40, 8)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(8, 24)
+
+[node name="NextLevelPrompt" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 104)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_j8mmg")

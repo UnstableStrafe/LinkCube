@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://crwc8alo03fpe"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_m8n3j"]
+[ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tiles.tres" id="2_4mxxw"]
+[ext_resource type="Script" path="res://entities.gd" id="3_vt6bp"]
+[ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player.tscn" id="4_1if2c"]
+[ext_resource type="Texture2D" uid="uid://c8o30t1vqqgp7" path="res://ui/text/next_level_prompt.png" id="5_hwqpk"]
+[ext_resource type="PackedScene" uid="uid://k780jms57nrc" path="res://cubes/auto/auto_cube.tscn" id="5_rqod1"]
+[ext_resource type="PackedScene" uid="uid://cah78mxrg68st" path="res://cubes/basic/basic_cube.tscn" id="6_rddo6"]
+[ext_resource type="PackedScene" uid="uid://bfwm4nco50s53" path="res://cubes/linked/linked_cube.tscn" id="7_vfjf5"]
+[ext_resource type="PackedScene" uid="uid://mckoa843cmp3" path="res://cubes/inverted_linked/inverted_linked_cube.tscn" id="8_ahduv"]
+[ext_resource type="Texture2D" uid="uid://7y1sx4jpqdqa" path="res://ui/text/wait_info.png" id="10_xlgbq"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_m8n3j")
+level_id = 5
+level_name = "Unflappable"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_4mxxw")
+format = 2
+layer_0/tile_data = PackedInt32Array(131069, 0, 1, 131070, 0, 1, 131071, 0, 1, 65536, 0, 1, 131073, 0, 1, 131074, 0, 0, 131072, 0, 1, 65528, 65536, 0, 262143, 0, 1, 196607, 0, 1, 327679, 0, 1, 327677, 0, 1, 327678, 0, 1, 196606, 0, 1, 196605, 0, 0, 262141, 0, 0, 262142, 0, 0, 196604, 0, 1, 196603, 0, 1, 196602, 0, 1, 196601, 0, 1, 131068, 0, 1, -65545, 0, 1, -9, 0, 1, 65527, 0, 1, 131063, 0, 1, 196599, 0, 1, 196600, 0, 1, -131081, 0, 1, -196617, 0, 1, -196616, 0, 1, -196615, 0, 1, -196614, 0, 1, -196613, 0, 1, -196612, 0, 1, -196611, 0, 1, -196610, 0, 1, -196609, 0, 1, -262144, 0, 1, -262143, 0, 1, -262142, 0, 1, -262141, 0, 1, -196605, 0, 0, -131069, 0, 0, -65533, 0, 0, 3, 0, 0, 65539, 0, 0, 131075, 0, 0, 262139, 0, 1, 327675, 0, 1, 327676, 0, 1, 262140, 0, 0, 131066, 0, 0, 65530, 0, 0, -6, 0, 0, -65542, 0, 0, -131078, 0, 0, -131079, 0, 0, -131080, 0, 0, -65544, 0, 0, -8, 0, 0, -7, 0, 0, -65543, 0, 0, 65529, 0, 0, 131065, 0, 0, 131064, 0, 0, -131077, 0, 0, -65541, 0, 0, -5, 0, 0, 65531, 0, 0, 131067, 0, 0, 65532, 0, 0, -4, 0, 0, -65540, 0, 0, -131076, 0, 0, -131075, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 0, 0, 65534, 0, 0, -2, 0, 0, -65538, 0, 0, -131074, 0, 0, -131073, 0, 0, -65537, 0, 0, -1, 0, 0, 65535, 0, 0, 0, 0, 0, -65536, 0, 0, -131072, 0, 0, -196608, 0, 0, -196607, 0, 0, -131071, 0, 0, -65535, 0, 0, 1, 0, 0, 65537, 0, 0, 65538, 0, 0, 2, 0, 0, -65534, 0, 0, -131070, 0, 0, -196606, 0, 0, 131076, 0, 1, 65540, 0, 1, 4, 0, 1, -65532, 0, 1, -131068, 0, 1, -196604, 0, 1, -262140, 0, 1, 196612, 0, 1, 196611, 0, 1, 196610, 0, 1, 196609, 0, 1)
+
+[node name="entities" type="Node2D" parent="."]
+script = ExtResource("3_vt6bp")
+
+[node name="player" parent="entities" instance=ExtResource("4_1if2c")]
+unique_name_in_owner = true
+position = Vector2(56, -24)
+
+[node name="other_cubes" type="Node2D" parent="entities"]
+
+[node name="AutoCube" parent="entities/other_cubes" instance=ExtResource("5_rqod1")]
+position = Vector2(40, 8)
+direction = "LEFT"
+is_goal_cube = true
+
+[node name="BasicCube" parent="entities/other_cubes" instance=ExtResource("6_rddo6")]
+position = Vector2(-72, 8)
+
+[node name="linked_cubes" type="Node2D" parent="entities"]
+
+[node name="LinkedCube" parent="entities/linked_cubes" instance=ExtResource("7_vfjf5")]
+position = Vector2(-40, 40)
+
+[node name="LinkedCube2" parent="entities/linked_cubes" instance=ExtResource("7_vfjf5")]
+position = Vector2(24, 8)
+
+[node name="inverted_cubes" type="Node2D" parent="entities"]
+
+[node name="InvertedLinkedCube" parent="entities/inverted_cubes" instance=ExtResource("8_ahduv")]
+position = Vector2(-24, 56)
+
+[node name="InvertedLinkedCube2" parent="entities/inverted_cubes" instance=ExtResource("8_ahduv")]
+position = Vector2(-72, -8)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(24, 40)
+
+[node name="NextLevelPrompt" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-24, 120)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_hwqpk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(152, 8)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_xlgbq")
