@@ -1,6 +1,6 @@
-extends Node2D
+extends Node
 
-@onready var player = $player
+@export var player: Player
 
 var action_list: Array[Dictionary] = []
 

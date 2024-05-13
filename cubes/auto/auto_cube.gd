@@ -1,9 +1,6 @@
 class_name AutoCube
 extends Cube
 
-# TODO: Fix
-@onready var player = $"../../player"
-
 enum Direction {UP, DOWN, LEFT, RIGHT}
 @export var direction := Direction.DOWN
 
@@ -14,7 +11,7 @@ var mov_dir: Vector2
 var targetted_tiles: Array[Vector2i] = []
 
 func _ready():
-	player.move_auto.connect(_on_player_action)
+	Global.move.connect(_on_player_move)
 	Global.tile_targetted.connect(_on_tile_targetted)
 
 	match direction:
@@ -29,10 +26,10 @@ func _ready():
 
 	$Sprite2D.rotation = mov_dir.angle() - PI / 2
 
-	$RayCast2D.target_position = mov_dir * Global.tile
+	$RayCast2D.target_position = mov_dir * Global.tile_size
 	$RayCast2D.force_raycast_update()
 
-func _on_player_action():
+func _on_player_move():
 	if is_space_targetted(mov_dir):
 		_push(mov_dir)
 

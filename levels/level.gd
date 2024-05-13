@@ -4,27 +4,20 @@ extends Node2D
 @export var level_id: int
 @export var level_name: String
 
-@onready var entities = $entities
-@onready var player = %player
+@onready var player = %Player
 # TODO: Make level an inherited class
 @onready var level_index = load("res://resources/level_index.tres")
-@onready var prompt = $NextLevelPrompt
-@onready var other_cubes = $entities/other_cubes
-@onready var linked_cube_list = $entities/linked_cubes
-@onready var inverted_cube_list = $entities/inverted_cubes
-
 
 var can_progress := false
 
 func _ready():
 	Global.tilemap = $TileMap
-
 	Global.sweet_victory.connect(win)
 
 func win():
 	can_progress = true
 	player.input_lock = true
-	prompt.visible = true
+	%NextLevelPrompt.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("wait") and can_progress:

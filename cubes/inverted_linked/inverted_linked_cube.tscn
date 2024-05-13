@@ -4,9 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bki152wctd7mg" path="res://cubes/cube.tscn" id="1_5yqos"]
 [ext_resource type="Texture2D" uid="uid://kmdwo2vdth4" path="res://cubes/inverted_linked/inverted_linked_cube.png" id="2_diaca"]
 
-[node name="Cube" groups=["inverted_linked"] instance=ExtResource("1_5yqos")]
+[node name="InvertedLinkedCube" groups=["inverted_linked"] instance=ExtResource("1_5yqos")]
 script = ExtResource("1_2urkt")
-linked_cubes = []
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_diaca")

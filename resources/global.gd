@@ -1,5 +1,6 @@
 extends Node
 
+signal move
 signal sweet_victory
 signal tile_targetted
 

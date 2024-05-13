@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://fj6exe8c0ldh" path="res://cubes/auto/auto_cube.png" id="2_j8s6a"]
 [ext_resource type="Texture2D" uid="uid://clru2nkn7wiv3" path="res://cubes/auto/auto_cube_arrow.png" id="3_y7jsa"]
 
-[node name="Cube" instance=ExtResource("1_60pvv")]
+[node name="AutoCube" instance=ExtResource("1_60pvv")]
 script = ExtResource("1_elgn4")
 direction = 1
 pushable = false

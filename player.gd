@@ -1,7 +1,7 @@
+class_name Player
 extends Node2D
 
 signal did_action
-signal move_auto
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
@@ -26,7 +26,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	elif event.is_action_pressed("wait"):
 		input_lock = true
-		move_auto.emit()
+		Global.move.emit()
 		var timer = get_tree().create_timer(Global.move_time)
 		await timer.timeout
 		did_action.emit()
@@ -58,7 +58,7 @@ func move(direction: Vector2):
 
 	Global.tile_targetted.emit(target_tile, self)
 	is_moving = true
-	move_auto.emit()
+	Global.move.emit()
 
 	var target_position: Vector2 = Global.tilemap.to_global(Global.tilemap.map_to_local(target_tile))
 	var tween = create_tween()

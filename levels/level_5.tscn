@@ -1,68 +1,52 @@
-[gd_scene load_steps=11 format=3 uid="uid://crwc8alo03fpe"]
+[gd_scene load_steps=7 format=3 uid="uid://crwc8alo03fpe"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_m8n3j"]
-[ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tiles.tres" id="2_4mxxw"]
-[ext_resource type="Script" path="res://undo_redo.gd" id="3_vt6bp"]
-[ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player.tscn" id="4_1if2c"]
-[ext_resource type="Texture2D" uid="uid://c8o30t1vqqgp7" path="res://ui/text/next_level_prompt.png" id="5_hwqpk"]
+[ext_resource type="PackedScene" uid="uid://7pbu3m2f4nfr" path="res://levels/level_framework.tscn" id="1_6gytx"]
 [ext_resource type="PackedScene" uid="uid://nfw3dy0wruu7" path="res://cubes/auto/auto_cube.tscn" id="5_rqod1"]
 [ext_resource type="PackedScene" uid="uid://dw20bo3tgee64" path="res://cubes/basic/basic_cube.tscn" id="6_rddo6"]
 [ext_resource type="PackedScene" uid="uid://dcfhj3ud2lsc4" path="res://cubes/linked/linked_cube.tscn" id="7_vfjf5"]
 [ext_resource type="PackedScene" uid="uid://gli3dj1km8jm" path="res://cubes/inverted_linked/inverted_linked_cube.tscn" id="8_ahduv"]
 [ext_resource type="Texture2D" uid="uid://7y1sx4jpqdqa" path="res://ui/text/wait_info.png" id="10_xlgbq"]
 
-[node name="Level" type="Node2D"]
-script = ExtResource("1_m8n3j")
+[node name="Level" instance=ExtResource("1_6gytx")]
 level_id = 5
 level_name = "Unflappable"
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("2_4mxxw")
-format = 2
-layer_0/tile_data = PackedInt32Array(131069, 0, 1, 131070, 0, 1, 131071, 0, 1, 65536, 0, 1, 131073, 0, 1, 131074, 0, 0, 131072, 0, 1, 65528, 65536, 0, 262143, 0, 1, 196607, 0, 1, 327679, 0, 1, 327677, 0, 1, 327678, 0, 1, 196606, 0, 1, 196605, 0, 0, 262141, 0, 0, 262142, 0, 0, 196604, 0, 1, 196603, 0, 1, 196602, 0, 1, 196601, 0, 1, 131068, 0, 1, -65545, 0, 1, -9, 0, 1, 65527, 0, 1, 131063, 0, 1, 196599, 0, 1, 196600, 0, 1, -131081, 0, 1, -196617, 0, 1, -196616, 0, 1, -196615, 0, 1, -196614, 0, 1, -196613, 0, 1, -196612, 0, 1, -196611, 0, 1, -196610, 0, 1, -196609, 0, 1, -262144, 0, 1, -262143, 0, 1, -262142, 0, 1, -262141, 0, 1, -196605, 0, 0, -131069, 0, 0, -65533, 0, 0, 3, 0, 0, 65539, 0, 0, 131075, 0, 0, 262139, 0, 1, 327675, 0, 1, 327676, 0, 1, 262140, 0, 0, 131066, 0, 0, 65530, 0, 0, -6, 0, 0, -65542, 0, 0, -131078, 0, 0, -131079, 0, 0, -131080, 0, 0, -65544, 0, 0, -8, 0, 0, -7, 0, 0, -65543, 0, 0, 65529, 0, 0, 131065, 0, 0, 131064, 0, 0, -131077, 0, 0, -65541, 0, 0, -5, 0, 0, 65531, 0, 0, 131067, 0, 0, 65532, 0, 0, -4, 0, 0, -65540, 0, 0, -131076, 0, 0, -131075, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 0, 0, 65534, 0, 0, -2, 0, 0, -65538, 0, 0, -131074, 0, 0, -131073, 0, 0, -65537, 0, 0, -1, 0, 0, 65535, 0, 0, 0, 0, 0, -65536, 0, 0, -131072, 0, 0, -196608, 0, 0, -196607, 0, 0, -131071, 0, 0, -65535, 0, 0, 1, 0, 0, 65537, 0, 0, 65538, 0, 0, 2, 0, 0, -65534, 0, 0, -131070, 0, 0, -196606, 0, 0, 131076, 0, 1, 65540, 0, 1, 4, 0, 1, -65532, 0, 1, -131068, 0, 1, -196604, 0, 1, -262140, 0, 1, 196612, 0, 1, 196611, 0, 1, 196610, 0, 1, 196609, 0, 1)
-
-[node name="entities" type="Node2D" parent="."]
-script = ExtResource("3_vt6bp")
-
-[node name="player" parent="entities" instance=ExtResource("4_1if2c")]
-unique_name_in_owner = true
-position = Vector2(56, -24)
-
-[node name="other_cubes" type="Node2D" parent="entities"]
-
-[node name="AutoCube" parent="entities/other_cubes" instance=ExtResource("5_rqod1")]
-position = Vector2(40, 8)
-is_goal_cube = true
-
-[node name="BasicCube" parent="entities/other_cubes" instance=ExtResource("6_rddo6")]
-position = Vector2(-72, 8)
-
-[node name="linked_cubes" type="Node2D" parent="entities"]
-
-[node name="LinkedCube" parent="entities/linked_cubes" instance=ExtResource("7_vfjf5")]
-position = Vector2(-40, 40)
-
-[node name="LinkedCube2" parent="entities/linked_cubes" instance=ExtResource("7_vfjf5")]
-position = Vector2(24, 8)
-
-[node name="inverted_cubes" type="Node2D" parent="entities"]
-
-[node name="InvertedLinkedCube" parent="entities/inverted_cubes" instance=ExtResource("8_ahduv")]
-position = Vector2(-24, 56)
-
-[node name="InvertedLinkedCube2" parent="entities/inverted_cubes" instance=ExtResource("8_ahduv")]
-position = Vector2(-72, -8)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(24, 40)
-
-[node name="NextLevelPrompt" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-24, 120)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("5_hwqpk")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(152, 8)
-scale = Vector2(1.5, 1.5)
+[node name="TextureRect" type="TextureRect" parent="UI" index="1"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -33.5
+offset_right = -16.0
+offset_bottom = 6.5
+grow_horizontal = 0
+grow_vertical = 2
 texture = ExtResource("10_xlgbq")
+
+[node name="TileMap" parent="." index="2"]
+layer_0/tile_data = PackedInt32Array(196614, 0, 1, 262150, 0, 1, 327686, 0, 1, 393222, 0, 1, 458758, 0, 1, 196615, 0, 1, 262151, 0, 0, 327687, 0, 0, 393223, 0, 0, 458759, 65536, 0, 196616, 0, 1, 262152, 0, 0, 327688, 0, 0, 393224, 0, 0, 458760, 0, 0, 196617, 0, 1, 262153, 0, 0, 327689, 0, 0, 393225, 0, 0, 458761, 0, 0, 524297, 0, 0, 589833, 0, 1, 196618, 0, 1, 262154, 0, 0, 327690, 0, 0, 393226, 0, 0, 458762, 0, 0, 524298, 0, 0, 589834, 0, 1, 196619, 0, 1, 262155, 0, 0, 327691, 0, 0, 393227, 0, 0, 458763, 0, 0, 524299, 0, 1, 589835, 0, 1, 196620, 0, 1, 262156, 0, 0, 327692, 0, 0, 393228, 0, 0, 458764, 0, 0, 524300, 0, 1, 589836, 0, 0, 196621, 0, 1, 262157, 0, 0, 327693, 0, 0, 393229, 0, 0, 458765, 0, 0, 524301, 0, 1, 589837, 0, 1, 196622, 0, 1, 262158, 0, 0, 327694, 0, 0, 393230, 0, 0, 458766, 0, 0, 196623, 0, 1, 262159, 0, 0, 327695, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 1, 196624, 0, 1, 262160, 0, 0, 327696, 0, 0, 393232, 0, 0, 458768, 0, 0, 524304, 0, 0, 196625, 0, 1, 262161, 0, 0, 327697, 0, 0, 393233, 0, 0, 458769, 0, 0, 524305, 0, 0, 196626, 0, 1, 262162, 0, 0, 327698, 0, 0, 393234, 0, 0, 458770, 0, 0, 524306, 0, 0, 524294, 0, 1, 589830, 0, 1, 524295, 0, 0, 589831, 0, 1, 524296, 0, 0, 589832, 0, 1, 655370, 0, 1, 720906, 0, 1, 655371, 0, 0, 720907, 0, 1, 655372, 0, 0, 720908, 0, 1, 655373, 0, 0, 720909, 0, 1, 524302, 0, 1, 589838, 0, 1, 655374, 0, 1, 720910, 0, 1, 589839, 0, 1, 589840, 0, 1, 655376, 0, 1, 589841, 0, 0, 655377, 0, 1, 589842, 0, 0, 655378, 0, 1, 196627, 0, 1, 262163, 0, 1, 327699, 0, 1, 393235, 0, 1, 458771, 0, 1, 524307, 0, 1, 589843, 0, 1, 655379, 0, 1)
+
+[node name="Player" parent="." index="3"]
+position = Vector2(296, 88)
+
+[node name="LinkedCube" parent="." index="4" instance=ExtResource("7_vfjf5")]
+position = Vector2(200, 152)
+
+[node name="LinkedCube2" parent="." index="5" instance=ExtResource("7_vfjf5")]
+position = Vector2(264, 120)
+
+[node name="BasicCube" parent="." index="6" instance=ExtResource("6_rddo6")]
+position = Vector2(168, 120)
+
+[node name="InvertedLinkedCube2" parent="." index="7" instance=ExtResource("8_ahduv")]
+position = Vector2(168, 104)
+
+[node name="InvertedLinkedCube" parent="." index="8" instance=ExtResource("8_ahduv")]
+position = Vector2(216, 168)
+
+[node name="AutoCube" parent="." index="9" instance=ExtResource("5_rqod1")]
+position = Vector2(280, 120)
+direction = 2
+is_goal_cube = true
