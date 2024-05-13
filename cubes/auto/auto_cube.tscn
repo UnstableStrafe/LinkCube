@@ -7,7 +7,8 @@
 
 [node name="Cube" instance=ExtResource("1_60pvv")]
 script = ExtResource("1_elgn4")
-direction = "DOWN"
+direction = 1
+pushable = false
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_j8s6a")

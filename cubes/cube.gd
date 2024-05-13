@@ -1,65 +1,51 @@
 class_name Cube
 extends Node2D
 
-signal target_space
-signal sweet_victory
-
-@export var pushable := true
 @export var is_goal_cube := false
-
-@onready var tile_map: TileMap = $"../../../TileMap"  # TODO: Fix this
+@export var pushable := true
 
 var is_moving := false
 
 func _ready():
 	%Crown.visible = is_goal_cube
 
-func _push(direction: Vector2):
+func _push(direction: Vector2i):
+	# Debounce/prevent moving while already moving
 	if is_moving: return
+	if not can_move(direction): return
 
-	var current_tile := tile_map.local_to_map(global_position)
-	var target_tile := Vector2i(
-		round(current_tile.x + direction.x),
-		round(current_tile.y + direction.y)
-	)
-	var tile_data := tile_map.get_cell_tile_data(0, target_tile)
-
-	if not tile_data.get_custom_data("walkable"):
-		return
+	var current_tile := Global.tilemap.local_to_map(global_position)
+	var target_tile := current_tile + direction
+	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
 
 	if is_goal_cube and tile_data.get_custom_data("goal"):
-		sweet_victory.emit()
+		Global.sweet_victory.emit()
 
-	$RayCast2D.target_position = direction * tile_map.tile_set.tile_size.x
-	$RayCast2D.force_raycast_update()
-
-	if $RayCast2D.is_colliding():
-		return
-
-	target_space.emit(target_tile, self)
 	is_moving = true
+	# For auto cube
+	Global.tile_targetted.emit(target_tile, self)
 
-	var target_position: Vector2 = tile_map.map_to_local(target_tile)
+	# Tween to position
+	var target_position: Vector2 = Global.tilemap.map_to_local(target_tile)
 	var tween = create_tween()
-	tween.tween_property(self, "global_position", target_position, 0.2).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "global_position", target_position, Global.move_time).set_trans(Tween.TRANS_SINE)
 
 	await tween.finished
+
 	is_moving = false
 
 
-func can_move(direction: Vector2) -> bool:
-	$RayCast2D.target_position = direction * tile_map.tile_set.tile_size.x
+## Whether the cube can move in the given direction
+## i.e. if the target tile is walkable or if there is no cube in that space
+func can_move(direction: Vector2i) -> bool:
+	$RayCast2D.target_position = direction * Global.tile_size
 	$RayCast2D.force_raycast_update()
 
-	var current_tile: Vector2i = tile_map.local_to_map(global_position)
-	var target_tile: Vector2i = Vector2i(
-		round(current_tile.x + direction.x),
-		round(current_tile.y + direction.y)
-	)
-	var tile_data: TileData = tile_map.get_cell_tile_data(0, target_tile)
+	var current_tile: Vector2i = Global.tilemap.local_to_map(global_position)
+	var target_tile := current_tile + direction
+	var tile_data: TileData = Global.tilemap.get_cell_tile_data(0, target_tile)
 
 	if not tile_data.get_custom_data("walkable") or $RayCast2D.is_colliding():
 		return false
 	else:
 		return true
-

@@ -6,6 +6,7 @@ extends Node2D
 
 @onready var entities = $entities
 @onready var player = %player
+# TODO: Make level an inherited class
 @onready var level_index = load("res://resources/level_index.tres")
 @onready var prompt = $NextLevelPrompt
 @onready var other_cubes = $entities/other_cubes
@@ -16,23 +17,9 @@ extends Node2D
 var can_progress := false
 
 func _ready():
-	for cube in other_cubes.get_children():
-		cube.sweet_victory.connect(win)
+	Global.tilemap = $TileMap
 
-	for cube in linked_cube_list.get_children():
-		cube.sweet_victory.connect(win)
-
-		for i2 in linked_cube_list.get_children():
-			if i2 != cube:
-				cube.linked_cubes.append(i2.get_path())
-
-	for cube in inverted_cube_list.get_children():
-		cube.sweet_victory.connect(win)
-
-		for other_cube in inverted_cube_list.get_children():
-			# Don't link a cube to itself
-			if other_cube != cube:
-				cube.linked_cubes.append(other_cube.get_path())
+	Global.sweet_victory.connect(win)
 
 func win():
 	can_progress = true

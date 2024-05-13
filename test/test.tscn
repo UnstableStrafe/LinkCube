@@ -1,15 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkv2imqgipx5m"]
+[gd_scene load_steps=12 format=3 uid="uid://bkv2imqgipx5m"]
 
 [ext_resource type="Texture2D" uid="uid://dl5qmlfcwlim5" path="res://test/tilemap_color_packed.png" id="1_0x8jd"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_p5dqx"]
 [ext_resource type="Texture2D" uid="uid://0e48yjsd1bde" path="res://test/tilemap_grayscale_packed.png" id="2_4vb22"]
 [ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player.tscn" id="3_gir1d"]
 [ext_resource type="Script" path="res://undo_redo.gd" id="3_hllsr"]
-[ext_resource type="PackedScene" uid="uid://k780jms57nrc" path="res://cubes/auto/auto_cube.tscn" id="4_1u5dj"]
+[ext_resource type="PackedScene" uid="uid://nfw3dy0wruu7" path="res://cubes/auto/auto_cube.tscn" id="4_1u5dj"]
 [ext_resource type="Texture2D" uid="uid://bbc2ioff8uqpq" path="res://floor_tiles.png" id="4_6vr5c"]
-[ext_resource type="PackedScene" uid="uid://cah78mxrg68st" path="res://cubes/basic/basic_cube.tscn" id="4_d4kk5"]
-[ext_resource type="PackedScene" uid="uid://mckoa843cmp3" path="res://cubes/inverted_linked/inverted_linked_cube.tscn" id="6_qpep3"]
-[ext_resource type="PackedScene" uid="uid://bfwm4nco50s53" path="res://cubes/linked/linked_cube.tscn" id="6_wfhal"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lmbug"]
 texture = ExtResource("1_0x8jd")
@@ -181,29 +178,19 @@ layer_0/tile_data = PackedInt32Array(-720912, 0, 6, -655376, 0, 6, -589840, 0, 6
 [node name="entities" type="Node2D" parent="."]
 script = ExtResource("3_hllsr")
 
-[node name="AutoCube" parent="entities" instance=ExtResource("4_1u5dj")]
-position = Vector2(104, -24)
-direction = "UP"
-
 [node name="player" parent="entities" instance=ExtResource("3_gir1d")]
 position = Vector2(8, -8)
 
-[node name="BasicCube" parent="entities" instance=ExtResource("4_d4kk5")]
-position = Vector2(40, -24)
-is_goal_cube = true
+[node name="Camera2D" type="Camera2D" parent="entities/player"]
 
-[node name="LinkedCube2" parent="entities" instance=ExtResource("6_wfhal")]
-position = Vector2(72, 24)
-linked_cubes = [NodePath("../LinkedCube")]
+[node name="Node2D" type="Node2D" parent="entities"]
 
-[node name="LinkedCube" parent="entities" instance=ExtResource("6_wfhal")]
-position = Vector2(40, 24)
-linked_cubes = [NodePath("../LinkedCube2")]
+[node name="AutoCube" parent="entities/Node2D" instance=ExtResource("4_1u5dj")]
+position = Vector2(104, -24)
+direction = 3
 
-[node name="InvertedLinkedCube" parent="entities" instance=ExtResource("6_qpep3")]
-position = Vector2(-24, 24)
-linked_cubes = [NodePath("../InvertedLinkedCube2")]
+[node name="other_cubes" type="Node2D" parent="entities"]
 
-[node name="InvertedLinkedCube2" parent="entities" instance=ExtResource("6_qpep3")]
-position = Vector2(-56, 24)
-linked_cubes = [NodePath("../InvertedLinkedCube")]
+[node name="linked_cubes" type="Node2D" parent="entities"]
+
+[node name="inverted_cubes" type="Node2D" parent="entities"]

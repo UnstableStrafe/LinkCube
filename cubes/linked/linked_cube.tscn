@@ -4,9 +4,8 @@
 [ext_resource type="Script" path="res://cubes/linked/linked_cube.gd" id="1_xnjix"]
 [ext_resource type="Texture2D" uid="uid://besfonh6lh1dt" path="res://cubes/linked/linked_cube.png" id="2_xax0q"]
 
-[node name="LinkedCube" instance=ExtResource("1_eb1ao")]
+[node name="LinkedCube" groups=["linked"] instance=ExtResource("1_eb1ao")]
 script = ExtResource("1_xnjix")
-linked_cubes = []
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_xax0q")
