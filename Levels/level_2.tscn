@@ -22,6 +22,7 @@ layer_0/tile_data = PackedInt32Array(-65537, 0, 0, -131072, 0, 0, -131071, 0, 0,
 script = ExtResource("3_me6d7")
 
 [node name="player" parent="entities" instance=ExtResource("4_od52n")]
+unique_name_in_owner = true
 position = Vector2(56, -56)
 
 [node name="other_cubes" type="Node2D" parent="entities"]
