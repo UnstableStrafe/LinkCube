@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_q1wag"]
 [ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tiles.tres" id="2_4q3ak"]
-[ext_resource type="Script" path="res://entities.gd" id="3_5gr2w"]
+[ext_resource type="Script" path="res://undo_redo.gd" id="3_5gr2w"]
 [ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player.tscn" id="4_ejsuu"]
 [ext_resource type="Texture2D" uid="uid://c8o30t1vqqgp7" path="res://ui/text/next_level_prompt.png" id="5_5ksyv"]
 [ext_resource type="PackedScene" uid="uid://k780jms57nrc" path="res://cubes/auto/auto_cube.tscn" id="5_utvw7"]

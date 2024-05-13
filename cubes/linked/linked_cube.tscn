@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m61if"]
 size = Vector2(16, 16)
 
-[node name="LinkedCube" type="Node2D"]
+[node name="LinkedCube" type="Node2D" groups=["track_state"]]
 script = ExtResource("1_xnjix")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

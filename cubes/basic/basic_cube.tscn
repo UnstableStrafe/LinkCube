@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7oxp"]
 size = Vector2(16, 16)
 
-[node name="BasicCube" type="Node2D"]
+[node name="BasicCube" type="Node2D" groups=["track_state"]]
 script = ExtResource("1_c7np7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

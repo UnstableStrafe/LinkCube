@@ -9,18 +9,14 @@ func _ready():
 		crown.visible = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
-	pass
-
 func _push(direction : Vector2, lerp_time = .2):
 	if !can_all_move(direction):
 		return
 	if is_moving:
 		return
-	var current_tile : Vector2i = tile_map.local_to_map(global_position)
-	var target_tile : Vector2i = Vector2i(current_tile.x + direction.x, current_tile.y + direction.y)
-	var tile_data  : TileData = tile_map.get_cell_tile_data(0, target_tile)
+	var current_tile: Vector2i = tile_map.local_to_map(global_position)
+	var target_tile: Vector2i = Vector2i(current_tile.x + direction.x, current_tile.y + direction.y)
+	var tile_data: TileData = tile_map.get_cell_tile_data(0, target_tile)
 
 	if tile_data.get_custom_data("walkable") == false:
 		return
