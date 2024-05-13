@@ -1,4 +1,4 @@
-class_name PushableCube
+class_name Cube
 extends Node2D
 
 signal target_space
@@ -8,19 +8,11 @@ signal sweet_victory
 @export var is_goal_cube := false
 
 @onready var tile_map: TileMap = $"../../../TileMap"  # TODO: Fix this
-@onready var _ray_cast_2d: RayCast2D = $"RayCast2D"
-@onready var crown = $"Crown"
 
 var is_moving := false
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	if _ray_cast_2d == null:
-		print_rich("[color=CRIMSON][font_size=30][shake rate=20.0 level=5 connected=1]UH OH!!![/shake][/font_size][/color]")
-		print_rich("Looks like you [color=RED][pulse freq=2.5]FUCKED UP[/pulse][/color] and your code errored!!! [color=CORNFLOWER_BLUE]:([/color]")
-		print("Error is in: your cube raycast code")
-		get_tree().paused = true
+	%Crown.visible = is_goal_cube
 
 func _push(direction: Vector2):
 	if is_moving: return
@@ -32,16 +24,16 @@ func _push(direction: Vector2):
 	)
 	var tile_data := tile_map.get_cell_tile_data(0, target_tile)
 
-	if tile_data.get_custom_data("walkable") == false:
+	if not tile_data.get_custom_data("walkable"):
 		return
 
-	if tile_data.get_custom_data("goal") and is_goal_cube:
+	if is_goal_cube and tile_data.get_custom_data("goal"):
 		sweet_victory.emit()
 
-	_ray_cast_2d.target_position = direction * tile_map.tile_set.tile_size.x
-	_ray_cast_2d.force_raycast_update()
+	$RayCast2D.target_position = direction * tile_map.tile_set.tile_size.x
+	$RayCast2D.force_raycast_update()
 
-	if _ray_cast_2d.is_colliding():
+	if $RayCast2D.is_colliding():
 		return
 
 	target_space.emit(target_tile, self)
@@ -56,8 +48,8 @@ func _push(direction: Vector2):
 
 
 func can_move(direction: Vector2) -> bool:
-	_ray_cast_2d.target_position = direction * 16.0
-	_ray_cast_2d.force_raycast_update()
+	$RayCast2D.target_position = direction * tile_map.tile_set.tile_size.x
+	$RayCast2D.force_raycast_update()
 
 	var current_tile: Vector2i = tile_map.local_to_map(global_position)
 	var target_tile: Vector2i = Vector2i(
@@ -66,8 +58,7 @@ func can_move(direction: Vector2) -> bool:
 	)
 	var tile_data: TileData = tile_map.get_cell_tile_data(0, target_tile)
 
-
-	if tile_data.get_custom_data("walkable") == false or _ray_cast_2d.is_colliding():
+	if not tile_data.get_custom_data("walkable") or $RayCast2D.is_colliding():
 		return false
 	else:
 		return true

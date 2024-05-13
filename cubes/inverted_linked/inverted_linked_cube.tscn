@@ -1,30 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://mckoa843cmp3"]
+[gd_scene load_steps=4 format=3 uid="uid://gli3dj1km8jm"]
 
 [ext_resource type="Script" path="res://cubes/inverted_linked/inverted_linked_cube.gd" id="1_2urkt"]
+[ext_resource type="PackedScene" uid="uid://bki152wctd7mg" path="res://cubes/cube.tscn" id="1_5yqos"]
 [ext_resource type="Texture2D" uid="uid://kmdwo2vdth4" path="res://cubes/inverted_linked/inverted_linked_cube.png" id="2_diaca"]
-[ext_resource type="Texture2D" uid="uid://dsv73c13uxhqd" path="res://cubes/victory_crown.png" id="3_6xe8h"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntye5"]
-size = Vector2(16, 16)
-
-[node name="InvertedLinkedCube" type="Node2D" groups=["track_state"]]
+[node name="Cube" instance=ExtResource("1_5yqos")]
 script = ExtResource("1_2urkt")
+linked_cubes = []
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_diaca")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_ntye5")
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 16)
-collide_with_areas = true
-collide_with_bodies = false
-
-[node name="Crown" type="Sprite2D" parent="."]
-visible = false
-z_index = 1
-position = Vector2(0, -9)
-texture = ExtResource("3_6xe8h")

@@ -1,5 +1,5 @@
 class_name AutoCube
-extends PushableCube
+extends Cube
 
 @onready var player = $"../../player"
 @onready var entities = $"../.."
@@ -16,7 +16,8 @@ var unavaliable_tiles = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_goal_cube:
-		crown.visible = true
+		$Crown.visible = true
+
 	player.move_auto.connect(on_player_action)
 	player.target_space.connect(targeted_tiles)
 	for i in other_cubes.get_children():
@@ -42,8 +43,8 @@ func _ready():
 		"RIGHT":
 			mov_dir = Vector2.RIGHT
 			sprite.set_rotation_degrees(270)
-	_ray_cast_2d.target_position = mov_dir * 16
-	_ray_cast_2d.force_raycast_update()
+	$RayCast2D.target_position = mov_dir * 16
+	$RayCast2D.force_raycast_update()
 
 func on_player_action():
 	if can_move(mov_dir) and check_space_open(mov_dir):

@@ -5,7 +5,7 @@ extends Node2D
 var action_list: Array[Dictionary] = []
 
 func _ready():
-	player.did_action.connect(on_player_action)
+	player.did_action.connect(_on_player_did_action)
 	save_states()
 
 func save_states() -> void:
@@ -18,13 +18,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("undo"):
 		if player.input_lock:
 			return
-		if action_list.size() == 0:
+		if action_list.size() <= 1:
 			print("no actions")
 			return
 
 		undo_action()
 
-func on_player_action():
+func _on_player_did_action():
 	save_states()
 
 func undo_action() -> void:

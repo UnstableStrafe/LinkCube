@@ -4,8 +4,8 @@
 [ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tiles.tres" id="2_q7gw8"]
 [ext_resource type="Script" path="res://undo_redo.gd" id="3_me6d7"]
 [ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player.tscn" id="4_od52n"]
-[ext_resource type="PackedScene" uid="uid://cah78mxrg68st" path="res://cubes/basic/basic_cube.tscn" id="4_y04cv"]
-[ext_resource type="PackedScene" uid="uid://bfwm4nco50s53" path="res://cubes/linked/linked_cube.tscn" id="5_2wx40"]
+[ext_resource type="PackedScene" uid="uid://dw20bo3tgee64" path="res://cubes/basic/basic_cube.tscn" id="4_y04cv"]
+[ext_resource type="PackedScene" uid="uid://dcfhj3ud2lsc4" path="res://cubes/linked/linked_cube.tscn" id="5_2wx40"]
 [ext_resource type="Texture2D" uid="uid://c8o30t1vqqgp7" path="res://ui/text/next_level_prompt.png" id="5_bbq3r"]
 
 [node name="Level" type="Node2D"]

@@ -52,8 +52,8 @@ func move(direction: Vector2):
 
 	if ray_cast_2d.is_colliding():
 		var collision: Node = ray_cast_2d.get_collider().get_parent()
-		if collision is PushableCube:
-			var cube: PushableCube = collision
+		if collision is Cube:
+			var cube: Cube = collision
 			if cube.pushable and cube.can_move(direction):
 				cube._push(direction)
 			if not cube.is_moving:

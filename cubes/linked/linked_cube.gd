@@ -1,12 +1,7 @@
 class_name LinkedCube
-extends PushableCube
+extends Cube
 
 @export var linked_cubes = []
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	if is_goal_cube:
-		crown.visible = true
 
 
 func _push(direction : Vector2, lerp_time = .2):
@@ -52,9 +47,9 @@ func linked_push(direction : Vector2):
 
 		if tile_data.get_custom_data("walkable") == false:
 			return
-		other_cube._ray_cast_2d.target_position = direction * 16
-		other_cube._ray_cast_2d.force_raycast_update()
-		if other_cube._ray_cast_2d.is_colliding():
+		other_cube.get_node("RayCast2D").target_position = direction * 16
+		other_cube.get_node("RayCast2D").force_raycast_update()
+		if other_cube.get_node("RayCast2D").is_colliding():
 			return
 
 		if tile_data.get_custom_data("goal") and other_cube.is_goal_cube:

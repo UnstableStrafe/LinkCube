@@ -1,13 +1,7 @@
 class_name InvertedLinkedCube
-extends PushableCube
+extends Cube
 
 @export var linked_cubes = []
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	if is_goal_cube:
-		crown.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,15 +23,15 @@ func _push(direction : Vector2, lerp_time = .2):
 	if tile_data.get_custom_data("goal") and is_goal_cube:
 		victory = true
 
-	_ray_cast_2d.target_position = direction * 16
-	_ray_cast_2d.force_raycast_update()
-	if _ray_cast_2d.is_colliding():
+	$RayCast2D.target_position = direction * 16
+	$RayCast2D.force_raycast_update()
+	if $RayCast2D.is_colliding():
 		return
 	for s in linked_cubes:
 		var other_cube = get_node(s)
-		other_cube._ray_cast_2d.target_position = -direction * 16
-		other_cube._ray_cast_2d.force_raycast_update()
-		if other_cube._ray_cast_2d.is_colliding():
+		other_cube.get_node("RayCast2D").target_position = -direction * 16
+		other_cube.get_node("RayCast2D").force_raycast_update()
+		if other_cube.get_node("RayCast2D").is_colliding():
 			return
 		if !other_cube.can_move(-direction):
 			return

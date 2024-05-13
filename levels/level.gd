@@ -15,7 +15,6 @@ extends Node2D
 
 var can_progress := false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	for cube in other_cubes.get_children():
 		cube.sweet_victory.connect(win)
