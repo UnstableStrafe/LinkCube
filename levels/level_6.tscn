@@ -4,9 +4,9 @@
 [ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tiles.tres" id="2_4b10h"]
 [ext_resource type="Script" path="res://undo_redo.gd" id="3_6ek6u"]
 [ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player.tscn" id="4_85y6c"]
-[ext_resource type="PackedScene" uid="uid://bfwm4nco50s53" path="res://cubes/linked/linked_cube.tscn" id="5_7c34f"]
+[ext_resource type="PackedScene" uid="uid://dcfhj3ud2lsc4" path="res://cubes/linked/linked_cube.tscn" id="5_7c34f"]
 [ext_resource type="Texture2D" uid="uid://c8o30t1vqqgp7" path="res://ui/text/next_level_prompt.png" id="5_c62h4"]
-[ext_resource type="PackedScene" uid="uid://mckoa843cmp3" path="res://cubes/inverted_linked/inverted_linked_cube.tscn" id="6_kicij"]
+[ext_resource type="PackedScene" uid="uid://gli3dj1km8jm" path="res://cubes/inverted_linked/inverted_linked_cube.tscn" id="6_kicij"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ylyhe")

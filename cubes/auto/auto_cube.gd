@@ -33,15 +33,15 @@ func _ready():
 	$RayCast2D.force_raycast_update()
 
 func _on_player_action():
-	if is_space_open(mov_dir):
+	if is_space_targetted(mov_dir):
 		_push(mov_dir)
 
 	targetted_tiles.clear()
 
 ## Ensure nothing else is moving into that space
-func is_space_open(direction: Vector2i) -> bool:
+func is_space_targetted(_direction: Vector2i) -> bool:
 	var current_tile := Global.tilemap.local_to_map(global_position)
-	var target_tile := current_tile + direction
+	var target_tile := current_tile + _direction
 
 	return target_tile not in targetted_tiles
 
