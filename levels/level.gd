@@ -3,7 +3,6 @@ extends Node2D
 
 @export var level_id: int
 @export var level_name: String
-@export var level_index: Level_Index
 
 @onready var player = %Player
 
@@ -21,4 +20,6 @@ func win():
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("next_level") and can_progress:
 		# Load next level
-		get_tree().change_scene_to_packed(level_index.levels[level_id])
+		get_tree().change_scene_to_packed(Global.levels[level_id])
+	elif event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
