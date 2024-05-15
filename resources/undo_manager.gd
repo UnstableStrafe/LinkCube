@@ -28,8 +28,9 @@ func _on_player_did_action():
 	save_states()
 
 func undo_action() -> void:
-	action_list.pop_back()  # Lose the most recent action
-	var positions: Dictionary = action_list.pop_back()  # The state to restore
+	print("restore")
+	action_list.pop_back()  # Remove the current state
+	var positions: Dictionary = action_list[-1]  # Restore previous state
 
 	for node in positions.keys():
 		node.global_position = positions[node]
