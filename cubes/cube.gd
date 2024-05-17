@@ -1,10 +1,14 @@
 class_name Cube
 extends Node2D
 
+## Is this the cube needed to touch the goal
 @export var is_goal_cube := false
+## Can this cube be pushed by the player
 @export var pushable := true
-#Used for if a cube can be pushed by another cube
-@export var cube_pushable := false 
+## Can this cube be pushed by another cube
+@export var cube_pushable := false
+
+const PLAYER_COLLISION_LAYER = 2
 
 var is_moving := false
 
@@ -43,19 +47,24 @@ func can_move(direction: Vector2i) -> bool:
 	$RayCast2D.target_position = direction * Global.tile_size
 	$RayCast2D.force_raycast_update()
 
+	if $RayCast2D.is_colliding():
+		var body: Object = $RayCast2D.get_collider()
+		# If enabled, the collision is with the player
+		if body.get_collision_layer_value(PLAYER_COLLISION_LAYER):
+			# Player is not pushable
+			return false
+		# Otherwise its probably a cube
+		else:
+			# Check if this is a pushable cube
+			var cube: Cube = body.owner
+			return other_is_cube_pushable(cube, direction)
+
+	# Check if target tile is walkable
+
 	var current_tile: Vector2i = Global.tilemap.local_to_map(global_position)
 	var target_tile := current_tile + direction
-	var tile_data: TileData = Global.tilemap.get_cell_tile_data(0, target_tile)
-	if $RayCast2D.is_colliding():
-		var body = $RayCast2D.get_collider()
-		if not get_tree().get_nodes_in_group("player").has(body):
-			return other_is_cube_pushable(body, direction)
-		else:
-			return false 
-			# if the raycast is colliding, get the body that it is colliding with.
-			# if that body isn't a player, then call the function to check if that cube can be pushed by other cubes
-			# that function will attempt to push the cube, returning true if it can or false if it can't
-			# if the body is a player, return false instead
+	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
+
 	if not tile_data.get_custom_data("walkable"):
 		return false
 	else:
@@ -63,7 +72,8 @@ func can_move(direction: Vector2i) -> bool:
 
 
 func other_is_cube_pushable(otherBody: Cube, direction: Vector2i) -> bool:
-	if not otherBody.cube_pushable or not otherBody.can_move(direction): return false
-	else:
+	if otherBody.cube_pushable and otherBody.can_move(direction):
 		otherBody._push(direction)
 		return true
+	else:
+		return false

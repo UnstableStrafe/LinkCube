@@ -2,6 +2,7 @@ class_name AutoCube
 extends Cube
 
 enum Direction {UP, DOWN, LEFT, RIGHT}
+## The direction to automatically travel in
 @export var direction := Direction.DOWN
 
 var mov_dir: Vector2
