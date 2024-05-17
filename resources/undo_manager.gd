@@ -28,7 +28,6 @@ func _on_player_did_action():
 	save_states()
 
 func undo_action() -> void:
-	print("restore")
 	action_list.pop_back()  # Remove the current state
 	var positions: Dictionary = action_list[-1]  # Restore previous state
 

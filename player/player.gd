@@ -10,21 +10,21 @@ var can_move := true
 var is_moving := false
 var input_lock := false
 
-
-func _unhandled_input(event: InputEvent) -> void:
+# Use process to repeatedly move while the key is held
+func _process(_delta: float) -> void:
 	if is_moving: return
 	if input_lock: return
 
-	if event.is_action_pressed("move_up"):
+	if Input.is_action_pressed("move_up"):
 		move(Vector2.UP)
-	elif event.is_action_pressed("move_down"):
+	elif Input.is_action_pressed("move_down"):
 		move(Vector2.DOWN)
-	elif event.is_action_pressed("move_left"):
+	elif Input.is_action_pressed("move_left"):
 		move(Vector2.LEFT)
-	elif event.is_action_pressed("move_right"):
+	elif Input.is_action_pressed("move_right"):
 		move(Vector2.RIGHT)
 
-	elif event.is_action_pressed("wait"):
+	elif Input.is_action_pressed("wait"):
 		input_lock = true
 		Global.move.emit()
 		var timer = get_tree().create_timer(Global.move_time)
