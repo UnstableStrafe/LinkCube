@@ -24,6 +24,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		undo_action()
 
+	elif event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
+
 func _on_player_did_action():
 	save_states()
 

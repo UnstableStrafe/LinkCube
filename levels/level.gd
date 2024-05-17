@@ -21,5 +21,3 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("next_level") and can_progress:
 		# Load next level
 		get_tree().change_scene_to_packed(Global.levels[level_id])
-	elif event.is_action_pressed("restart"):
-		get_tree().reload_current_scene()
