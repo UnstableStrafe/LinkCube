@@ -5,8 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlyv5"]
 size = Vector2(16, 16)
-
-[node name="Player" type="Node2D" groups=["track_state"]]
+[node name="Player" type="Node2D" groups=["player", "track_state"]]
 script = ExtResource("1_relkq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

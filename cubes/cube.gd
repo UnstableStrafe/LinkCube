@@ -3,6 +3,8 @@ extends Node2D
 
 @export var is_goal_cube := false
 @export var pushable := true
+#Used for if a cube can be pushed by another cube
+@export var cube_pushable := false 
 
 var is_moving := false
 
@@ -44,8 +46,24 @@ func can_move(direction: Vector2i) -> bool:
 	var current_tile: Vector2i = Global.tilemap.local_to_map(global_position)
 	var target_tile := current_tile + direction
 	var tile_data: TileData = Global.tilemap.get_cell_tile_data(0, target_tile)
-
-	if not tile_data.get_custom_data("walkable") or $RayCast2D.is_colliding():
+	if $RayCast2D.is_colliding():
+		var body = $RayCast2D.get_collider()
+		if not get_tree().get_nodes_in_group("player").has(body):
+			return other_is_cube_pushable(body, direction)
+		else:
+			return false 
+			# if the raycast is colliding, get the body that it is colliding with.
+			# if that body isn't a player, then call the function to check if that cube can be pushed by other cubes
+			# that function will attempt to push the cube, returning true if it can or false if it can't
+			# if the body is a player, return false instead
+	if not tile_data.get_custom_data("walkable"):
 		return false
 	else:
+		return true
+
+
+func other_is_cube_pushable(otherBody: Cube, direction: Vector2i) -> bool:
+	if not otherBody.cube_pushable or not otherBody.can_move(direction): return false
+	else:
+		otherBody._push(direction)
 		return true
