@@ -19,6 +19,7 @@ position = Vector2(0, -9)
 texture = ExtResource("3_r12mc")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -26,5 +27,6 @@ shape = SubResource("RectangleShape2D_h7oxp")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 16)
+collision_mask = 3
 collide_with_areas = true
 collide_with_bodies = false
