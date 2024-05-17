@@ -4,8 +4,18 @@ extends Cube
 enum Direction {UP, DOWN, LEFT, RIGHT}
 ## The direction to automatically travel in
 @export var direction := Direction.DOWN
+## Whether the cube should switch directions when unable to move
+@export var bounce := false
 
-var mov_dir: Vector2
+var mov_dir: Vector2:
+	set(dir):
+		mov_dir = dir
+
+		$Sprite2D.rotation = mov_dir.angle() - PI / 2
+
+		$RayCast2D.target_position = mov_dir * Global.tile_size
+		$RayCast2D.force_raycast_update()
+
 ## Keeps track of the tiles that all the cubes are trying to move to
 ## This prevents the auto cube from going onto a space that is going to be occupied
 ## By a pushed cube
@@ -25,14 +35,14 @@ func _ready():
 		Direction.RIGHT:
 			mov_dir = Vector2.RIGHT
 
-	$Sprite2D.rotation = mov_dir.angle() - PI / 2
-
-	$RayCast2D.target_position = mov_dir * Global.tile_size
-	$RayCast2D.force_raycast_update()
-
 func _on_player_move():
-	if is_space_targetted(mov_dir):
-		_push(mov_dir)
+	if not is_space_targetted(mov_dir):
+		if can_move(mov_dir):
+			_push(mov_dir)
+		elif bounce:
+			# Invert mov dir
+			mov_dir *= -1
+			_push(mov_dir)
 
 	targetted_tiles.clear()
 
@@ -41,7 +51,7 @@ func is_space_targetted(_direction: Vector2i) -> bool:
 	var current_tile := Global.tilemap.local_to_map(global_position)
 	var target_tile := current_tile + _direction
 
-	return target_tile not in targetted_tiles
+	return target_tile in targetted_tiles
 
 func _on_tile_targetted(tile: Vector2i, node: Node2D):
 	if node != self:

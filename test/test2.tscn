@@ -24,3 +24,5 @@ position = Vector2(168, 136)
 
 [node name="AutoCube" parent="." index="8" instance=ExtResource("4_fn58a")]
 position = Vector2(312, 136)
+direction = 2
+bounce = true
