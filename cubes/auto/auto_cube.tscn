@@ -8,11 +8,12 @@
 [node name="AutoCube" instance=ExtResource("1_60pvv")]
 script = ExtResource("1_elgn4")
 direction = 1
+auto_type = 0
 pushable = false
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_j8s6a")
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" index="1"]
-position = Vector2(0, 11)
+[node name="ArrowSprite" type="Sprite2D" parent="Sprite2D" index="1"]
 texture = ExtResource("3_y7jsa")
+hframes = 3

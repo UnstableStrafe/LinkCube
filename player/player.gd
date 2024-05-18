@@ -21,8 +21,10 @@ func _process(_delta: float) -> void:
 		move(Vector2.DOWN)
 	elif Input.is_action_pressed("move_left"):
 		move(Vector2.LEFT)
+		$Sprite2D.flip_h = true;
 	elif Input.is_action_pressed("move_right"):
 		move(Vector2.RIGHT)
+		$Sprite2D.flip_h = false;
 
 	elif Input.is_action_pressed("wait"):
 		input_lock = true
