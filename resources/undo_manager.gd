@@ -36,4 +36,3 @@ func undo_action() -> void:
 
 	for node in positions.keys():
 		node.global_position = positions[node]
-

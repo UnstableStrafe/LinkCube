@@ -5,10 +5,12 @@ enum AutoType {NORMAL, BOUNCE, ROTATE}
 enum Direction {UP, DOWN, LEFT, RIGHT}
 ## The direction to automatically travel in
 @export var direction := Direction.DOWN
-## The type of movement the cube has. NORMAL stops when unable to move. BOUNCE rotates 180 degrees when unable to move. ROTATE will rotate 90 degrees clockwise when unable to move.
+## The type of movement the cube has
+##
+## NORMAL stops when unable to move
+## BOUNCE rotates 180 degrees when unable to move
+## ROTATE will rotate 90 degrees clockwise when unable to move.
 @export var auto_type := AutoType.NORMAL
-
-
 
 var mov_dir: Vector2:
 	set(dir):
@@ -31,14 +33,13 @@ var mov_dir: Vector2:
 				$Sprite2D/ArrowSprite.rotation = mov_dir.angle() - PI / 2
 				$Sprite2D/ArrowSprite.flip_h = true
 				$Sprite2D/ArrowSprite.flip_v = false
-		
 
 		$RayCast2D.target_position = mov_dir * Global.tile_size
 		$RayCast2D.force_raycast_update()
 
 ## Keeps track of the tiles that all the cubes are trying to move to
 ## This prevents the auto cube from going onto a space that is going to be occupied
-## By a pushed cube
+## by a pushed cube
 var targetted_tiles: Array[Vector2i] = []
 
 func _ready():
