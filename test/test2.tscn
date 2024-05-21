@@ -28,6 +28,7 @@ position = Vector2(168, 136)
 
 [node name="AutoCube" parent="." index="8" instance=ExtResource("4_fn58a")]
 position = Vector2(312, 136)
+auto_type = 1
 
 [node name="RotatedLinkedCube" parent="." index="9" instance=ExtResource("5_s60n6")]
 position = Vector2(136, 88)

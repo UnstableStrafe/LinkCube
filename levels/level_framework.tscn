@@ -9,7 +9,7 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_e1tw1")
 
-[node name="undo_manager" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="UndoManager" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_s8lla")
 player = NodePath("../Player")
 
@@ -39,3 +39,5 @@ layer_1/tile_data = PackedInt32Array()
 [node name="Player" parent="." instance=ExtResource("3_j5vv5")]
 unique_name_in_owner = true
 position = Vector2(216, 121)
+
+[connection signal="ready" from="." to="UndoManager" method="_on_tree_ready"]

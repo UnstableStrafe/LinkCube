@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bki152wctd7mg"]
+[gd_scene load_steps=5 format=3 uid="uid://bki152wctd7mg"]
 
 [ext_resource type="Script" path="res://cubes/cube.gd" id="1_jafsn"]
+[ext_resource type="Script" path="res://resources/state_tracker.gd" id="3_343nv"]
 [ext_resource type="Texture2D" uid="uid://dsv73c13uxhqd" path="res://cubes/victory_crown.png" id="3_r12mc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7oxp"]
 size = Vector2(16, 16)
 
-[node name="Cube" type="Node2D" groups=["track_state"]]
+[node name="Cube" type="Node2D"]
 script = ExtResource("1_jafsn")
+
+[node name="StateTracker" type="Node" parent="."]
+script = ExtResource("3_343nv")
+tracked_properties = Array[NodePath]([NodePath("..:global_position")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
