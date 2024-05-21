@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_e1tw1"]
 [ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tiles.tres" id="2_nhpp1"]
-[ext_resource type="Script" path="res://resources/undo_manager.gd" id="2_s8lla"]
+[ext_resource type="Script" path="res://resources/nodes/undo_manager.gd" id="2_s8lla"]
 [ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player/player.tscn" id="3_j5vv5"]
 [ext_resource type="Texture2D" uid="uid://c8o30t1vqqgp7" path="res://ui/text/next_level_prompt.png" id="5_o4yjd"]
 
@@ -41,3 +41,4 @@ unique_name_in_owner = true
 position = Vector2(216, 121)
 
 [connection signal="ready" from="." to="UndoManager" method="_on_tree_ready"]
+[connection signal="move_count_changed" from="UndoManager" to="." method="_on_undo_manager_move_count_changed"]

@@ -1,4 +1,4 @@
 class_name Level_Index
 extends Resource
 
-@export var levels: Array[PackedScene] = []
+@export var levels: Array[Level] = []

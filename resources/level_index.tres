@@ -1,14 +1,50 @@
-[gd_resource type="Resource" script_class="Level_Index" load_steps=9 format=3 uid="uid://8j8fglxdvy8f"]
+[gd_resource type="Resource" script_class="Level_Index" load_steps=17 format=3 uid="uid://8j8fglxdvy8f"]
 
-[ext_resource type="PackedScene" uid="uid://c5ovxxcfls3re" path="res://levels/level_1.tscn" id="1_1m4qy"]
 [ext_resource type="Script" path="res://resources/level_index.gd" id="1_do1eb"]
-[ext_resource type="PackedScene" uid="uid://b5ywbvkryatb6" path="res://levels/level_2.tscn" id="2_3svnv"]
-[ext_resource type="PackedScene" uid="uid://nsrmfjuoh4b6" path="res://levels/level_3.tscn" id="3_p7jtf"]
-[ext_resource type="PackedScene" uid="uid://dxalvmscj1o6w" path="res://levels/level_4.tscn" id="4_6nmsw"]
-[ext_resource type="PackedScene" uid="uid://crwc8alo03fpe" path="res://levels/level_5.tscn" id="5_yp4x8"]
-[ext_resource type="PackedScene" uid="uid://cv2cx6716me0t" path="res://levels/level_6.tscn" id="6_hnr8p"]
-[ext_resource type="PackedScene" uid="uid://ctqh0n2i87v2a" path="res://levels/level_7.tscn" id="7_gbufi"]
+[ext_resource type="PackedScene" uid="uid://c5ovxxcfls3re" path="res://levels/level_1.tscn" id="1_yeex3"]
+[ext_resource type="Script" path="res://resources/level.gd" id="2_bg8b1"]
+[ext_resource type="PackedScene" uid="uid://b5ywbvkryatb6" path="res://levels/level_2.tscn" id="3_hd41d"]
+[ext_resource type="PackedScene" uid="uid://nsrmfjuoh4b6" path="res://levels/level_3.tscn" id="4_fgq61"]
+[ext_resource type="PackedScene" uid="uid://dxalvmscj1o6w" path="res://levels/level_4.tscn" id="5_qwc26"]
+[ext_resource type="PackedScene" uid="uid://crwc8alo03fpe" path="res://levels/level_5.tscn" id="6_atixb"]
+[ext_resource type="PackedScene" uid="uid://cv2cx6716me0t" path="res://levels/level_6.tscn" id="7_r30id"]
+[ext_resource type="PackedScene" uid="uid://ctqh0n2i87v2a" path="res://levels/level_7.tscn" id="8_8xsjr"]
+
+[sub_resource type="Resource" id="Resource_a3hsy"]
+script = ExtResource("2_bg8b1")
+name = "Getting Started"
+scene = ExtResource("1_yeex3")
+
+[sub_resource type="Resource" id="Resource_gkd1v"]
+script = ExtResource("2_bg8b1")
+name = "DoubledTrouble"
+scene = ExtResource("3_hd41d")
+
+[sub_resource type="Resource" id="Resource_ufmw8"]
+script = ExtResource("2_bg8b1")
+name = "Upsie"
+scene = ExtResource("4_fgq61")
+
+[sub_resource type="Resource" id="Resource_0sax0"]
+script = ExtResource("2_bg8b1")
+name = "WonkyLogic"
+scene = ExtResource("5_qwc26")
+
+[sub_resource type="Resource" id="Resource_4oscp"]
+script = ExtResource("2_bg8b1")
+name = "Unflappable"
+scene = ExtResource("6_atixb")
+
+[sub_resource type="Resource" id="Resource_acr7e"]
+script = ExtResource("2_bg8b1")
+name = "BitShift"
+scene = ExtResource("7_r30id")
+
+[sub_resource type="Resource" id="Resource_j08ld"]
+script = ExtResource("2_bg8b1")
+name = "Conveyance"
+scene = ExtResource("8_8xsjr")
 
 [resource]
 script = ExtResource("1_do1eb")
-levels = Array[PackedScene]([ExtResource("1_1m4qy"), ExtResource("2_3svnv"), ExtResource("3_p7jtf"), ExtResource("4_6nmsw"), ExtResource("5_yp4x8"), ExtResource("6_hnr8p"), ExtResource("7_gbufi")])
+levels = Array[ExtResource("2_bg8b1")]([SubResource("Resource_a3hsy"), SubResource("Resource_gkd1v"), SubResource("Resource_ufmw8"), SubResource("Resource_0sax0"), SubResource("Resource_4oscp"), SubResource("Resource_acr7e"), SubResource("Resource_j08ld")])

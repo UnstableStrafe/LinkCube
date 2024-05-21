@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://rle7rm2i8bx" path="res://ui/start_menu/menu.png" id="1_dwcyi"]
 [ext_resource type="Script" path="res://ui/start_menu/menu.gd" id="1_ugu4e"]
-[ext_resource type="Resource" uid="uid://8j8fglxdvy8f" path="res://resources/level_index.tres" id="3_h7jqy"]
+[ext_resource type="PackedScene" uid="uid://cw2dxhrhi0b1h" path="res://ui/level_select/level_select.tscn" id="3_6rsta"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -29,4 +29,4 @@ offset_bottom = 189.0
 mouse_default_cursor_shape = 2
 action_mode = 0
 script = ExtResource("1_ugu4e")
-levels = ExtResource("3_h7jqy")
+level_select = ExtResource("3_6rsta")

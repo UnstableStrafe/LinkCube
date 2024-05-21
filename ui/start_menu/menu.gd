@@ -1,6 +1,6 @@
 extends Button
 
-@export var levels: Level_Index
+@export var level_select: PackedScene
 
 func _pressed():
-	get_tree().change_scene_to_packed(levels.levels[0])
+	get_tree().change_scene_to_packed(level_select)
