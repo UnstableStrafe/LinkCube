@@ -10,6 +10,13 @@ var can_move := true
 var is_moving := false
 var input_lock := false
 
+func _ready() -> void:
+	# Prevent keys held over from the previous level from doing anything
+	input_lock = true
+	var timer = get_tree().create_timer(Global.move_time)
+	await timer.timeout
+	input_lock = false
+
 # Use process to repeatedly move while the key is held
 func _process(_delta: float) -> void:
 	if is_moving: return
