@@ -26,6 +26,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_undo_manager_move_count_changed(moves: Variant) -> void:
 	move_count = moves
 
+	%MoveCount.text = str(move_count)
+
 func _get_high_score() -> int:
 	var high_scores := Global.load_scores()
 	if high_scores.has(scene_file_path):
