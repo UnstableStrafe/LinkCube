@@ -21,6 +21,9 @@ var tile_size := 0.0
 
 ## Loads the next level
 func next_level() -> void:
+	# level_index technically isn't the index but the level number
+	# (level_index - 1) = The actual index
+	# (level_index - 1) + 1 = The next level
 	var level := levels[level_index]
 
 	level_index += 1
