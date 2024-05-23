@@ -5,5 +5,5 @@
 
 [node name="BasicCube" instance=ExtResource("1_imgid")]
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_k7wa8")

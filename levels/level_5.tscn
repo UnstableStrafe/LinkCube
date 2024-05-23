@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://7y1sx4jpqdqa" path="res://ui/text/wait_info.png" id="10_xlgbq"]
 
 [node name="Level" instance=ExtResource("1_6gytx")]
-level_id = 5
-level_name = "Unflappable"
 
 [node name="TextureRect" type="TextureRect" parent="UI" index="1"]
 anchors_preset = 6

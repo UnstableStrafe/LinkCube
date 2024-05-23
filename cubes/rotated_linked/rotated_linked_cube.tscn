@@ -7,5 +7,5 @@
 [node name="RotatedLinkedCube" groups=["rotated_linked"] instance=ExtResource("1_mmx35")]
 script = ExtResource("2_qk7ee")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_26b7a")

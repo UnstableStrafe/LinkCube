@@ -10,6 +10,8 @@ extends Node2D
 
 const PLAYER_COLLISION_LAYER = 2
 
+signal finished_moving
+
 var is_moving := false
 
 func _ready():
@@ -39,6 +41,8 @@ func _push(direction: Vector2i):
 	await tween.finished
 
 	is_moving = false
+	
+	finished_moving.emit()
 
 
 ## Whether the cube can move in the given direction
