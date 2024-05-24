@@ -1,6 +1,8 @@
 class_name Cube
 extends Node2D
 
+signal moved(direction)
+
 ## Is this the cube needed to touch the goal
 @export var is_goal_cube := false
 ## Can this cube be pushed by the player
@@ -9,8 +11,6 @@ extends Node2D
 @export var cube_pushable := false
 
 const PLAYER_COLLISION_LAYER = 2
-
-signal finished_moving
 
 var is_moving := false
 
@@ -41,8 +41,8 @@ func _push(direction: Vector2i):
 	await tween.finished
 
 	is_moving = false
-	
-	finished_moving.emit()
+
+	moved.emit(direction)
 
 
 ## Whether the cube can move in the given direction

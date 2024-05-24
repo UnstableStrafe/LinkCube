@@ -12,25 +12,25 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 ## ROTATE will rotate 90 degrees clockwise when unable to move.
 @export var auto_type := AutoType.NORMAL
 
-var mov_dir: Vector2:
+var mov_dir: Vector2i:
 	set(dir):
 		mov_dir = dir
 		# This will make the sprite shading rotate properly. Change this and I am liable to bite you alice.
 		match mov_dir:
-			Vector2.DOWN:
+			Vector2i.DOWN:
 				$Sprite2D/ArrowSprite.flip_h = false
 				$Sprite2D/ArrowSprite.flip_v = false
 				$Sprite2D/ArrowSprite.rotation = 0
-			Vector2.UP:
+			Vector2i.UP:
 				$Sprite2D/ArrowSprite.flip_h = false
 				$Sprite2D/ArrowSprite.flip_v = true
 				$Sprite2D/ArrowSprite.rotation = 0
-			Vector2.LEFT:
-				$Sprite2D/ArrowSprite.rotation = mov_dir.angle() - PI / 2
+			Vector2i.LEFT:
+				$Sprite2D/ArrowSprite.rotation_degrees = 90
 				$Sprite2D/ArrowSprite.flip_h = false
 				$Sprite2D/ArrowSprite.flip_v = false
-			Vector2.RIGHT:
-				$Sprite2D/ArrowSprite.rotation = mov_dir.angle() - PI / 2
+			Vector2i.RIGHT:
+				$Sprite2D/ArrowSprite.rotation_degrees = -90
 				$Sprite2D/ArrowSprite.flip_h = true
 				$Sprite2D/ArrowSprite.flip_v = false
 
@@ -63,31 +63,23 @@ func _ready():
 		AutoType.ROTATE:
 			$Sprite2D/ArrowSprite.frame = 2
 
+func can_move(dir: Vector2i) -> bool:
+	# Add additional check to can_move
+	return super(dir) and not is_space_targetted(dir)
+
 func _on_player_move():
-	if not is_space_targetted(mov_dir):
-		if can_move(mov_dir):
-			_push(mov_dir)
-		elif auto_type == AutoType.BOUNCE:
+	# If unable to move in the given direction (something is there)
+	if not can_move(mov_dir):
+		# Change move direction according to rules
+		if auto_type == AutoType.BOUNCE:
 			# Invert mov dir
 			mov_dir *= -1
-			# Just to make sure it won't try to move when it can't move in the new direction
-			if not is_space_targetted(mov_dir):
-				if can_move(mov_dir):
-					_push(mov_dir)
 		elif auto_type == AutoType.ROTATE:
 			# Rotate mov dir clockwise 90 degrees
-			match mov_dir:
-				Vector2.DOWN:
-					mov_dir = Vector2.LEFT
-				Vector2.UP:
-					mov_dir = Vector2.RIGHT
-				Vector2.LEFT:
-					mov_dir = Vector2.UP
-				Vector2.RIGHT:
-					mov_dir = Vector2.DOWN
-			if not is_space_targetted(mov_dir):
-				if can_move(mov_dir):
-					_push(mov_dir)
+			mov_dir = Vector2(mov_dir).rotated(deg_to_rad(90))
+
+	# _push contains all the checks for whether we can move
+	_push(mov_dir)
 
 	targetted_tiles.clear()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://gli3dj1km8jm"]
+[gd_scene load_steps=9 format=3 uid="uid://gli3dj1km8jm"]
 
 [ext_resource type="Script" path="res://cubes/inverted_linked/inverted_linked_cube.gd" id="1_2urkt"]
 [ext_resource type="PackedScene" uid="uid://bki152wctd7mg" path="res://cubes/cube.tscn" id="1_5yqos"]
@@ -7,6 +7,33 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spgge"]
 size = Vector2(10, 10)
+
+[sub_resource type="Animation" id="Animation_e1oum"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_1dxtg"]
 resource_name = "pulse"
@@ -24,9 +51,22 @@ tracks/0/keys = {
 "update": 2,
 "values": [0.549, 0.392]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0xa83"]
 _data = {
+"RESET": SubResource("Animation_e1oum"),
 "pulse": SubResource("Animation_1dxtg")
 }
 
@@ -79,16 +119,17 @@ shape = SubResource("RectangleShape2D_spgge")
 [node name="DirPreview" type="Sprite2D" parent="." index="8"]
 unique_name_in_owner = true
 visible = false
-modulate = Color(1, 1, 1, 0.549)
+modulate = Color(1, 1, 1, 0)
 position = Vector2(16, 0)
 texture = ExtResource("4_yj1l5")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DirPreview" index="0"]
+[node name="DirPreviewPlayer" type="AnimationPlayer" parent="DirPreview" index="0"]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_0xa83")
 }
-autoplay = "pulse"
+next/pulse = &"RESET"
 
 [connection signal="area_entered" from="NorthSensor" to="." method="_on_sensor_area_entered" binds= [Vector2i(0, -1)]]
 [connection signal="area_exited" from="NorthSensor" to="." method="_on_sensor_area_exited"]
