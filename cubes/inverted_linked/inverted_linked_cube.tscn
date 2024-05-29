@@ -131,6 +131,7 @@ libraries = {
 }
 next/pulse = &"RESET"
 
+[connection signal="moved" from="." to="." method="update_preview_sprite"]
 [connection signal="area_entered" from="NorthSensor" to="." method="_on_sensor_area_entered" binds= [Vector2i(0, -1)]]
 [connection signal="area_exited" from="NorthSensor" to="." method="_on_sensor_area_exited"]
 [connection signal="area_entered" from="SouthSensor" to="." method="_on_sensor_area_entered" binds= [Vector2i(0, 1)]]

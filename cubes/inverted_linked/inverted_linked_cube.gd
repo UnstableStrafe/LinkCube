@@ -14,7 +14,8 @@ func _ready() -> void:
 
 # Overrides _push to propagate to make all the cubes move
 func _push(direction: Vector2i):
-	if !can_all_move(-direction): return
+	if not can_all_move(-direction): return
+	if would_links_overlap(direction): return
 	if is_moving: return
 
 	for cube in get_linked():
@@ -32,6 +33,22 @@ func can_all_move(direction: Vector2i) -> bool:
 		func(cube):
 			return cube.can_move(direction)
 	)
+
+## Prevent cubes from overlapping on the same tile space
+func would_links_overlap(direction: Vector2i) -> bool:
+	var pos_offset := Vector2(direction) * Global.tile_size
+	var tiles := [global_position + pos_offset]
+
+	# Gradually add each new position to the array
+	# If the position already exists then there would be a overlap
+	for cube in get_linked():
+		# The - is important here +(-direction)
+		var new_pos: Vector2 = cube.global_position - pos_offset
+		if new_pos in tiles:
+			return true
+		tiles.append(new_pos)
+
+	return false
 
 func get_linked() -> Array[Node]:
 	var linked = get_tree().get_nodes_in_group("inverted_linked")
@@ -56,7 +73,7 @@ func preview_direction(direction: Vector2i) -> void:
 	%DirPreviewPlayer.play("pulse")
 
 func update_preview_sprite(direction: Vector2i) -> void:
-	$DirPreview.frame = 0 if can_move(direction) else 1
+	$DirPreview.frame = 0 if can_move(direction) and not would_links_overlap(direction) else 1
 
 func clear_preview() -> void:
 	%DirPreviewPlayer.play("RESET")
