@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dnwrgv6drkhpb" path="res://cubes/light/light_cube.tscn" id="2_ux2lq"]
 [ext_resource type="PackedScene" uid="uid://dw20bo3tgee64" path="res://cubes/basic/basic_cube.tscn" id="3_cxb4g"]
 [ext_resource type="PackedScene" uid="uid://gli3dj1km8jm" path="res://cubes/inverted_linked/inverted_linked_cube.tscn" id="5_4lxai"]
-[ext_resource type="PackedScene" uid="uid://bvpwew7mlj4hu" path="res://cubes/rotated_linked/rotated_linked_cube.tscn" id="5_s60n6"]
+[ext_resource type="PackedScene" uid="uid://dcfhj3ud2lsc4" path="res://cubes/rotated_linked/rotated_linked_cube.tscn" id="6_6k0ma"]
 [ext_resource type="PackedScene" uid="uid://nfw3dy0wruu7" path="res://cubes/auto/auto_cube.tscn" id="6_iryu2"]
 
 [node name="Level" instance=ExtResource("1_4lyhp")]
@@ -21,18 +21,24 @@ position = Vector2(168, 168)
 [node name="BasicCube" parent="." index="5" instance=ExtResource("3_cxb4g")]
 position = Vector2(168, 136)
 
-[node name="RotatedLinkedCube" parent="." index="6" instance=ExtResource("5_s60n6")]
-position = Vector2(136, 88)
-
-[node name="RotatedLinkedCube2" parent="." index="7" instance=ExtResource("5_s60n6")]
-position = Vector2(184, 88)
-
-[node name="InvertedLinkedCube" parent="." index="8" instance=ExtResource("5_4lxai")]
+[node name="InvertedLinkedCube" parent="." index="6" instance=ExtResource("5_4lxai")]
 position = Vector2(312, 120)
 
-[node name="InvertedLinkedCube2" parent="." index="9" instance=ExtResource("5_4lxai")]
+[node name="InvertedLinkedCube2" parent="." index="7" instance=ExtResource("5_4lxai")]
 position = Vector2(312, 184)
 
-[node name="AutoCube" parent="." index="10" instance=ExtResource("6_iryu2")]
+[node name="AutoCube" parent="." index="8" instance=ExtResource("6_iryu2")]
 position = Vector2(360, 56)
 auto_type = 2
+
+[node name="InvertedLinkedCube3" parent="." index="9" instance=ExtResource("5_4lxai")]
+position = Vector2(152, 72)
+
+[node name="InvertedLinkedCube4" parent="." index="10" instance=ExtResource("5_4lxai")]
+position = Vector2(216, 200)
+
+[node name="RotatedLinkedCube" parent="." index="11" instance=ExtResource("6_6k0ma")]
+position = Vector2(264, 72)
+
+[node name="RotatedLinkedCube2" parent="." index="12" instance=ExtResource("6_6k0ma")]
+position = Vector2(280, 136)
