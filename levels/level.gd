@@ -1,10 +1,11 @@
 extends Node2D
 
-@onready var player = %Player
+@export var pause_menu: PackedScene
 
 var can_progress := false
 var move_count := 0
 
+@onready var player = %Player
 @onready var high_score := _get_high_score()
 
 func _ready():
@@ -39,3 +40,8 @@ func _get_high_score() -> int:
 func _save_score() -> void:
 	if high_score == 0 or move_count < high_score:
 		Global.set_score(scene_file_path, move_count)
+
+
+func _on_pause_button_pressed() -> void:
+	var menu := pause_menu.instantiate()
+	$UI.add_child(menu)

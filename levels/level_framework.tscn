@@ -1,13 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://7pbu3m2f4nfr"]
+[gd_scene load_steps=10 format=3 uid="uid://7pbu3m2f4nfr"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_e1tw1"]
+[ext_resource type="PackedScene" uid="uid://d0nmhojnw88sl" path="res://ui/pause_menu/pause_menu.tscn" id="2_b2xs7"]
 [ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tiles.tres" id="2_nhpp1"]
 [ext_resource type="Script" path="res://resources/nodes/undo_manager.gd" id="2_s8lla"]
 [ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player/player.tscn" id="3_j5vv5"]
+[ext_resource type="Texture2D" uid="uid://jdt1lwh0feh0" path="res://icon.svg" id="4_211hl"]
 [ext_resource type="Texture2D" uid="uid://c8o30t1vqqgp7" path="res://ui/text/next_level_prompt.png" id="5_o4yjd"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ehgyd"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_8hpc7"]
+events = [SubResource("InputEventAction_ehgyd")]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_e1tw1")
+pause_menu = ExtResource("2_b2xs7")
 
 [node name="UndoManager" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_s8lla")
@@ -35,6 +44,20 @@ offset_right = 24.0
 offset_bottom = 23.0
 horizontal_alignment = 2
 
+[node name="PauseButton" type="Button" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -23.0
+offset_top = 4.0
+offset_right = -7.0
+offset_bottom = 20.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_8hpc7")
+icon = ExtResource("4_211hl")
+flat = true
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_nhpp1")
 format = 2
@@ -48,3 +71,4 @@ position = Vector2(216, 121)
 
 [connection signal="ready" from="." to="UndoManager" method="_on_tree_ready"]
 [connection signal="move_count_changed" from="UndoManager" to="." method="_on_undo_manager_move_count_changed"]
+[connection signal="pressed" from="UI/PauseButton" to="." method="_on_pause_button_pressed"]

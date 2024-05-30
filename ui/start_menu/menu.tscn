@@ -18,7 +18,7 @@ offset_right = 432.0
 offset_bottom = 243.0
 texture = ExtResource("1_dwcyi")
 
-[node name="Button" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
