@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0nmhojnw88sl"]
+[gd_scene load_steps=5 format=3 uid="uid://d0nmhojnw88sl"]
 
 [ext_resource type="Script" path="res://ui/pause_menu/pause_menu.gd" id="1_xilg8"]
 [ext_resource type="PackedScene" uid="uid://cw2dxhrhi0b1h" path="res://ui/level_select/level_select.tscn" id="2_sl5vl"]
+[ext_resource type="PackedScene" uid="uid://c4rxpbdq82gpp" path="res://ui/settings/settings.tscn" id="3_d65mk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6vcy"]
 bg_color = Color(0, 0, 0, 0.286275)
@@ -16,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xilg8")
 level_select_scene = ExtResource("2_sl5vl")
+settings_scene = ExtResource("3_d65mk")
 
 [node name="Fade" type="Panel" parent="."]
 layout_mode = 1
@@ -33,31 +35,35 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -41.5
-offset_right = 48.0
-offset_bottom = 41.5
+offset_left = -68.0
+offset_top = -64.5
+offset_right = 68.0
+offset_bottom = 64.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
 [node name="Resume" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 text = "Resume"
 
 [node name="LevelSelect" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 text = "Level Select"
 
 [node name="Settings" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 text = "Settings"
 
 [node name="Quit" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 text = "Quit"
 

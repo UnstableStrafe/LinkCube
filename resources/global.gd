@@ -4,20 +4,21 @@ signal move
 signal sweet_victory
 signal tile_targetted
 
-@export var move_time := 0.2
-
+var move_time := 0.2
 var level_index := 1
 var levels: Array[Level] = load("res://resources/level_index.tres").levels
-
-const SAVE_FILE := "user://level_scores.json"
-
+var tile_size := 0.0
 var tilemap: TileMap:
 	set(value):
 		tilemap = value
 
 		tile_size = tilemap.tile_set.tile_size.x
 
-var tile_size := 0.0
+const SAVE_FILE := "user://level_scores.json"
+const SETTINGS_FILE := "user://settings.cfg"
+
+func _ready() -> void:
+	load_settings()
 
 ## Loads the next level
 func next_level() -> void:
@@ -28,6 +29,8 @@ func next_level() -> void:
 
 	level_index += 1
 	get_tree().change_scene_to_packed(level.scene)
+
+## Serialisation ##
 
 func load_scores() -> Dictionary:
 	var best_scores := {}
@@ -50,3 +53,11 @@ func set_score(level_path: String, score: int) -> void:
 
 	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	file.store_string(JSON.stringify(scores))
+
+func load_settings() -> void:
+	var config := ConfigFile.new()
+	var error := config.load(SETTINGS_FILE)
+
+	if error == OK:
+		var settings := Settings.from_config_file(config)
+		settings.apply()
