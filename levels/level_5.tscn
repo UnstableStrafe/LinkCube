@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://7pbu3m2f4nfr" path="res://levels/level_framework.tscn" id="1_6gytx"]
 [ext_resource type="PackedScene" uid="uid://nfw3dy0wruu7" path="res://cubes/auto/auto_cube.tscn" id="5_rqod1"]
 [ext_resource type="PackedScene" uid="uid://dw20bo3tgee64" path="res://cubes/basic/basic_cube.tscn" id="6_rddo6"]
-[ext_resource type="PackedScene" uid="uid://dcfhj3ud2lsc4" path="res://cubes/linked/linked_cube.tscn" id="7_vfjf5"]
+[ext_resource type="PackedScene" uid="uid://bvpwew7mlj4hu" path="res://cubes/linked/linked_cube.tscn" id="7_vfjf5"]
 [ext_resource type="PackedScene" uid="uid://gli3dj1km8jm" path="res://cubes/inverted_linked/inverted_linked_cube.tscn" id="8_ahduv"]
 [ext_resource type="Texture2D" uid="uid://7y1sx4jpqdqa" path="res://ui/text/wait_info.png" id="10_xlgbq"]
 
