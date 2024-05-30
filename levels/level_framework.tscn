@@ -55,6 +55,8 @@ offset_bottom = 20.0
 grow_horizontal = 0
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_8hpc7")
+shortcut_feedback = false
+shortcut_in_tooltip = false
 icon = ExtResource("4_211hl")
 flat = true
 

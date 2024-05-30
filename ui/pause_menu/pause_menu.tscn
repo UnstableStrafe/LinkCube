@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0nmhojnw88sl"]
+[gd_scene load_steps=7 format=3 uid="uid://d0nmhojnw88sl"]
 
 [ext_resource type="Script" path="res://ui/pause_menu/pause_menu.gd" id="1_xilg8"]
 [ext_resource type="PackedScene" uid="uid://cw2dxhrhi0b1h" path="res://ui/level_select/level_select.tscn" id="2_sl5vl"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6vcy"]
 bg_color = Color(0, 0, 0, 0.286275)
+
+[sub_resource type="InputEventAction" id="InputEventAction_ehgyd"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_drplb"]
+events = [SubResource("InputEventAction_ehgyd")]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -47,6 +53,9 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_drplb")
+shortcut_feedback = false
+shortcut_in_tooltip = false
 text = "Resume"
 
 [node name="LevelSelect" type="Button" parent="HBoxContainer"]
