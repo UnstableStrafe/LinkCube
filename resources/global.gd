@@ -18,7 +18,9 @@ const SAVE_FILE := "user://level_scores.json"
 const SETTINGS_FILE := "user://settings.cfg"
 
 func _ready() -> void:
-	load_settings()
+	# Apply saved settings
+	var settings := Settings.from_file(SETTINGS_FILE)
+	settings.apply()
 
 ## Loads the next level
 func next_level() -> void:
@@ -53,11 +55,3 @@ func set_score(level_path: String, score: int) -> void:
 
 	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	file.store_string(JSON.stringify(scores))
-
-func load_settings() -> void:
-	var config := ConfigFile.new()
-	var error := config.load(SETTINGS_FILE)
-
-	if error == OK:
-		var settings := Settings.from_config_file(config)
-		settings.apply()

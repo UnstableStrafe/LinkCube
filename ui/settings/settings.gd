@@ -1,6 +1,7 @@
 extends Control
 
-@export var default: Settings
+## The config to load when "Default" is hit
+@export_file("cfg") var default_config_path: String
 
 @onready var current: Settings:
 	set(settings):
@@ -8,16 +9,16 @@ extends Control
 		view_current()
 
 func _ready() -> void:
-	# Load current settings on ready
-	current = Settings.Current()
+	# Display the current settings when the scene loads
+	current = Settings.from_current()
 
-## Render the specified settings view
+## Render the settings
 func view_current() -> void:
-	%FullscreenToggle.button_pressed = current.fullscreen
+	%FullscreenToggle.button_pressed = current.get_val("fullscreen")
 
 # This can be connected to toggles etc to set a setting
 func _on_setting_changed(value: Variant, property: String) -> void:
-	current.set(property, value)
+	current.set_val(property, value)
 
 # Buttons
 
@@ -25,7 +26,7 @@ func _on_back_button_pressed() -> void:
 	queue_free()
 
 func _on_default_pressed() -> void:
-	current = default
+	current = Settings.from_file(default_config_path)
 
 func _on_apply_pressed() -> void:
 	current.apply()
