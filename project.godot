@@ -31,6 +31,10 @@ window/stretch/mode="canvas_items"
 
 import/blender/enabled=false
 
+[gui]
+
+theme/custom_font="res://fonts/MinecraftRegular-Bmg3.otf"
+
 [input]
 
 move_up={

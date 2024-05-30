@@ -12,6 +12,8 @@ func _ready() -> void:
 	add_to_group(link_group)
 
 	# We need to wait for all the others to be added to the scene
+	# Should be largely bullet proof unless you put scenes in scenes
+	# Dont do that
 	await get_owner().ready
 	# When the player touches a side sensor, make the other cubes preview that direction
 	for linked_cube in get_linked():
