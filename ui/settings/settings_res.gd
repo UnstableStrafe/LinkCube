@@ -15,7 +15,7 @@ static func Current() -> Settings:
 ## Modify the engine according to this object's settings
 func apply() -> void:
 	DisplayServer.window_set_mode(
-		DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_MAXIMIZED
+		DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
 	)
 
 	# Save the applied settings
