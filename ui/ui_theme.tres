@@ -1,3 +1,97 @@
-[gd_resource type="Theme" format=3 uid="uid://d0qdsrvgsovkd"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://d0qdsrvgsovkd"]
+
+[ext_resource type="Texture2D" uid="uid://d37k0x0uorh5p" path="res://ui/button_frame_9p.png" id="1_ijmoq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a3uns"]
+texture = ExtResource("1_ijmoq")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+modulate_color = Color(0.87451, 0.87451, 0.87451, 0.501961)
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aa4d3"]
+texture = ExtResource("1_ijmoq")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+modulate_color = Color(0.800491, 0.800491, 0.80049, 1)
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4puq3"]
+texture = ExtResource("1_ijmoq")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jgan5"]
+texture = ExtResource("1_ijmoq")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2tgyw"]
+texture = ExtResource("1_ijmoq")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+modulate_color = Color(0.552956, 0.552956, 0.552955, 1)
+draw_center = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k5j41"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jt3xr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wyyud"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n5ifm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3mwb6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mgl1m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_elhxn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgnoq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4jagr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pl66y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8bkx3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dyk0t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gu1s3"]
 
 [resource]
+Button/font_sizes/font_size = 40
+Button/styles/disabled = SubResource("StyleBoxTexture_a3uns")
+Button/styles/focus = SubResource("StyleBoxTexture_aa4d3")
+Button/styles/hover = SubResource("StyleBoxTexture_4puq3")
+Button/styles/normal = SubResource("StyleBoxTexture_jgan5")
+Button/styles/pressed = SubResource("StyleBoxTexture_2tgyw")
+CheckBox/styles/disabled = SubResource("StyleBoxEmpty_k5j41")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_jt3xr")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_wyyud")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_n5ifm")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_3mwb6")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_mgl1m")
+CheckButton/styles/disabled = SubResource("StyleBoxEmpty_elhxn")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_vgnoq")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_4jagr")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_pl66y")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_8bkx3")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_dyk0t")
+Label/font_sizes/font_size = 40
+LineEdit/font_sizes/font_size = 40
+OptionButton/styles/normal = SubResource("StyleBoxEmpty_gu1s3")
+ProgressBar/font_sizes/font_size = 40
+TextEdit/font_sizes/font_size = 40

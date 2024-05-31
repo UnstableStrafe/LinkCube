@@ -1,32 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1i25ktsxvqjn"]
+[gd_scene load_steps=5 format=3 uid="uid://d1i25ktsxvqjn"]
 
-[ext_resource type="Texture2D" uid="uid://rle7rm2i8bx" path="res://ui/start_menu/menu.png" id="1_dwcyi"]
+[ext_resource type="Texture2D" uid="uid://cecj440fio35u" path="res://ui/start_menu/menu.png" id="1_fg2c3"]
 [ext_resource type="Script" path="res://ui/start_menu/menu.gd" id="1_ugu4e"]
 [ext_resource type="PackedScene" uid="uid://cw2dxhrhi0b1h" path="res://ui/level_select/level_select.tscn" id="3_6rsta"]
+[ext_resource type="PackedScene" uid="uid://c4rxpbdq82gpp" path="res://ui/settings/settings.tscn" id="3_p4flw"]
 
-[node name="Control" type="Control"]
+[node name="StartMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ugu4e")
+level_select = ExtResource("3_6rsta")
+settings = ExtResource("3_p4flw")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 432.0
-offset_bottom = 243.0
-texture = ExtResource("1_dwcyi")
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_fg2c3")
+stretch_mode = 5
 
 [node name="PlayButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 138.0
-offset_top = 127.0
-offset_right = 294.0
-offset_bottom = 189.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -50.5
+offset_right = 106.0
+offset_bottom = -9.5
+grow_horizontal = 2
+grow_vertical = 2
 mouse_default_cursor_shape = 2
 action_mode = 0
-script = ExtResource("1_ugu4e")
-level_select = ExtResource("3_6rsta")
+
+[node name="SettingsButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = 9.5
+offset_right = 106.0
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
