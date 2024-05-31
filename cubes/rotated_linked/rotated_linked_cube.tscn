@@ -4,11 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cghaxxqqn1fm1" path="res://cubes/rotated_linked/rotated_linked_cube.png" id="2_4amqm"]
 
 [node name="RotatedLinkedCube" instance=ExtResource("1_4ig6d")]
-rotate_angle = null
+rotate_angle = 90
 link_group = "rotated_linked"
-is_goal_cube = null
-pushable = null
-cube_pushable = null
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_4amqm")

@@ -6,8 +6,8 @@
 
 [node name="InvertedLinkedCube" instance=ExtResource("1_velwo")]
 script = ExtResource("2_3vu2h")
-rotate_angle = 90
-link_group = ""
+rotate_angle = 180
+link_group = "inverted_linked"
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_diaca")
