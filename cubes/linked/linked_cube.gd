@@ -21,6 +21,9 @@ func _ready() -> void:
 		player_entered_side.connect(linked_cube.preview_push)
 		player_exited_side.connect(linked_cube.clear_preview)
 
+	# Hide direction preview on win
+	Global.sweet_victory.connect(clear_preview)
+
 # Overrides _push to propagate to make all the cubes move
 func _push(direction: Vector2i):
 	var rotated_direction := rotate_dir(direction)

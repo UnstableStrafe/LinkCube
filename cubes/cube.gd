@@ -23,6 +23,12 @@ func _push(direction: Vector2i):
 	if is_moving: return
 	if not can_move(direction): return
 
+	# Push adjacent cube if pushable
+	var body := _get_object_in_dir(direction)
+	if body and body.owner is Cube and body.owner.cube_pushable:
+		body.owner._push(direction)
+
+	# Work out where we are going
 	var current_tile := Global.tilemap.local_to_map(global_position)
 	var target_tile := current_tile + direction
 	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
@@ -49,22 +55,19 @@ func _push(direction: Vector2i):
 ## Whether the cube can move in the given direction
 ## i.e. if the target tile is walkable or if there is no cube in that space
 func can_move(direction: Vector2i) -> bool:
-	$RayCast2D.target_position = direction * Global.tile_size
-	$RayCast2D.force_raycast_update()
+	var body := _get_object_in_dir(direction)
 
-	if $RayCast2D.is_colliding():
-		var body: Object = $RayCast2D.get_collider()
-		# If enabled, the collision is with the player
+	if body:
 		if body.get_collision_layer_value(PLAYER_COLLISION_LAYER):
 			# Player is not pushable
 			return false
-		# Otherwise its probably a cube
+		# Otherwise its a cube
 		else:
-			# Check if this is a pushable cube
 			var cube: Cube = body.owner
-			return other_is_cube_pushable(cube, direction)
+			# Check if this is a pushable cube
+			return is_cube_pushable(cube, direction)
 
-	# Check if target tile is walkable
+	# No body in the way, so check if target tile is walkable
 
 	var current_tile: Vector2i = Global.tilemap.local_to_map(global_position)
 	var target_tile := current_tile + direction
@@ -76,9 +79,18 @@ func can_move(direction: Vector2i) -> bool:
 		return true
 
 
-func other_is_cube_pushable(otherBody: Cube, direction: Vector2i) -> bool:
-	if otherBody.cube_pushable and otherBody.can_move(direction):
-		otherBody._push(direction)
+func is_cube_pushable(cube: Cube, direction: Vector2i) -> bool:
+	if cube.cube_pushable and cube.can_move(direction):
+		#otherBody._push(direction)
 		return true
 	else:
 		return false
+
+func _get_object_in_dir(direction: Vector2i) -> Object:
+	$RayCast2D.target_position = direction * Global.tile_size
+	$RayCast2D.force_raycast_update()
+
+	if $RayCast2D.is_colliding():
+		return $RayCast2D.get_collider()
+	else:
+		return null
