@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://7pbu3m2f4nfr" path="res://levels/level_framework.tscn" id="1_t7qul"]
 [ext_resource type="PackedScene" uid="uid://dw20bo3tgee64" path="res://cubes/basic/basic_cube.tscn" id="2_2dtxn"]
-[ext_resource type="Texture2D" uid="uid://cgg76oe7yqwhv" path="res://ui/text/controls.png" id="2_dhv42"]
+[ext_resource type="Texture2D" uid="uid://cgg76oe7yqwhv" path="res://ui/sprites/controls.png" id="2_dhv42"]
 
 [node name="Level" instance=ExtResource("1_t7qul")]
 

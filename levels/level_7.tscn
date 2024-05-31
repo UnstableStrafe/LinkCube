@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bvpwew7mlj4hu" path="res://cubes/linked/linked_cube.tscn" id="6_ixufy"]
 [ext_resource type="PackedScene" uid="uid://dw20bo3tgee64" path="res://cubes/basic/basic_cube.tscn" id="6_om8pt"]
 [ext_resource type="PackedScene" uid="uid://gli3dj1km8jm" path="res://cubes/inverted_linked/inverted_linked_cube.tscn" id="7_x2r36"]
-[ext_resource type="Texture2D" uid="uid://d1fw1ae1ulmau" path="res://ui/text/wait_info.png" id="10_hla87"]
+[ext_resource type="Texture2D" uid="uid://d1fw1ae1ulmau" path="res://ui/sprites/wait_info.png" id="10_hla87"]
 
 [node name="Level" instance=ExtResource("1_wdo2s")]
 

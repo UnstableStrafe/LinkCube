@@ -1,17 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0nmhojnw88sl"]
+[gd_scene load_steps=6 format=3 uid="uid://d0nmhojnw88sl"]
 
 [ext_resource type="Script" path="res://ui/pause_menu/pause_menu.gd" id="1_xilg8"]
 [ext_resource type="PackedScene" uid="uid://cw2dxhrhi0b1h" path="res://ui/level_select/level_select.tscn" id="2_sl5vl"]
 [ext_resource type="PackedScene" uid="uid://c4rxpbdq82gpp" path="res://ui/settings/settings.tscn" id="3_d65mk"]
+[ext_resource type="PackedScene" uid="uid://dhy1eknb2rsj7" path="res://ui/text_button/text_button.tscn" id="4_pno1x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6vcy"]
 bg_color = Color(0, 0, 0, 0.47451)
-
-[sub_resource type="InputEventAction" id="InputEventAction_ehgyd"]
-action = &"pause"
-
-[sub_resource type="Shortcut" id="Shortcut_drplb"]
-events = [SubResource("InputEventAction_ehgyd")]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -47,37 +42,27 @@ offset_right = 86.0
 offset_bottom = 82.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
 alignment = 1
 
-[node name="Resume" type="Button" parent="HBoxContainer"]
+[node name="ResumeButton" parent="HBoxContainer" instance=ExtResource("4_pno1x")]
 layout_mode = 2
-size_flags_vertical = 3
-mouse_default_cursor_shape = 2
-shortcut = SubResource("Shortcut_drplb")
-shortcut_feedback = false
-shortcut_in_tooltip = false
 text = "Resume"
 
-[node name="LevelSelect" type="Button" parent="HBoxContainer"]
+[node name="LevelSelectButton" parent="HBoxContainer" instance=ExtResource("4_pno1x")]
 layout_mode = 2
-size_flags_vertical = 3
-mouse_default_cursor_shape = 2
 text = "Level Select"
 
-[node name="Settings" type="Button" parent="HBoxContainer"]
+[node name="SettingsButton" parent="HBoxContainer" instance=ExtResource("4_pno1x")]
 layout_mode = 2
-size_flags_vertical = 3
-mouse_default_cursor_shape = 2
 text = "Settings"
 
-[node name="Quit" type="Button" parent="HBoxContainer"]
+[node name="QuitButton" parent="HBoxContainer" instance=ExtResource("4_pno1x")]
 layout_mode = 2
-size_flags_vertical = 3
-mouse_default_cursor_shape = 2
 text = "Quit"
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
-[connection signal="pressed" from="HBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="HBoxContainer/LevelSelect" to="." method="_on_level_select_pressed"]
-[connection signal="pressed" from="HBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="HBoxContainer/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="HBoxContainer/LevelSelectButton" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="HBoxContainer/SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf2ensfq8keac"
-path="res://.godot/imported/next_level_prompt.png-bc803fa85555a948d645e99251980e06.ctex"
+uid="uid://d1fw1ae1ulmau"
+path="res://.godot/imported/wait_info.png-a779111e6d93a962c6fd6e7f5078a70f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/text/next_level_prompt.png"
-dest_files=["res://.godot/imported/next_level_prompt.png-bc803fa85555a948d645e99251980e06.ctex"]
+source_file="res://ui/sprites/wait_info.png"
+dest_files=["res://.godot/imported/wait_info.png-a779111e6d93a962c6fd6e7f5078a70f.ctex"]
 
 [params]
 
