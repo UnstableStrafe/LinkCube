@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckg18gcdwvhfd"
-path="res://.godot/imported/slider_bg.png-18fda6679159fac9f466c52fa0a866bf.ctex"
+path="res://.godot/imported/button_outline.png-cdb52341a7d350b4fb59249e9020c50c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/sprites/slider_bg.png"
-dest_files=["res://.godot/imported/slider_bg.png-18fda6679159fac9f466c52fa0a866bf.ctex"]
+source_file="res://ui/sprites/button_outline.png"
+dest_files=["res://.godot/imported/button_outline.png-cdb52341a7d350b4fb59249e9020c50c.ctex"]
 
 [params]
 
