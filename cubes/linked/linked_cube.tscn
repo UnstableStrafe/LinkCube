@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bvpwew7mlj4hu"]
 
 [ext_resource type="PackedScene" uid="uid://bki152wctd7mg" path="res://cubes/cube.tscn" id="1_mmx35"]
-[ext_resource type="Script" path="res://cubes/basic/rotated_linked_cube.gd" id="2_7rjhb"]
+[ext_resource type="Script" path="res://cubes/linked/linked_cube.gd" id="2_fwmfu"]
 [ext_resource type="Texture2D" uid="uid://cf00audr0hmu0" path="res://cubes/linked/linked_cube.png" id="2_xax0q"]
 [ext_resource type="Texture2D" uid="uid://c0di63rwg8sl0" path="res://cubes/indicator_arrows.png" id="4_6ifiw"]
 
@@ -71,9 +71,9 @@ _data = {
 }
 
 [node name="LinkedCube" instance=ExtResource("1_mmx35")]
-script = ExtResource("2_7rjhb")
-rotate_angle = 0
-link_group = "linked"
+script = ExtResource("2_fwmfu")
+rotate_angle = 90
+link_group = ""
 
 [node name="StateTracker" parent="." index="0"]
 tracked_properties = Array[NodePath]([NodePath("..:global_position"), NodePath("../DirPreview:visible"), NodePath("../DirPreview:frame")])

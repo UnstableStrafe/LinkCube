@@ -1,3 +1,4 @@
+@icon("res://cubes/basic/basic_cube.png")
 class_name Cube
 extends Node2D
 

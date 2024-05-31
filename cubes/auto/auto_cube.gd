@@ -1,4 +1,4 @@
-class_name AutoCube
+@icon("res://cubes/auto/auto_cube.png")
 extends Cube
 
 enum AutoType {NORMAL, BOUNCE, ROTATE}
