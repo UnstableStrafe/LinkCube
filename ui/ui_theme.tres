@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://d0qdsrvgsovkd"]
+[gd_resource type="Theme" load_steps=22 format=3 uid="uid://d0qdsrvgsovkd"]
 
 [ext_resource type="Texture2D" uid="uid://cclgq17o1oc52" path="res://ui/sprites/button_frame_9p.png" id="1_ijmoq"]
+[ext_resource type="Texture2D" uid="uid://cdhjg1uixg1s2" path="res://ui/sprites/toggle_button_on.png" id="2_7a2tv"]
+[ext_resource type="Texture2D" uid="uid://bhy5ifwqdyjjg" path="res://ui/sprites/toggle_button_off.png" id="3_0dvpe"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a3uns"]
 texture = ExtResource("1_ijmoq")
@@ -84,6 +86,8 @@ CheckBox/styles/hover = SubResource("StyleBoxEmpty_wyyud")
 CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_n5ifm")
 CheckBox/styles/normal = SubResource("StyleBoxEmpty_3mwb6")
 CheckBox/styles/pressed = SubResource("StyleBoxEmpty_mgl1m")
+CheckButton/icons/checked = ExtResource("2_7a2tv")
+CheckButton/icons/unchecked = ExtResource("3_0dvpe")
 CheckButton/styles/disabled = SubResource("StyleBoxEmpty_elhxn")
 CheckButton/styles/focus = SubResource("StyleBoxEmpty_vgnoq")
 CheckButton/styles/hover = SubResource("StyleBoxEmpty_4jagr")
