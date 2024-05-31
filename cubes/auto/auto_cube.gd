@@ -43,6 +43,8 @@ var mov_dir: Vector2i:
 var targetted_tiles: Array[Vector2i] = []
 
 func _ready():
+	super()
+
 	Global.move.connect(_on_player_move)
 	Global.tile_targetted.connect(_on_tile_targetted)
 
