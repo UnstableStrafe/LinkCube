@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4rxpbdq82gpp"]
+[gd_scene load_steps=3 format=3 uid="uid://c4rxpbdq82gpp"]
 
 [ext_resource type="Script" path="res://ui/settings/settings.gd" id="1_cc4qg"]
-[ext_resource type="PackedScene" uid="uid://dhy1eknb2rsj7" path="res://ui/text_button/text_button.tscn" id="2_bja3r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvv3m"]
 bg_color = Color(0.270588, 0.411765, 0.458824, 1)
@@ -59,27 +58,31 @@ horizontal_alignment = 1
 [node name="FullscreenToggle" type="CheckButton" parent="SettingsPage/ScrollContainer/SettingsList"]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_default_cursor_shape = 2
 text = "Fullscreen"
 
 [node name="Buttons" type="HBoxContainer" parent="SettingsPage"]
 layout_mode = 2
-theme_override_constants/separation = 15
 alignment = 1
 
-[node name="CancelButton" parent="SettingsPage/Buttons" instance=ExtResource("2_bja3r")]
+[node name="BackButton" type="Button" parent="SettingsPage/Buttons"]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "Cancel"
 
-[node name="ResetButton" parent="SettingsPage/Buttons" instance=ExtResource("2_bja3r")]
+[node name="Default" type="Button" parent="SettingsPage/Buttons"]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "Default"
 
-[node name="ApplyButton" parent="SettingsPage/Buttons" instance=ExtResource("2_bja3r")]
+[node name="Apply" type="Button" parent="SettingsPage/Buttons"]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "Apply"
 
 [connection signal="toggled" from="SettingsPage/ScrollContainer/SettingsList/FullscreenToggle" to="." method="_on_setting_changed" binds= ["fullscreen"]]
-[connection signal="pressed" from="SettingsPage/Buttons/CancelButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="SettingsPage/Buttons/ResetButton" to="." method="_on_default_pressed"]
-[connection signal="pressed" from="SettingsPage/Buttons/ApplyButton" to="." method="_on_apply_pressed"]
+[connection signal="pressed" from="SettingsPage/Buttons/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="SettingsPage/Buttons/Default" to="." method="_on_default_pressed"]
+[connection signal="pressed" from="SettingsPage/Buttons/Apply" to="." method="_on_apply_pressed"]

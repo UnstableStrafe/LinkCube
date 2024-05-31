@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtlrgc1srblo"]
+[gd_scene load_steps=4 format=3 uid="uid://dtlrgc1srblo"]
 
 [ext_resource type="Script" path="res://ui/level_select/level_button.gd" id="1_qnatf"]
-[ext_resource type="PackedScene" uid="uid://dhy1eknb2rsj7" path="res://ui/text_button/text_button.tscn" id="2_rnngi"]
+[ext_resource type="Script" path="res://resources/level.gd" id="2_5i82l"]
+
+[sub_resource type="Resource" id="Resource_4ek83"]
+script = ExtResource("2_5i82l")
+name = ""
 
 [node name="LevelButton" type="AspectRatioContainer"]
 anchors_preset = 15
@@ -12,14 +16,11 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_qnatf")
+level = SubResource("Resource_4ek83")
 
-[node name="Button" parent="." instance=ExtResource("2_rnngi")]
-custom_minimum_size = Vector2(50, 50)
+[node name="Button" type="Button" parent="."]
 layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 18
-text = "asdkjasdhasjkdhasjkd"
-autowrap_mode = 2
-text_overrun_behavior = 4
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 7
 
 [connection signal="pressed" from="Button" to="." method="_on_pressed"]

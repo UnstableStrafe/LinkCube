@@ -1,73 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1i25ktsxvqjn"]
+[gd_scene load_steps=4 format=3 uid="uid://d1i25ktsxvqjn"]
 
+[ext_resource type="Texture2D" uid="uid://rle7rm2i8bx" path="res://ui/start_menu/menu.png" id="1_dwcyi"]
+[ext_resource type="Script" path="res://ui/start_menu/menu.gd" id="1_ugu4e"]
 [ext_resource type="PackedScene" uid="uid://cw2dxhrhi0b1h" path="res://ui/level_select/level_select.tscn" id="3_6rsta"]
-[ext_resource type="PackedScene" uid="uid://c4rxpbdq82gpp" path="res://ui/settings/settings.tscn" id="3_p4flw"]
-[ext_resource type="Texture2D" uid="uid://flkqcwtgb7wo" path="res://ui/start_menu/menu.png" id="4_6xviw"]
-[ext_resource type="PackedScene" uid="uid://dhy1eknb2rsj7" path="res://ui/text_button/text_button.tscn" id="4_rey1o"]
 
-[sub_resource type="GDScript" id="GDScript_ug8ar"]
-script/source = "extends Control
-
-@export var level_select: PackedScene
-@export var settings: PackedScene
-
-
-func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_packed(level_select)
-
-func _on_settings_button_pressed() -> void:
-	var settings_scene := settings.instantiate()
-	add_child(settings_scene)
-"
-
-[node name="StartMenu" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_ug8ar")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 432.0
+offset_bottom = 243.0
+texture = ExtResource("1_dwcyi")
+
+[node name="PlayButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 138.0
+offset_top = 127.0
+offset_right = 294.0
+offset_bottom = 189.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+script = ExtResource("1_ugu4e")
 level_select = ExtResource("3_6rsta")
-settings = ExtResource("3_p4flw")
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
-layout_mode = 2
-texture = ExtResource("4_6xviw")
-stretch_mode = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -96.0
-offset_top = -38.5
-offset_right = 96.0
-offset_bottom = 38.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-
-[node name="PlayButton" parent="VBoxContainer" instance=ExtResource("4_rey1o")]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Play"
-
-[node name="SettingsButton" parent="VBoxContainer" instance=ExtResource("4_rey1o")]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Settings"
-
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

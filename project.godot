@@ -34,7 +34,7 @@ import/blender/enabled=false
 [gui]
 
 theme/custom="res://ui/ui_theme.tres"
-theme/custom_font="res://fonts/Bitty.ttf"
+theme/custom_font="res://fonts/MinecraftRegular-Bmg3.otf"
 
 [input]
 

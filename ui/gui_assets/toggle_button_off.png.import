@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cclgq17o1oc52"
-path="res://.godot/imported/button_frame_9p.png-dd1968edc48973f004b6c0d2904adb5b.ctex"
+uid="uid://brc2qyytay17s"
+path="res://.godot/imported/toggle_button_off.png-b317ee9c017bd2a34e88d3e84d12c6cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/sprites/button_frame_9p.png"
-dest_files=["res://.godot/imported/button_frame_9p.png-dd1968edc48973f004b6c0d2904adb5b.ctex"]
+source_file="res://ui/gui_assets/toggle_button_off.png"
+dest_files=["res://.godot/imported/toggle_button_off.png-b317ee9c017bd2a34e88d3e84d12c6cf.ctex"]
 
 [params]
 
