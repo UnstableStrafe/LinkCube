@@ -25,8 +25,8 @@ func _ready() -> void:
 ## Loads the next level
 func next_level() -> void:
 	# level_index technically isn't the index but the level number
-	# (level_index - 1) = The actual index
-	# (level_index - 1) + 1 = The next level
+	#  (level_index - 1) = The actual index
+	#  (level_index - 1) + 1 = The next level
 	var level := levels[level_index]
 
 	level_index += 1
@@ -55,3 +55,4 @@ func set_score(level_path: String, score: int) -> void:
 
 	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	file.store_string(JSON.stringify(scores))
+

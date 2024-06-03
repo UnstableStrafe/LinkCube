@@ -13,20 +13,20 @@ signal moved(direction)
 
 const PLAYER_COLLISION_LAYER = 2
 
-var is_moving := false
+var _is_moving := false
 
 func _ready():
 	%Crown.visible = is_goal_cube
 
-func _push(direction: Vector2i):
+func push(direction: Vector2i):
 	# Debounce/prevent moving while already moving
-	if is_moving: return
+	if _is_moving: return
 	if not can_move(direction): return
 
 	# Push adjacent cube if pushable
 	var body := _get_object_in_dir(direction)
 	if body and body.owner is Cube and body.owner.cube_pushable:
-		body.owner._push(direction)
+		body.owner.push(direction)
 
 	# Work out where we are going
 	var current_tile := Global.tilemap.local_to_map(global_position)
@@ -36,7 +36,7 @@ func _push(direction: Vector2i):
 	if is_goal_cube and tile_data.get_custom_data("goal"):
 		Global.sweet_victory.emit()
 
-	is_moving = true
+	_is_moving = true
 	# For auto cube
 	Global.tile_targetted.emit(target_tile, self)
 
@@ -47,7 +47,7 @@ func _push(direction: Vector2i):
 
 	await tween.finished
 
-	is_moving = false
+	_is_moving = false
 
 	moved.emit(direction)
 
@@ -55,6 +55,16 @@ func _push(direction: Vector2i):
 ## Whether the cube can move in the given direction
 ## i.e. if the target tile is walkable or if there is no cube in that space
 func can_move(direction: Vector2i) -> bool:
+	# Check check if target tile is walkable
+
+	var current_tile: Vector2i = Global.tilemap.local_to_map(global_position)
+	var target_tile := current_tile + direction
+	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
+
+	if not tile_data.get_custom_data("walkable"):
+		return false
+
+	# Check if there is an object in the way
 	var body := _get_object_in_dir(direction)
 
 	if body:
@@ -65,26 +75,9 @@ func can_move(direction: Vector2i) -> bool:
 		else:
 			var cube: Cube = body.owner
 			# Check if this is a pushable cube
-			return is_cube_pushable(cube, direction)
+			return cube.cube_pushable and cube.can_move(direction)
 
-	# No body in the way, so check if target tile is walkable
-
-	var current_tile: Vector2i = Global.tilemap.local_to_map(global_position)
-	var target_tile := current_tile + direction
-	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
-
-	if not tile_data.get_custom_data("walkable"):
-		return false
-	else:
-		return true
-
-
-func is_cube_pushable(cube: Cube, direction: Vector2i) -> bool:
-	if cube.cube_pushable and cube.can_move(direction):
-		#otherBody._push(direction)
-		return true
-	else:
-		return false
+	return true
 
 func _get_object_in_dir(direction: Vector2i) -> Object:
 	$RayCast2D.target_position = direction * Global.tile_size

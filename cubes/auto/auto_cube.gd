@@ -40,13 +40,13 @@ var mov_dir: Vector2i:
 ## Keeps track of the tiles that all the cubes are trying to move to
 ## This prevents the auto cube from going onto a space that is going to be occupied
 ## by a pushed cube
-var targetted_tiles: Array[Vector2i] = []
+var targeted_tiles: Array[Vector2i] = []
 
 func _ready():
 	super()
 
 	Global.move.connect(_on_player_move)
-	Global.tile_targetted.connect(_on_tile_targetted)
+	Global.tile_targeted.connect(_on_tile_targeted)
 
 	match direction:
 		Direction.DOWN:
@@ -67,7 +67,7 @@ func _ready():
 
 func can_move(dir: Vector2i) -> bool:
 	# Add additional check to can_move
-	return super(dir) and not is_space_targetted(dir)
+	return super(dir) and not is_space_targeted(dir)
 
 func _on_player_move():
 	# If unable to move in the given direction (something is there)
@@ -80,18 +80,18 @@ func _on_player_move():
 			# Rotate mov dir clockwise 90 degrees
 			mov_dir = Vector2(mov_dir).rotated(deg_to_rad(90))
 
-	# _push contains all the checks for whether we can move
-	_push(mov_dir)
+	# `push` contains all the checks for whether we can move
+	push(mov_dir)
 
-	targetted_tiles.clear()
+	targeted_tiles.clear()
 
 ## Ensure nothing else is moving into that space
-func is_space_targetted(_direction: Vector2i) -> bool:
+func is_space_targeted(_direction: Vector2i) -> bool:
 	var current_tile := Global.tilemap.local_to_map(global_position)
 	var target_tile := current_tile + _direction
 
-	return target_tile in targetted_tiles
+	return target_tile in targeted_tiles
 
-func _on_tile_targetted(tile: Vector2i, node: Node2D):
+func _on_tile_targeted(tile: Vector2i, node: Node2D):
 	if node != self:
-		targetted_tiles.append(tile)
+		targeted_tiles.append(tile)
