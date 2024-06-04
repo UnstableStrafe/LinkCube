@@ -33,9 +33,6 @@ func push(direction: Vector2i):
 	var target_tile := current_tile + direction
 	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
 
-	if is_goal_cube and tile_data.get_custom_data("goal"):
-		Global.sweet_victory.emit()
-
 	_is_moving = true
 	# For auto cube
 	Global.tile_targetted.emit(target_tile, self)
@@ -50,6 +47,11 @@ func push(direction: Vector2i):
 	_is_moving = false
 
 	moved.emit(direction)
+
+	if is_goal_cube and tile_data.get_custom_data("goal"):
+		Global.sweet_victory.emit()
+
+		%AnimationPlayer.play("win")
 
 
 ## Whether the cube can move in the given direction
