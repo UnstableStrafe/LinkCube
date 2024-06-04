@@ -41,7 +41,6 @@ func _save_score() -> void:
 	if high_score == 0 or move_count < high_score:
 		Global.set_score(scene_file_path, move_count)
 
-
 func _on_pause_button_pressed() -> void:
 	var menu := pause_menu.instantiate()
 	$UI.add_child(menu)

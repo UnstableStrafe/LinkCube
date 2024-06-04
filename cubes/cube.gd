@@ -21,7 +21,8 @@ func _ready():
 func push(direction: Vector2i):
 	# Debounce/prevent moving while already moving
 	if _is_moving: return
-	if not can_move(direction): return
+	# push shouldn't be called without checking if the cube can move
+	#if not can_move(direction): return
 
 	# Push adjacent cube if pushable
 	var body := _get_object_in_dir(direction)
