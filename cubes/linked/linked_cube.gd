@@ -61,7 +61,7 @@ func _can_all_others_move(direction: Vector2i) -> bool:
 
 ## Prevent cubes from overlapping on the same tile space
 func _would_links_overlap(direction: Vector2i) -> bool:
-	var pos_offset := Vector2(direction) * Global.tile_size
+	var pos_offset := Vector2(direction) * Tiles.tile_size
 	var tiles := [global_position + pos_offset]
 
 	# Gradually add each new position to the array
@@ -105,7 +105,7 @@ func preview_push(from_dir: Vector2i) -> void:
 
 ## Set the position/visibility and then play pulse animation
 func preview_direction(direction: Vector2i) -> void:
-	%DirPreview.position = direction * Global.tile_size
+	%DirPreview.position = direction * Tiles.tile_size
 	%DirPreview.rotation = Vector2(direction).angle() - PI / 2
 
 	update_preview_sprite(direction)

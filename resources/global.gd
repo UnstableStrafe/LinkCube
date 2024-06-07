@@ -7,12 +7,6 @@ signal tile_targetted
 var move_time := 0.2
 var level_index := 1
 var levels: Array[Level] = load("res://resources/level_index.tres").levels
-var tile_size := 0.0
-var tilemap: TileMap:
-	set(value):
-		tilemap = value
-
-		tile_size = tilemap.tile_set.tile_size.x
 
 const SAVE_FILE := "user://level_scores.json"
 const SETTINGS_FILE := "user://settings.cfg"

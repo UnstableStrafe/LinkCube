@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu03m6i3nfgh3"]
+[gd_scene load_steps=6 format=3 uid="uid://bu03m6i3nfgh3"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_relkq"]
 [ext_resource type="Texture2D" uid="uid://b4ro71g17iop6" path="res://player/player_sprite.png" id="2_cglvd"]
 [ext_resource type="Script" path="res://resources/nodes/state_tracker.gd" id="2_ynqji"]
+[ext_resource type="Script" path="res://resources/nodes/mover.gd" id="3_fe1cs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlyv5"]
 size = Vector2(16, 16)
@@ -13,6 +14,9 @@ script = ExtResource("1_relkq")
 [node name="StateTracker" type="Node" parent="."]
 script = ExtResource("2_ynqji")
 tracked_properties = Array[NodePath]([NodePath("..:global_position"), NodePath("../Sprite2D:flip_h")])
+
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("3_fe1cs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cglvd")

@@ -34,7 +34,7 @@ var mov_dir: Vector2i:
 				$Sprite2D/ArrowSprite.flip_h = true
 				$Sprite2D/ArrowSprite.flip_v = false
 
-		$RayCast2D.target_position = mov_dir * Global.tile_size
+		$RayCast2D.target_position = mov_dir * Tiles.tile_size
 		$RayCast2D.force_raycast_update()
 
 ## Keeps track of the tiles that all the cubes are trying to move to
@@ -46,7 +46,7 @@ func _ready():
 	super()
 
 	Global.move.connect(_on_player_move)
-	Global.tile_targeted.connect(_on_tile_targeted)
+	Tiles.tile_targeted.connect(_on_tile_targeted)
 
 	match direction:
 		Direction.DOWN:
@@ -87,7 +87,7 @@ func _on_player_move():
 
 ## Ensure nothing else is moving into that space
 func is_space_targeted(_direction: Vector2i) -> bool:
-	var current_tile := Global.tilemap.local_to_map(global_position)
+	var current_tile := Tiles.global_to_tile(global_position)
 	var target_tile := current_tile + _direction
 
 	return target_tile in targeted_tiles

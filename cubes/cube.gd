@@ -30,20 +30,16 @@ func push(direction: Vector2i):
 		body.owner.push(direction)
 
 	# Work out where we are going
-	var current_tile := Global.tilemap.local_to_map(global_position)
-	var target_tile := current_tile + direction
-	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
+	var target_tile := Tiles.global_to_tile(global_position) + direction
+	var tile_data := Tiles.tilemap.get_cell_tile_data(0, target_tile)
 
 	_is_moving = true
 	# For auto cube
 	Global.tile_targetted.emit(target_tile, self)
 
 	# Tween to position
-	var target_position: Vector2 = Global.tilemap.map_to_local(target_tile)
-	var tween = create_tween()
-	tween.tween_property(self, "global_position", target_position, Global.move_time).set_trans(Tween.TRANS_SINE)
-
-	await tween.finished
+	$Mover.tween_move(self, direction)
+	await $Mover.moved
 
 	_is_moving = false
 
@@ -60,9 +56,8 @@ func push(direction: Vector2i):
 func can_move(direction: Vector2i) -> bool:
 	# Check check if target tile is walkable
 
-	var current_tile: Vector2i = Global.tilemap.local_to_map(global_position)
-	var target_tile := current_tile + direction
-	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
+	var target_tile := Tiles.global_to_tile(global_position) + direction
+	var tile_data := Tiles.tilemap.get_cell_tile_data(0, target_tile)
 
 	if not tile_data.get_custom_data("walkable"):
 		return false
@@ -83,7 +78,7 @@ func can_move(direction: Vector2i) -> bool:
 	return true
 
 func _get_object_in_dir(direction: Vector2i) -> Object:
-	$RayCast2D.target_position = direction * Global.tile_size
+	$RayCast2D.target_position = direction * Tiles.tile_size
 	$RayCast2D.force_raycast_update()
 
 	if $RayCast2D.is_colliding():

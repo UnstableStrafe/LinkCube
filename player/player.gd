@@ -42,9 +42,8 @@ func _process(_delta: float) -> void:
 func _can_move(direction: Vector2i) -> bool:
 	# Check check if target tile is walkable
 
-	var current_tile: Vector2i = Global.tilemap.local_to_map(global_position)
-	var target_tile := current_tile + direction
-	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
+	var target_tile := Tiles.global_to_tile(global_position) + direction
+	var tile_data := Tiles.tilemap.get_cell_tile_data(0, target_tile)
 
 	if not tile_data.get_custom_data("walkable"):
 		return false
@@ -63,17 +62,13 @@ func initiate_move(direction: Vector2i):
 	if _is_moving: return
 	if not _can_move(direction): return
 
-	var current_tile := Global.tilemap.local_to_map(global_position)
+	var current_tile := Tiles.global_to_tile(global_position)
 	var target_tile := current_tile + direction
 
 	Global.tile_targetted.emit(target_tile, self)
 	perform_move(direction)
 
 func perform_move(direction: Vector2i) -> void:
-	# Calculate where we are moving to
-	var current_tile := Global.tilemap.local_to_map(global_position)
-	var target_tile := current_tile + direction
-
 	var body := _get_object_in_dir(direction)
 	if body:
 		var cube: Cube = body.owner
@@ -85,11 +80,9 @@ func perform_move(direction: Vector2i) -> void:
 	_is_moving = true
 	Global.move.emit()
 
-	# Tween movement
-	var target_position: Vector2 = Global.tilemap.to_global(Global.tilemap.map_to_local(target_tile))
-	var tween = create_tween()
-	tween.tween_property(self, "global_position", target_position, Global.move_time).set_trans(Tween.TRANS_SINE)
-	await tween.finished
+	# Perform the movement
+	$Mover.tween_move(self, direction)
+	await $Mover.moved
 
 	# Movement teardown
 	_is_moving = false
@@ -97,7 +90,7 @@ func perform_move(direction: Vector2i) -> void:
 	did_action.emit()
 
 func _get_object_in_dir(direction: Vector2i) -> Object:
-	$RayCast2D.target_position = direction * Global.tile_size
+	$RayCast2D.target_position = direction * Tiles.tile_size
 	$RayCast2D.force_raycast_update()
 
 	if $RayCast2D.is_colliding():
