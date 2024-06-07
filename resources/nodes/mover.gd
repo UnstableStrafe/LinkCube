@@ -11,7 +11,7 @@ signal moved
 ## Tween the given node to the next tile in the given direction [br]
 ## Emits [signal moved] when done
 func tween_move(node: Node2D, direction: Vector2i) -> void:
-	var target_tile := Tiles.global_to_tile(global_position) + direction
+	var target_position := node.global_position + direction * Tiles.tile_size
 
 	# Tween movement
 	var tween = create_tween()
