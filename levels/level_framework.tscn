@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7pbu3m2f4nfr"]
+[gd_scene load_steps=11 format=3 uid="uid://7pbu3m2f4nfr"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_e1tw1"]
 [ext_resource type="PackedScene" uid="uid://d0nmhojnw88sl" path="res://ui/pause_menu/pause_menu.tscn" id="2_b2xs7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bu03m6i3nfgh3" path="res://player/player.tscn" id="3_j5vv5"]
 [ext_resource type="Texture2D" uid="uid://cf2ensfq8keac" path="res://ui/sprites/next_level_prompt.png" id="5_o4yjd"]
 [ext_resource type="Texture2D" uid="uid://uok6yxg0qbyc" path="res://ui/sprites/pause.png" id="5_qjxx0"]
+[ext_resource type="Script" path="res://ui/standalone_scripts/pause_button.gd" id="6_wye2u"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_ehgyd"]
 action = &"pause"
@@ -16,7 +17,6 @@ events = [SubResource("InputEventAction_ehgyd")]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_e1tw1")
-pause_menu = ExtResource("2_b2xs7")
 
 [node name="UndoManager" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_s8lla")
@@ -62,6 +62,8 @@ shortcut_in_tooltip = false
 texture_normal = ExtResource("5_qjxx0")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("6_wye2u")
+pause_menu = ExtResource("2_b2xs7")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_nhpp1")
@@ -76,4 +78,4 @@ position = Vector2(216, 121)
 
 [connection signal="ready" from="." to="UndoManager" method="_on_tree_ready"]
 [connection signal="move_count_changed" from="UndoManager" to="." method="_on_undo_manager_move_count_changed"]
-[connection signal="pressed" from="UI/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UI/PauseButton" to="UI/PauseButton" method="_on_pause_button_pressed"]
