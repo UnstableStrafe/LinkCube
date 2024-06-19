@@ -5,17 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://bhy5ifwqdyjjg" path="res://ui/sprites/toggle_button_off.png" id="2_ljk2a"]
 [ext_resource type="Texture2D" uid="uid://ckg18gcdwvhfd" path="res://ui/sprites/button_outline.png" id="2_vilqv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hks6y"]
-resource_name = "FocusFlat"
-bg_color = Color(1, 1, 1, 0.0705882)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e2cu8"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7b4ce"]
+resource_name = "ButtonBorder"
 texture = ExtResource("2_vilqv")
 texture_margin_left = 6.0
 texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
-modulate_color = Color(0.758191, 0.758192, 0.758192, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_323fk"]
 resource_name = "ButtonBorder"
@@ -25,7 +21,17 @@ texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ouc3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1oqfo"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0ors"]
 resource_name = "Empty"
@@ -33,6 +39,27 @@ content_margin_left = 6.0
 content_margin_top = 4.0
 content_margin_right = 6.0
 content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1bxm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ruflr"]
 resource_name = "Empty"
@@ -100,11 +127,9 @@ Button/constants/outline_size = 0
 Button/font_sizes/font_size = 40
 Button/fonts/font = ExtResource("1_s2gv8")
 Button/styles/disabled = null
-Button/styles/focus = SubResource("StyleBoxFlat_hks6y")
-Button/styles/hover = SubResource("StyleBoxTexture_e2cu8")
-Button/styles/normal = SubResource("StyleBoxTexture_e2cu8")
-Button/styles/pressed = SubResource("StyleBoxTexture_323fk")
-CheckBox/constants/h_separation = 8
+Button/styles/hover = SubResource("StyleBoxTexture_7b4ce")
+Button/styles/normal = SubResource("StyleBoxTexture_323fk")
+Button/styles/pressed = SubResource("StyleBoxFlat_1oqfo")
 CheckBox/icons/checked = ExtResource("1_8yey1")
 CheckBox/icons/checked_disabled = ExtResource("1_8yey1")
 CheckBox/icons/radio_checked = ExtResource("1_8yey1")
@@ -113,11 +138,6 @@ CheckBox/icons/radio_unchecked = ExtResource("2_ljk2a")
 CheckBox/icons/radio_unchecked_disabled = ExtResource("2_ljk2a")
 CheckBox/icons/unchecked = ExtResource("2_ljk2a")
 CheckBox/icons/unchecked_disabled = ExtResource("2_ljk2a")
-CheckBox/styles/focus = SubResource("StyleBoxFlat_hks6y")
-CheckBox/styles/hover = SubResource("StyleBoxFlat_hks6y")
-CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_hks6y")
-CheckBox/styles/normal = SubResource("StyleBoxEmpty_2ouc3")
-CheckBox/styles/pressed = SubResource("StyleBoxEmpty_2ouc3")
 CheckButton/colors/font_color = Color(1, 1, 1, 1)
 CheckButton/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 CheckButton/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -139,7 +159,7 @@ CheckButton/icons/unchecked_disabled = ExtResource("2_ljk2a")
 CheckButton/icons/unchecked_disabled_mirrored = ExtResource("2_ljk2a")
 CheckButton/icons/unchecked_mirrored = ExtResource("2_ljk2a")
 CheckButton/styles/disabled = SubResource("StyleBoxEmpty_f0ors")
-CheckButton/styles/focus = SubResource("StyleBoxFlat_hks6y")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_x1bxm")
 CheckButton/styles/hover = SubResource("StyleBoxEmpty_ruflr")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_b8fws")
 CheckButton/styles/normal = SubResource("StyleBoxEmpty_1aurc")
