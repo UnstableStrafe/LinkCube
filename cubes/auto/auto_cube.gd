@@ -46,7 +46,7 @@ func _ready():
 	super()
 
 	Global.move.connect(_on_player_move)
-	Tiles.tile_targeted.connect(_on_tile_targeted)
+	Global.tile_targetted.connect(_on_tile_targeted)
 
 	match direction:
 		Direction.DOWN:
@@ -80,8 +80,8 @@ func _on_player_move():
 			# Rotate mov dir clockwise 90 degrees
 			mov_dir = Vector2(mov_dir).rotated(deg_to_rad(90))
 
-	# `push` contains all the checks for whether we can move
-	push(mov_dir)
+	if can_move(mov_dir):
+		push(mov_dir)
 
 	targeted_tiles.clear()
 
