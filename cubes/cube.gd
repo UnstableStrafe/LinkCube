@@ -1,3 +1,4 @@
+@tool  # So the crown is visible in the editor
 @icon("res://cubes/basic/basic_cube.png")
 class_name Cube
 extends Node2D
@@ -5,7 +6,10 @@ extends Node2D
 signal moved(direction)
 
 ## Is this the cube needed to touch the goal
-@export var is_goal_cube := false
+@export var is_goal_cube := false:
+	set(value):
+		is_goal_cube = value
+		%Crown.visible = is_goal_cube
 ## Can this cube be pushed by the player
 @export var pushable := true
 ## Can this cube be pushed by another cube
@@ -16,7 +20,7 @@ const PLAYER_COLLISION_LAYER = 2
 var _is_moving := false
 
 func _ready():
-	%Crown.visible = is_goal_cube
+	is_goal_cube = is_goal_cube  # trigger setter
 
 func push(direction: Vector2i):
 	# Debounce/prevent moving while already moving
