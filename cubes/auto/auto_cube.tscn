@@ -14,7 +14,7 @@ pushable = false
 [node name="StateTracker" parent="." index="0"]
 tracked_properties = Array[NodePath]([NodePath("..:global_position"), NodePath("..:mov_dir")])
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_j8s6a")
 
 [node name="ArrowSprite" type="Sprite2D" parent="Sprite2D" index="1"]

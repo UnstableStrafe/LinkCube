@@ -3,8 +3,10 @@ extends Node2D
 var can_progress := false
 var move_count := 0
 
+
 @onready var player = %Player
 @onready var high_score := _get_high_score()
+
 
 func _ready():
 	Tiles.tilemap = $TileMap
@@ -13,8 +15,9 @@ func _ready():
 func _on_win():
 	can_progress = true
 	player.input_lock = true
+	
 	%NextLevelPrompt.visible = true
-
+	
 	# Save move count
 	_save_score()
 
@@ -38,3 +41,5 @@ func _get_high_score() -> int:
 func _save_score() -> void:
 	if high_score == 0 or move_count < high_score:
 		Global.set_score(scene_file_path, move_count)
+
+
