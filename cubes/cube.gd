@@ -5,6 +5,8 @@ extends Node2D
 
 signal moved(direction)
 
+var star_scene = preload("res://resources/victory_stars/star_fx.tscn")
+
 ## Is this the cube needed to touch the goal
 @export var is_goal_cube := false:
 	set(value):
@@ -51,7 +53,7 @@ func push(direction: Vector2i):
 
 	if is_goal_cube and tile_data.get_custom_data("goal"):
 		Global.sweet_victory.emit()
-
+		emit_victory_stars()
 		%AnimationPlayer.play("win")
 
 
@@ -89,3 +91,14 @@ func _get_object_in_dir(direction: Vector2i) -> Object:
 		return $RayCast2D.get_collider()
 	else:
 		return null
+
+func emit_victory_stars():
+	var angle = 0
+	for i in 5:
+		var star = star_scene.instantiate()
+		star.size = star.Star_size.BIG
+		add_child(star)
+		star.global_position = global_position
+		star.move_in_dir(angle)
+		angle += 72
+	pass
