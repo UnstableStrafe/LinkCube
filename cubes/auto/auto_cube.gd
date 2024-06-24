@@ -34,7 +34,7 @@ var mov_dir: Vector2i:
 				$Sprite2D/ArrowSprite.flip_h = true
 				$Sprite2D/ArrowSprite.flip_v = false
 
-		$RayCast2D.target_position = mov_dir * Global.tile_size
+		$RayCast2D.target_position = mov_dir * Tiles.tile_size
 		$RayCast2D.force_raycast_update()
 
 ## Keeps track of the tiles that all the cubes are trying to move to
@@ -44,9 +44,6 @@ var targeted_tiles: Array[Vector2i] = []
 
 func _ready():
 	super()
-
-	Global.move.connect(_on_player_move)
-	Global.tile_targeted.connect(_on_tile_targeted)
 
 	match direction:
 		Direction.DOWN:
@@ -65,11 +62,7 @@ func _ready():
 		AutoType.ROTATE:
 			$Sprite2D/ArrowSprite.frame = 2
 
-func can_move(dir: Vector2i) -> bool:
-	# Add additional check to can_move
-	return super(dir) and not is_space_targeted(dir)
-
-func _on_player_move():
+func move() -> void:
 	# If unable to move in the given direction (something is there)
 	if not can_move(mov_dir):
 		# Change move direction according to rules
@@ -80,18 +73,20 @@ func _on_player_move():
 			# Rotate mov dir clockwise 90 degrees
 			mov_dir = Vector2(mov_dir).rotated(deg_to_rad(90))
 
-	# `push` contains all the checks for whether we can move
-	push(mov_dir)
+	#if can_move(mov_dir):
+		push(mov_dir)
 
-	targeted_tiles.clear()
 
-## Ensure nothing else is moving into that space
-func is_space_targeted(_direction: Vector2i) -> bool:
-	var current_tile := Global.tilemap.local_to_map(global_position)
-	var target_tile := current_tile + _direction
+func can_move(mov_dir: Vector2i) -> bool:
+	# Work out where we are going
+	var target_tile := Tiles.global_to_tile(global_position) + mov_dir
+	var tile_data := Tiles.tilemap.get_cell_tile_data(0, target_tile)
 
-	return target_tile in targeted_tiles
+	# Work out if tile is walkable
+	if not tile_data.get_custom_data("walkable"):
+		return false
 
-func _on_tile_targeted(tile: Vector2i, node: Node2D):
-	if node != self:
-		targeted_tiles.append(tile)
+	# Will a cube be at that spot
+
+
+	return true

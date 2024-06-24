@@ -9,7 +9,7 @@ var move_count := 0
 @onready var high_score := _get_high_score()
 
 func _ready():
-	Global.tilemap = $TileMap
+	Tiles.tilemap = $TileMap
 	Global.sweet_victory.connect(win)
 
 func win():

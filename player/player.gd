@@ -31,76 +31,59 @@ func _process(_delta: float) -> void:
 		$Sprite2D.flip_h = false;
 
 	elif Input.is_action_pressed("wait"):
-		input_lock = true
-		Global.move.emit()
-		var timer = get_tree().create_timer(Global.move_time)
-		await timer.timeout
+		initiate_move(Vector2.ZERO)
 
-		did_action.emit()
-		input_lock = false
-
-func _can_move(direction: Vector2i) -> bool:
-	# Check check if target tile is walkable
-
-	var current_tile: Vector2i = Global.tilemap.local_to_map(global_position)
-	var target_tile := current_tile + direction
-	var tile_data := Global.tilemap.get_cell_tile_data(0, target_tile)
-
-	if not tile_data.get_custom_data("walkable"):
-		return false
-
-	# Check if there is an object in the way
-	var body := _get_object_in_dir(direction)
-
-	if body:
-		var cube: Cube = body.owner
-		# Check if this is a pushable cube
-		return cube.pushable and cube.can_move(direction)
-
-	return true
 
 func initiate_move(direction: Vector2i):
-	if _is_moving: return
-	if not _can_move(direction): return
+	if $Mover.is_moving: return
 
-	var current_tile := Global.tilemap.local_to_map(global_position)
+	# Check if the tile in that direction is walkable
+
+	var current_tile: Vector2i = Tiles.tilemap.local_to_map(global_position)
 	var target_tile := current_tile + direction
+	var tile_data := Tiles.tilemap.get_cell_tile_data(0, target_tile)
 
-	Global.tile_targetted.emit(target_tile, self)
-	perform_move(direction)
+	if not tile_data.get_custom_data("walkable"):
+		$Mover.move_tracker.cancel()
+		return
 
-func perform_move(direction: Vector2i) -> void:
-	# Calculate where we are moving to
-	var current_tile := Global.tilemap.local_to_map(global_position)
-	var target_tile := current_tile + direction
+	$Mover.move_tracker.grab_current_coords()
+	$Mover.register_move(target_tile)
+
+	# Push cube in that direction
 
 	var body := _get_object_in_dir(direction)
 	if body:
 		var cube: Cube = body.owner
 		# Check if this is a pushable cube
-		if cube.pushable and cube.can_move(direction):
+		if cube.pushable:
 			cube.push(direction)
 
-	# Setup for movement
-	_is_moving = true
-	Global.move.emit()
+	# Tell auto cubes to move
+	get_tree().call_group("auto", "move")
 
-	# Tween movement
-	var target_position: Vector2 = Global.tilemap.to_global(Global.tilemap.map_to_local(target_tile))
-	var tween = create_tween()
-	tween.tween_property(self, "global_position", target_position, Global.move_time).set_trans(Tween.TRANS_SINE)
-	await tween.finished
+	# TODO: Work out if the queue was cleared at some point
+	# Otherwise shit will move anyway lol
 
-	# Movement teardown
-	_is_moving = false
+	# Commit moves if all are valid
+	if $Mover.move_tracker.are_all_unique():
+		$Mover.move_tracker.commit_moves()
+		await $Mover.moved
+		did_action.emit()
+	else:
+		$Mover.move_tracker.clear()
 
-	did_action.emit()
 
 func _get_object_in_dir(direction: Vector2i) -> Object:
-	$RayCast2D.target_position = direction * Global.tile_size
+	$RayCast2D.target_position = direction * Tiles.tile_size
 	$RayCast2D.force_raycast_update()
 
 	if $RayCast2D.is_colliding():
 		return $RayCast2D.get_collider()
 	else:
 		return null
+
+# The move tracker resource needs to be reset before the Movers initialise
+# This is good
+func _on_tree_exiting() -> void:
+	$Mover.move_tracker.reset()

@@ -1,0 +1,47 @@
+## Exists to track movements of Movers and ensure there's no overlaps
+class_name MoveTracker
+extends Resource
+
+var movers: Array[Mover] = []
+# node: tile_coord
+var moves := {}
+
+
+func grab_current_coords() -> void:
+	moves = {}
+
+	for mover in movers:
+		var tile_coord := Tiles.global_to_tile(mover.target.global_position)
+		moves[mover] = tile_coord
+
+func register_move(mover: Mover, coord: Vector2i) -> void:
+	moves[mover] = coord
+
+func are_all_unique() -> bool:
+	var unique := []
+
+	for coord in moves.values():
+		if coord in unique:
+			return false
+
+		unique.append(coord)
+
+	return true
+
+func commit_moves() -> void:
+	for mover in moves.keys():
+		var tile: Vector2i = moves[mover]
+
+		mover.tween_to(tile)
+
+	moves = {}
+
+## Cancel registered moves
+func cancel() -> void:
+	moves = {}
+
+## Reset the state of the tracker including movers and moves
+func reset() -> void:
+	movers = []
+	moves = {}
+

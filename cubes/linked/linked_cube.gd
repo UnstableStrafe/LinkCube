@@ -25,7 +25,7 @@ func _ready() -> void:
 	Global.sweet_victory.connect(clear_preview)
 
 func base_can_move(direction: Vector2i) -> bool:
-	return super.can_move(direction)
+	return true# super.can_move(direction)
 
 func can_move(direction: Vector2i) -> bool:
 	var rotated_direction := rotate_dir(direction)
@@ -39,14 +39,11 @@ func base_push(direction: Vector2i):
 
 # Overrides `push` to propagate to make all the cubes move
 func push(direction: Vector2i):
-	if _is_moving: return
-
 	var rotated_direction := rotate_dir(direction)
 
 	for cube in get_linked():
 		cube.base_push(rotated_direction)
 
-	super(direction)
 
 func rotate_dir(direction: Vector2i) -> Vector2i:
 	return Vector2i(
@@ -61,7 +58,7 @@ func _can_all_others_move(direction: Vector2i) -> bool:
 
 ## Prevent cubes from overlapping on the same tile space
 func _would_links_overlap(direction: Vector2i) -> bool:
-	var pos_offset := Vector2(direction) * Global.tile_size
+	var pos_offset := Vector2(direction) * Tiles.tile_size
 	var tiles := [global_position + pos_offset]
 
 	# Gradually add each new position to the array
@@ -105,7 +102,7 @@ func preview_push(from_dir: Vector2i) -> void:
 
 ## Set the position/visibility and then play pulse animation
 func preview_direction(direction: Vector2i) -> void:
-	%DirPreview.position = direction * Global.tile_size
+	%DirPreview.position = direction * Tiles.tile_size
 	%DirPreview.rotation = Vector2(direction).angle() - PI / 2
 
 	update_preview_sprite(direction)

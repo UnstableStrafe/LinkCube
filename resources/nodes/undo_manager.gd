@@ -9,9 +9,6 @@ var move_count: int:
 	get:
 		return states.size() - 1
 
-func _ready():
-	player.did_action.connect(_on_player_did_action)
-
 # Can't do this in ready because the StateTrackers won't necessarily be in the group yet.
 # If this is linked to a common ancestor's ready signal then it will fire when
 # everything is ready and nodes have been added to groups

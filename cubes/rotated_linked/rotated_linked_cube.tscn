@@ -9,5 +9,5 @@ script = ExtResource("2_lsse8")
 rotate_angle = 90
 link_group = "rotated_linked"
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_4amqm")
