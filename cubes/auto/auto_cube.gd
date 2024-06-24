@@ -45,6 +45,9 @@ var targeted_tiles: Array[Vector2i] = []
 func _ready():
 	super()
 
+	Global.move.connect(_on_player_move)
+	Global.tile_targetted.connect(_on_tile_targeted)
+
 	match direction:
 		Direction.DOWN:
 			mov_dir = Vector2.DOWN
@@ -77,10 +80,10 @@ func move() -> void:
 		push(mov_dir)
 
 
-func can_move(mov_dir: Vector2i) -> bool:
-	# Work out where we are going
-	var target_tile := Tiles.global_to_tile(global_position) + mov_dir
-	var tile_data := Tiles.tilemap.get_cell_tile_data(0, target_tile)
+## Ensure nothing else is moving into that space
+func is_space_targeted(_direction: Vector2i) -> bool:
+	var current_tile := Tiles.global_to_tile(global_position)
+	var target_tile := current_tile + _direction
 
 	# Work out if tile is walkable
 	if not tile_data.get_custom_data("walkable"):

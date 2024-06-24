@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0nmhojnw88sl"]
+[gd_scene load_steps=8 format=3 uid="uid://d0nmhojnw88sl"]
 
 [ext_resource type="Script" path="res://ui/pause_menu/pause_menu.gd" id="1_xilg8"]
 [ext_resource type="PackedScene" uid="uid://cw2dxhrhi0b1h" path="res://ui/level_select/level_select.tscn" id="2_sl5vl"]
@@ -7,6 +7,12 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6vcy"]
 bg_color = Color(0, 0, 0, 0.47451)
+
+[sub_resource type="InputEventAction" id="InputEventAction_ehgyd"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_bg8c5"]
+events = [SubResource("InputEventAction_ehgyd")]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -49,6 +55,11 @@ alignment = 1
 layout_mode = 2
 text = "Resume"
 
+[node name="Button" parent="HBoxContainer/ResumeButton/MarginContainer" index="0"]
+shortcut = SubResource("Shortcut_bg8c5")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+
 [node name="LevelSelectButton" parent="HBoxContainer" instance=ExtResource("4_pno1x")]
 layout_mode = 2
 text = "Level Select"
@@ -66,3 +77,5 @@ text = "Quit"
 [connection signal="pressed" from="HBoxContainer/LevelSelectButton" to="." method="_on_level_select_pressed"]
 [connection signal="pressed" from="HBoxContainer/SettingsButton" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="HBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+
+[editable path="HBoxContainer/ResumeButton"]

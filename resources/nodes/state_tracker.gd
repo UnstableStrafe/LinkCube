@@ -1,3 +1,4 @@
+@icon("res://resources/nodes/state_tracker.svg")
 class_name StateTracker
 extends Node
 

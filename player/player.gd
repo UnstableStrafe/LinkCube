@@ -37,9 +37,7 @@ func _process(_delta: float) -> void:
 func initiate_move(direction: Vector2i):
 	if $Mover.is_moving: return
 
-	# Check if the tile in that direction is walkable
-
-	var current_tile: Vector2i = Tiles.tilemap.local_to_map(global_position)
+	var current_tile := Tiles.global_to_tile(global_position)
 	var target_tile := current_tile + direction
 	var tile_data := Tiles.tilemap.get_cell_tile_data(0, target_tile)
 
