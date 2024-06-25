@@ -5,8 +5,10 @@ extends Node2D
 var can_progress := false
 var move_count := 0
 
+
 @onready var player = %Player
 @onready var high_score := _get_high_score()
+
 
 func _ready():
 	Global.tilemap = $TileMap
@@ -15,8 +17,9 @@ func _ready():
 func win():
 	can_progress = true
 	player.input_lock = true
+	
 	%NextLevelPrompt.visible = true
-
+	
 	# Save move count
 	_save_score()
 
@@ -42,6 +45,9 @@ func _save_score() -> void:
 		Global.set_score(scene_file_path, move_count)
 
 
+<<<<<<< Updated upstream
 func _on_pause_button_pressed() -> void:
 	var menu := pause_menu.instantiate()
 	$UI.add_child(menu)
+=======
+>>>>>>> Stashed changes
