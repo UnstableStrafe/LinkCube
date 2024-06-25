@@ -45,10 +45,12 @@ func initiate_move(direction: Vector2i):
 		$Mover.move_tracker.cancel()
 		return
 
+	# Initiate move tracker for this turn
 	$Mover.move_tracker.grab_current_coords()
+	# Register player's intended movement
 	$Mover.register_move(target_tile)
 
-	# Push cube in that direction
+	# Push cube located in that direction
 
 	var body := _get_object_in_dir(direction)
 	if body:

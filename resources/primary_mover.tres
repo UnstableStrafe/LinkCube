@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MoveTracker" load_steps=2 format=3 uid="uid://ci74lptbfco50"]
+
+[ext_resource type="Script" path="res://resources/move_tracker.gd" id="1_4lxvm"]
+
+[resource]
+resource_name = "Primary"
+script = ExtResource("1_4lxvm")

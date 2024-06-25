@@ -45,9 +45,6 @@ var targeted_tiles: Array[Vector2i] = []
 func _ready():
 	super()
 
-	Global.move.connect(_on_player_move)
-	Global.tile_targetted.connect(_on_tile_targeted)
-
 	match direction:
 		Direction.DOWN:
 			mov_dir = Vector2.DOWN
@@ -67,7 +64,7 @@ func _ready():
 
 func move() -> void:
 	# If unable to move in the given direction (something is there)
-	if not can_move(mov_dir):
+	if true: #not can_move(mov_dir):
 		# Change move direction according to rules
 		if auto_type == AutoType.BOUNCE:
 			# Invert mov dir
@@ -86,8 +83,8 @@ func is_space_targeted(_direction: Vector2i) -> bool:
 	var target_tile := current_tile + _direction
 
 	# Work out if tile is walkable
-	if not tile_data.get_custom_data("walkable"):
-		return false
+	#if not tile_data.get_custom_data("walkable"):
+		#return false
 
 	# Will a cube be at that spot
 

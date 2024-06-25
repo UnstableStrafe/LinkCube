@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b4ro71g17iop6" path="res://player/player_sprite.png" id="2_cglvd"]
 [ext_resource type="Script" path="res://resources/nodes/state_tracker.gd" id="2_ynqji"]
 [ext_resource type="Script" path="res://resources/nodes/mover.gd" id="3_fe1cs"]
-[ext_resource type="Resource" uid="uid://culi4p8mm7aka" path="res://primary_move_tracker.tres" id="4_0aq7k"]
+[ext_resource type="Resource" uid="uid://ci74lptbfco50" path="res://resources/primary_mover.tres" id="4_13b4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlyv5"]
 size = Vector2(16, 16)
@@ -18,7 +18,7 @@ tracked_properties = Array[NodePath]([NodePath("..:global_position"), NodePath("
 
 [node name="Mover" type="Node" parent="."]
 script = ExtResource("3_fe1cs")
-move_tracker = ExtResource("4_0aq7k")
+move_tracker = ExtResource("4_13b4b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cglvd")
