@@ -15,6 +15,7 @@ signal moved(direction)
 ## Can this cube be pushed by another cube
 @export var cube_pushable := false
 
+var star_scene = preload("res://cubes/victory_stars/star_fx.tscn")
 
 func _ready():
 	is_goal_cube = is_goal_cube  # trigger setter
@@ -65,3 +66,5 @@ func _on_mover_moved() -> void:
 		if tile_data.get_custom_data("goal"):
 			Global.sweet_victory.emit()
 			%AnimationPlayer.play("win")
+
+			$Sprite2D.add_child(star_scene.instantiate())
