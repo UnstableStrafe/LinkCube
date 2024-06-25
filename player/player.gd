@@ -3,8 +3,6 @@ extends Node2D
 
 signal did_action
 
-var can_move := true
-var _is_moving := false
 var input_lock := true
 
 func _ready() -> void:
@@ -16,7 +14,7 @@ func _ready() -> void:
 
 # Use process to repeatedly move while the key is held
 func _process(_delta: float) -> void:
-	if _is_moving: return
+	if $Mover.is_moving: return
 	if input_lock: return
 
 	if Input.is_action_pressed("move_up"):
