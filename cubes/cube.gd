@@ -19,24 +19,31 @@ signal moved(direction)
 func _ready():
 	is_goal_cube = is_goal_cube  # trigger setter
 
-func push(direction: Vector2i) -> void:
-	# Check check if target tile is walkable
+## Check check if target tile is walkable
+func can_move(direction: Vector2i) -> bool:
 	var target_tile := Tiles.global_to_tile(global_position) + direction
 	var tile_data := Tiles.tilemap.get_cell_tile_data(0, target_tile)
 
-	if not tile_data.get_custom_data("walkable"):
+	return tile_data.get_custom_data("walkable")
+
+func push(direction: Vector2i) -> void:
+	if can_move(direction):
+		var target_tile := Tiles.global_to_tile(global_position) + direction
+
+		$Mover.register_move(target_tile)
+
+		# Push any cubes in the target square
+		var body := _get_object_in_dir(direction)
+
+		if body and body.owner is Cube:
+			var cube: Cube = body.owner
+			if cube.cube_pushable:
+				cube.push(direction)
+			else:
+				$Mover.move_tracker.cancel()
+
+	else:
 		$Mover.move_tracker.cancel()
-		return
-
-	$Mover.register_move(target_tile)
-
-	# Push any cubes in the target square
-	var body := _get_object_in_dir(direction)
-
-	if body and body.owner is Cube:
-		var cube: Cube = body.owner
-		if cube.cube_pushable:
-			cube.push(direction)
 
 
 func _get_object_in_dir(direction: Vector2i) -> Object:

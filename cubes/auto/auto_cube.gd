@@ -6,7 +6,7 @@ enum AutoType {NORMAL, BOUNCE, ROTATE}
 enum Direction {UP, DOWN, LEFT, RIGHT}
 ## The direction to automatically travel in
 @export var direction := Direction.DOWN
-## The type of movement the cube has
+## The type of movement the cube has:
 ##
 ## NORMAL stops when unable to move
 ## BOUNCE rotates 180 degrees when unable to move
@@ -63,9 +63,14 @@ func _ready():
 		AutoType.ROTATE:
 			$Sprite2D/ArrowSprite.frame = 2
 
+
+## Autocubes use this instead of `push`
+# This contains a few extra checks to ensure that the auto cube can indeed
+#  move to the given tile
+#  because if an autocube can't move, other cubes still can
 func move() -> void:
 	# If unable to move in the given direction (something is there)
-	if true: #not can_move(mov_dir):
+	if not can_move(mov_dir):
 		# Change move direction according to rules
 		if auto_type == AutoType.BOUNCE:
 			# Invert mov dir
@@ -74,5 +79,25 @@ func move() -> void:
 			# Rotate mov dir clockwise 90 degrees
 			mov_dir = Vector2(mov_dir).rotated(deg_to_rad(90))
 
-	#if can_move(mov_dir):
-		push(mov_dir)
+	# If we still can't move - don't until the next action
+	if not can_move(mov_dir): return
+
+	# Move :3
+
+	var target_tile := Tiles.global_to_tile(global_position) + mov_dir
+
+	# Push any cubes in the target square
+	var body := _get_object_in_dir(mov_dir)
+
+	if body and body.owner is Cube:
+		var cube: Cube = body.owner
+		if cube.cube_pushable:
+			cube.push(mov_dir)
+		else:
+			# if it isn't pushable, don't move
+			return
+
+	# If there is still something in the way, don't move
+	if _get_object_in_dir(mov_dir): return
+
+	$Mover.register_move(target_tile)

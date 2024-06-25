@@ -11,12 +11,13 @@ signal player_exited_side
 
 func _ready() -> void:
 	super()
-	add_to_group(link_group)
 
-	# We need to wait for all the others to be added to the scene
+	add_to_group(link_group)
+	# We need to wait for all the other links to be added to the scene
 	#  Should be largely bullet proof unless you put scenes in scenes
 	#  Dont do that.
 	await get_owner().ready
+
 	# When the player touches a side sensor, make the other cubes preview that direction
 	for linked_cube in get_linked():
 		player_entered_side.connect(linked_cube.preview_push)
@@ -25,23 +26,23 @@ func _ready() -> void:
 	# Hide direction preview on win
 	Global.sweet_victory.connect(clear_preview)
 
-func base_can_move(direction: Vector2i) -> bool:
-	return true# super.can_move(direction)
+func can_i_move(direction: Vector2i) -> bool:
+	return super.can_move(direction)
 
-func can_move(direction: Vector2i) -> bool:
+func can_we_move(direction: Vector2i) -> bool:
 	var rotated_direction := rotate_dir(direction)
-	return base_can_move(direction) and _can_all_others_move(rotated_direction) and not _would_links_overlap(direction)
+	return can_i_move(direction) and _can_all_others_move(rotated_direction) and not _would_links_overlap(direction)
 
 ## Perform `push` as defined in the base cube
 ## So to not trigger recursive calls
 func base_push(direction: Vector2i):
 	super.push(direction)
 
-
 # Overrides `push` to propagate to make all the cubes move
 func push(direction: Vector2i):
 	var rotated_direction := rotate_dir(direction)
 
+	base_push(direction)
 	for cube in get_linked():
 		cube.base_push(rotated_direction)
 
@@ -54,20 +55,22 @@ func rotate_dir(direction: Vector2i) -> Vector2i:
 func _can_all_others_move(direction: Vector2i) -> bool:
 	return get_linked().all(
 		func(cube):
-			return cube.base_can_move(direction)
+			return cube.can_i_move(direction)
 	)
 
 ## Prevent cubes from overlapping on the same tile space
 func _would_links_overlap(direction: Vector2i) -> bool:
-	var pos_offset := Vector2(direction) * Tiles.tile_size
-	var tiles := [global_position + pos_offset]
+	var tiles := [
+		Tiles.global_to_tile(global_position) + direction
+	]
 
 	# Gradually add each new position to the array
 	# If the position already exists then there would be a overlap
 	for cube in get_linked():
-		var new_pos: Vector2 = cube.global_position + Vector2(rotate_dir(pos_offset))
+		var new_pos: Vector2 = Tiles.global_to_tile(cube.global_position) + rotate_dir(direction)
 		if new_pos in tiles:
 			return true
+
 		tiles.append(new_pos)
 
 	return false
@@ -113,7 +116,7 @@ func preview_direction(direction: Vector2i) -> void:
 # This is run either when the cube moves, to update the sprite based on if it
 #  could move
 func update_preview_sprite(direction: Vector2i) -> void:
-	%DirPreview.frame = 0 if base_can_move(direction) and not _would_links_overlap(direction) else 1
+	%DirPreview.frame = 0 if can_i_move(direction) and not _would_links_overlap(direction) else 1
 
 func clear_preview() -> void:
 	%DirPreviewPlayer.play("RESET")

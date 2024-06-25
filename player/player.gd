@@ -56,6 +56,8 @@ func initiate_move(direction: Vector2i):
 		# Check if this is a pushable cube
 		if cube.pushable:
 			cube.push(direction)
+		else:
+			$Mover.move_tracker.cancel()
 
 	# Tell auto cubes to move
 	get_tree().call_group("auto", "move")
@@ -64,12 +66,12 @@ func initiate_move(direction: Vector2i):
 	# Otherwise shit will move anyway lol
 
 	# Commit moves if all are valid
-	if $Mover.move_tracker.are_all_unique():
+	if $Mover.move_tracker.are_all_unique() and not $Mover.move_tracker.cancelled:
 		$Mover.move_tracker.commit_moves()
 		await $Mover.moved
 		did_action.emit()
 	else:
-		$Mover.move_tracker.clear()
+		$Mover.move_tracker.reset()
 
 
 func _get_object_in_dir(direction: Vector2i) -> Object:

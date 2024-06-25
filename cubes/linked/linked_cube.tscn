@@ -76,12 +76,12 @@ rotate_angle = 0
 link_group = "linked"
 
 [node name="StateTracker" parent="." index="0"]
-tracked_properties = Array[NodePath]([NodePath("..:global_position"), NodePath("../DirPreview:visible"), NodePath("../DirPreview:frame")])
+tracked_properties = Array[NodePath]([NodePath("..:global_position"), NodePath("../DirPreview"), NodePath("../DirPreview")])
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_xax0q")
 
-[node name="DirSensors" type="Node2D" parent="." index="4"]
+[node name="DirSensors" type="Node2D" parent="." index="6"]
 
 [node name="NorthSensor" type="Area2D" parent="DirSensors" index="0"]
 position = Vector2(0, -16)
@@ -123,7 +123,7 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DirSensors/WestSensor" index="0"]
 shape = SubResource("RectangleShape2D_lnqox")
 
-[node name="DirPreview" type="Sprite2D" parent="." index="5"]
+[node name="DirPreview" type="Sprite2D" parent="." index="7"]
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)

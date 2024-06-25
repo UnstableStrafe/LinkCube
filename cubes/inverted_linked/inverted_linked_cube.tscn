@@ -9,5 +9,5 @@ script = ExtResource("2_3vu2h")
 rotate_angle = 180
 link_group = "inverted_linked"
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_diaca")

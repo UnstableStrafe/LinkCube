@@ -5,6 +5,14 @@ extends Resource
 var movers: Array[Mover] = []
 # node: tile_coord
 var moves := {}
+# Whether moves have been cancelled
+# twitter dot com
+var cancelled := false
+
+
+func init() -> void:
+	cancelled = false
+	grab_current_coords()
 
 
 func grab_current_coords() -> void:
@@ -15,6 +23,8 @@ func grab_current_coords() -> void:
 		moves[mover] = tile_coord
 
 func register_move(mover: Mover, coord: Vector2i) -> void:
+	if cancelled: return
+
 	moves[mover] = coord
 
 func are_all_unique() -> bool:
@@ -29,6 +39,8 @@ func are_all_unique() -> bool:
 	return true
 
 func commit_moves() -> void:
+	if cancelled: return
+
 	for mover in moves.keys():
 		var tile: Vector2i = moves[mover]
 
@@ -39,9 +51,11 @@ func commit_moves() -> void:
 ## Cancel registered moves
 func cancel() -> void:
 	moves = {}
+	cancelled = true
 
 ## Reset the state of the tracker including movers and moves
 func reset() -> void:
 	movers = []
 	moves = {}
+	cancelled = false
 
