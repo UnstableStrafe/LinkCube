@@ -1,3 +1,4 @@
+@tool
 @icon("res://cubes/linked/linked_cube.png")
 class_name LinkedCube
 extends Cube

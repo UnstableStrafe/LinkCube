@@ -1,3 +1,4 @@
+@tool
 @icon("res://cubes/auto/auto_cube.png")
 extends Cube
 
@@ -75,18 +76,3 @@ func move() -> void:
 
 	#if can_move(mov_dir):
 		push(mov_dir)
-
-
-## Ensure nothing else is moving into that space
-func is_space_targeted(_direction: Vector2i) -> bool:
-	var current_tile := Tiles.global_to_tile(global_position)
-	var target_tile := current_tile + _direction
-
-	# Work out if tile is walkable
-	#if not tile_data.get_custom_data("walkable"):
-		#return false
-
-	# Will a cube be at that spot
-
-
-	return true
