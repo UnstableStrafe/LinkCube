@@ -97,7 +97,7 @@ func move() -> void:
 			# if it isn't pushable, don't move
 			return
 
-	# If there is still something in the way, don't move
-	if _get_object_in_dir(mov_dir): return
+	# If something is registered for that spot still, don't move
+	if move_tracker.is_tile_registered(target_tile): return
 
 	move_tracker.register_move($Mover, target_tile)

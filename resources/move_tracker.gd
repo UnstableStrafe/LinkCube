@@ -37,6 +37,10 @@ func are_all_unique() -> bool:
 
 	return true
 
+## Whether an entity has registered to move to the given tile
+func is_tile_registered(tile: Vector2i) -> bool:
+	return tile in moves.values()
+
 func commit_moves() -> void:
 	if cancelled: return
 

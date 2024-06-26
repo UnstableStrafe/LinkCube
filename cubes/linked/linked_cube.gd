@@ -92,6 +92,8 @@ func get_linked() -> Array[Node]:
 #  calculates the direction the cube will move based on where the targeted cube
 #  was pushed
 # We then preview whatever direction this cube will have to move in
+#
+# This could possibly be modified to use a mover tracker??
 
 func _on_sensor_area_entered(_area: Area2D, direction: Vector2i) -> void:
 	# propagates to preview_push
