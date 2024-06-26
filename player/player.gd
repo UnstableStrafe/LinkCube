@@ -3,6 +3,7 @@ extends Node2D
 
 signal did_action
 
+@export var move_tracker: MoveTracker
 var input_lock := true
 
 func _ready() -> void:
@@ -40,13 +41,13 @@ func initiate_move(direction: Vector2i):
 	var tile_data := Tiles.tilemap.get_cell_tile_data(0, target_tile)
 
 	if not tile_data.get_custom_data("walkable"):
-		$Mover.move_tracker.cancel()
+		move_tracker.cancel()
 		return
 
 	# Initiate move tracker for this turn
-	$Mover.move_tracker.grab_current_coords()
+	move_tracker.init()
 	# Register player's intended movement
-	$Mover.register_move(target_tile)
+	move_tracker.register_move($Mover, target_tile)
 
 	# Push cube located in that direction
 
@@ -57,7 +58,7 @@ func initiate_move(direction: Vector2i):
 		if cube.pushable:
 			cube.push(direction)
 		else:
-			$Mover.move_tracker.cancel()
+			move_tracker.cancel()
 
 	# Tell auto cubes to move
 	get_tree().call_group("auto", "move")
@@ -66,12 +67,12 @@ func initiate_move(direction: Vector2i):
 	# Otherwise shit will move anyway lol
 
 	# Commit moves if all are valid
-	if $Mover.move_tracker.are_all_unique() and not $Mover.move_tracker.cancelled:
-		$Mover.move_tracker.commit_moves()
+	if move_tracker.are_all_unique() and not move_tracker.cancelled:
+		move_tracker.commit_moves()
 		await $Mover.moved
 		did_action.emit()
 	else:
-		$Mover.move_tracker.reset()
+		move_tracker.reset()
 
 
 func _get_object_in_dir(direction: Vector2i) -> Object:
@@ -86,4 +87,4 @@ func _get_object_in_dir(direction: Vector2i) -> Object:
 # The move tracker resource needs to be reset before the Movers initialise
 # This is good
 func _on_tree_exiting() -> void:
-	$Mover.move_tracker.reset()
+	move_tracker.reset()

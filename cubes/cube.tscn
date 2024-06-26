@@ -115,6 +115,7 @@ _data = {
 
 [node name="Cube" type="Node2D"]
 script = ExtResource("1_jafsn")
+move_tracker = ExtResource("4_s8dsb")
 
 [node name="StateTracker" type="Node" parent="."]
 script = ExtResource("3_343nv")
@@ -122,7 +123,6 @@ tracked_properties = Array[NodePath]([NodePath("..:global_position")])
 
 [node name="Mover" type="Node" parent="."]
 script = ExtResource("3_psaf6")
-move_tracker = ExtResource("4_s8dsb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

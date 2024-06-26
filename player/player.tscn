@@ -13,6 +13,7 @@ size = Vector2(16, 16)
 
 [node name="Player" type="Node2D" groups=["track_state"]]
 script = ExtResource("1_relkq")
+move_tracker = ExtResource("4_13b4b")
 
 [node name="StateTracker" type="Node" parent="."]
 script = ExtResource("2_ynqji")
@@ -20,7 +21,6 @@ tracked_properties = Array[NodePath]([NodePath("..:global_position"), NodePath("
 
 [node name="Mover" type="Node" parent="."]
 script = ExtResource("3_fe1cs")
-move_tracker = ExtResource("4_13b4b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cglvd")

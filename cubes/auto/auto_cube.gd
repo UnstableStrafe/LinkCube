@@ -100,4 +100,4 @@ func move() -> void:
 	# If there is still something in the way, don't move
 	if _get_object_in_dir(mov_dir): return
 
-	$Mover.register_move(target_tile)
+	move_tracker.register_move($Mover, target_tile)

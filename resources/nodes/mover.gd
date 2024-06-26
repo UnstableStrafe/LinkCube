@@ -9,7 +9,6 @@ signal moved
 @export var target: Node2D
 @export var trans := Tween.TRANS_SINE
 @export var ease_type := Tween.EASE_IN_OUT
-@export var move_tracker: MoveTracker
 
 var is_moving := false
 
@@ -17,10 +16,8 @@ func _ready() -> void:
 	if not is_instance_valid(target):
 		target = owner
 
-	move_tracker.movers.append(self)
+	#move_tracker.movers.append(self)
 
-func register_move(tile: Vector2i) -> void:
-	move_tracker.register_move(self, tile)
 
 ## Tween the given node to the next tile in the given direction [br]
 ## Emits [signal moved] when done

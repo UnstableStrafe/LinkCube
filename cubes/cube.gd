@@ -14,6 +14,7 @@ signal moved(direction)
 @export var pushable := true
 ## Can this cube be pushed by another cube
 @export var cube_pushable := false
+@export var move_tracker: MoveTracker
 
 var star_scene = preload("res://cubes/victory_stars/star_fx.tscn")
 
@@ -31,7 +32,7 @@ func push(direction: Vector2i) -> void:
 	if can_move(direction):
 		var target_tile := Tiles.global_to_tile(global_position) + direction
 
-		$Mover.register_move(target_tile)
+		move_tracker.register_move($Mover, target_tile)
 
 		# Push any cubes in the target square
 		var body := _get_object_in_dir(direction)
@@ -41,10 +42,10 @@ func push(direction: Vector2i) -> void:
 			if cube.cube_pushable:
 				cube.push(direction)
 			else:
-				$Mover.move_tracker.cancel()
+				move_tracker.cancel()
 
 	else:
-		$Mover.move_tracker.cancel()
+		move_tracker.cancel()
 
 
 func _get_object_in_dir(direction: Vector2i) -> Object:

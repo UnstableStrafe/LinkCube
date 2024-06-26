@@ -6,14 +6,13 @@ var movers: Array[Mover] = []
 # node: tile_coord
 var moves := {}
 # Whether moves have been cancelled
-# twitter dot com
+#  twitter dot com
 var cancelled := false
 
 
 func init() -> void:
 	cancelled = false
 	grab_current_coords()
-
 
 func grab_current_coords() -> void:
 	moves = {}
