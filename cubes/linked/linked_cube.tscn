@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvpwew7mlj4hu"]
+[gd_scene load_steps=10 format=3 uid="uid://bvpwew7mlj4hu"]
 
 [ext_resource type="PackedScene" uid="uid://bki152wctd7mg" path="res://cubes/cube.tscn" id="1_mmx35"]
 [ext_resource type="Script" path="res://cubes/linked/linked_cube.gd" id="2_fwmfu"]
 [ext_resource type="Texture2D" uid="uid://cf00audr0hmu0" path="res://cubes/linked/linked_cube.png" id="2_xax0q"]
 [ext_resource type="Texture2D" uid="uid://c0di63rwg8sl0" path="res://cubes/indicator_arrows.png" id="4_6ifiw"]
+[ext_resource type="Texture2D" uid="uid://rrkqg0wki2qx" path="res://resources/outlines/linked_cube_outline.png" id="4_mhsdw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnqox"]
 size = Vector2(10, 10)
@@ -80,6 +81,9 @@ tracked_properties = Array[NodePath]([NodePath("..:global_position"), NodePath("
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_xax0q")
+
+[node name="Sprite2D" parent="Sprite2D" index="1"]
+texture = ExtResource("4_mhsdw")
 
 [node name="DirSensors" type="Node2D" parent="." index="6"]
 

@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu03m6i3nfgh3"]
+[gd_scene load_steps=9 format=3 uid="uid://bu03m6i3nfgh3"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_relkq"]
 [ext_resource type="Texture2D" uid="uid://b4ro71g17iop6" path="res://player/player_sprite.png" id="2_cglvd"]
 [ext_resource type="Script" path="res://resources/nodes/state_tracker.gd" id="2_ynqji"]
 [ext_resource type="Script" path="res://resources/nodes/mover.gd" id="3_fe1cs"]
 [ext_resource type="Resource" uid="uid://byyr64e855oey" path="res://resources/primary_mover.tres" id="4_13b4b"]
+[ext_resource type="AudioStream" uid="uid://bvcemm85cngny" path="res://resources/sfx/move.wav" id="6_3vsyy"]
+[ext_resource type="Texture2D" uid="uid://b3acvtviuk4vf" path="res://resources/outlines/player_outline.png" id="6_rsgi8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlyv5"]
 size = Vector2(16, 16)
@@ -23,6 +25,10 @@ move_tracker = ExtResource("4_13b4b")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cglvd")
 
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+z_index = -1
+texture = ExtResource("6_rsgi8")
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 16)
 collide_with_areas = true
@@ -35,5 +41,9 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_jlyv5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3vsyy")
+volume_db = -10.0
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

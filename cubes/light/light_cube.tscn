@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnwrgv6drkhpb"]
+[gd_scene load_steps=5 format=3 uid="uid://dnwrgv6drkhpb"]
 
 [ext_resource type="PackedScene" uid="uid://bki152wctd7mg" path="res://cubes/cube.tscn" id="1_hmw16"]
 [ext_resource type="Texture2D" uid="uid://clq0leomo5h0t" path="res://cubes/light/light_cube.png" id="2_bjg60"]
 [ext_resource type="Script" path="res://cubes/light/light_cube.gd" id="2_xkeru"]
+[ext_resource type="Texture2D" uid="uid://cecq2my065f8b" path="res://resources/outlines/light_cube_outline.png" id="4_385i1"]
 
 [node name="LightCube" instance=ExtResource("1_hmw16")]
 script = ExtResource("2_xkeru")
 cube_pushable = true
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_bjg60")
+
+[node name="Sprite2D" parent="Sprite2D" index="1"]
+texture = ExtResource("4_385i1")

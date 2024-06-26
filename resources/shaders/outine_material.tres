@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dos116wtjn8ei"]
+
+[ext_resource type="Shader" path="res://resources/shaders/outline.gdshader" id="1_hoeoh"]
+
+[resource]
+shader = ExtResource("1_hoeoh")
+shader_parameter/width = 0.0
+shader_parameter/ouline_color = null

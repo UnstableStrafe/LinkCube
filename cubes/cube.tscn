@@ -134,6 +134,9 @@ z_as_relative = false
 position = Vector2(0, -9)
 texture = ExtResource("3_r12mc")
 
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+z_index = -1
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 0
 monitoring = false
