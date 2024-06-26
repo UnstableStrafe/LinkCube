@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu03m6i3nfgh3"]
+[gd_scene load_steps=10 format=3 uid="uid://bu03m6i3nfgh3"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_relkq"]
 [ext_resource type="Texture2D" uid="uid://b4ro71g17iop6" path="res://player/player_sprite.png" id="2_cglvd"]
@@ -10,6 +10,14 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlyv5"]
 size = Vector2(16, 16)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m3jw6"]
+playback_mode = 1
+random_pitch = 1.25
+random_volume_offset_db = 0.3
+streams_count = 1
+stream_0/stream = ExtResource("6_3vsyy")
+stream_0/weight = 1.0
 
 [node name="Player" type="Node2D" groups=["track_state"]]
 script = ExtResource("1_relkq")
@@ -25,7 +33,7 @@ script = ExtResource("3_fe1cs")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cglvd")
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+[node name="Outline" type="Sprite2D" parent="Sprite2D"]
 z_index = -1
 texture = ExtResource("6_rsgi8")
 
@@ -42,8 +50,8 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_jlyv5")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_3vsyy")
+[node name="MoveSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_m3jw6")
 volume_db = -10.0
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

@@ -68,6 +68,7 @@ func initiate_move(direction: Vector2i):
 
 	# Commit moves if all are valid
 	if move_tracker.are_all_unique() and not move_tracker.cancelled:
+		$MoveSound.play()
 		move_tracker.commit_moves()
 		await $Mover.moved
 		did_action.emit()
