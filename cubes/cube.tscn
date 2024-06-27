@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bki152wctd7mg"]
+[gd_scene load_steps=12 format=3 uid="uid://bki152wctd7mg"]
 
 [ext_resource type="Script" path="res://cubes/cube.gd" id="1_jafsn"]
 [ext_resource type="Script" path="res://resources/nodes/state_tracker.gd" id="3_343nv"]
 [ext_resource type="Script" path="res://resources/nodes/mover.gd" id="3_psaf6"]
 [ext_resource type="Texture2D" uid="uid://dsv73c13uxhqd" path="res://cubes/victory_crown.png" id="3_r12mc"]
 [ext_resource type="Resource" uid="uid://byyr64e855oey" path="res://resources/primary_mover.tres" id="4_s8dsb"]
+[ext_resource type="AudioStream" uid="uid://d10opiimro4fe" path="res://resources/sfx/win.wav" id="6_d0tgv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7oxp"]
 size = Vector2(16, 16)
@@ -67,7 +68,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_eyctb"]
 resource_name = "win"
-length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -105,6 +105,21 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0, 0.174533, -0.174533, 0.174533, 0.0]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WinSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_d0tgv")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xkdoe"]
 _data = {
@@ -148,6 +163,8 @@ shape = SubResource("RectangleShape2D_h7oxp")
 target_position = Vector2(0, 16)
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
