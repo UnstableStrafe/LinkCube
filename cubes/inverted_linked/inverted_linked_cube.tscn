@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://gli3dj1km8jm"]
+[gd_scene load_steps=4 format=3 uid="uid://gli3dj1km8jm"]
 
 [ext_resource type="PackedScene" uid="uid://bvpwew7mlj4hu" path="res://cubes/linked/linked_cube.tscn" id="1_velwo"]
 [ext_resource type="Script" path="res://cubes/inverted_linked/inverted_linked_cube.gd" id="2_3vu2h"]
 [ext_resource type="Texture2D" uid="uid://kmdwo2vdth4" path="res://cubes/inverted_linked/inverted_linked_cube.png" id="2_diaca"]
-[ext_resource type="Texture2D" uid="uid://dq51jk5ymew1k" path="res://resources/outlines/inverted_cube_outline.png" id="4_4xc6m"]
 
 [node name="InvertedLinkedCube" instance=ExtResource("1_velwo")]
 script = ExtResource("2_3vu2h")
@@ -12,6 +11,3 @@ link_group = "inverted_linked"
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_diaca")
-
-[node name="Sprite2D" parent="Sprite2D" index="1"]
-texture = ExtResource("4_4xc6m")

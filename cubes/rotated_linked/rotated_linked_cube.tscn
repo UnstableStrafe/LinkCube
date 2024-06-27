@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcfhj3ud2lsc4"]
+[gd_scene load_steps=4 format=3 uid="uid://dcfhj3ud2lsc4"]
 
 [ext_resource type="PackedScene" uid="uid://bvpwew7mlj4hu" path="res://cubes/linked/linked_cube.tscn" id="1_4ig6d"]
 [ext_resource type="Texture2D" uid="uid://cghaxxqqn1fm1" path="res://cubes/rotated_linked/rotated_linked_cube.png" id="2_4amqm"]
 [ext_resource type="Script" path="res://cubes/rotated_linked/rotated_linked_cube.gd" id="2_lsse8"]
-[ext_resource type="Texture2D" uid="uid://gah0gparp5p1" path="res://resources/outlines/basic_cube_outline.png" id="4_bdxr5"]
 
 [node name="RotatedLinkedCube" instance=ExtResource("1_4ig6d")]
 script = ExtResource("2_lsse8")
@@ -12,6 +11,3 @@ link_group = "rotated_linked"
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_4amqm")
-
-[node name="Sprite2D" parent="Sprite2D" index="1"]
-texture = ExtResource("4_bdxr5")

@@ -22,5 +22,5 @@ texture = ExtResource("2_j8s6a")
 texture = ExtResource("3_y7jsa")
 hframes = 3
 
-[node name="Sprite2D" parent="Sprite2D" index="2"]
+[node name="Outline" parent="Sprite2D" index="2"]
 texture = ExtResource("5_kcdrh")

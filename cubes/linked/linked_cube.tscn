@@ -82,7 +82,7 @@ tracked_properties = Array[NodePath]([NodePath("..:global_position"), NodePath("
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_xax0q")
 
-[node name="Sprite2D" parent="Sprite2D" index="1"]
+[node name="Outline" parent="Sprite2D" index="1"]
 texture = ExtResource("4_mhsdw")
 
 [node name="DirSensors" type="Node2D" parent="." index="6"]
