@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://cubes/linked/linked_cube.gd" id="2_fwmfu"]
 [ext_resource type="Texture2D" uid="uid://cf00audr0hmu0" path="res://cubes/linked/linked_cube.png" id="2_xax0q"]
 [ext_resource type="Texture2D" uid="uid://c0di63rwg8sl0" path="res://cubes/indicator_arrows.png" id="4_6ifiw"]
-[ext_resource type="Texture2D" uid="uid://rrkqg0wki2qx" path="res://resources/outlines/linked_cube_outline.png" id="4_mhsdw"]
+[ext_resource type="Texture2D" uid="uid://rrkqg0wki2qx" path="res://cubes/outlines/linked_cube_outline.png" id="4_mhsdw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnqox"]
 size = Vector2(10, 10)

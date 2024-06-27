@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bki152wctd7mg" path="res://cubes/cube.tscn" id="1_imgid"]
 [ext_resource type="Texture2D" uid="uid://dribun1o4kkc4" path="res://cubes/basic/basic_cube.png" id="2_k7wa8"]
-[ext_resource type="Texture2D" uid="uid://gah0gparp5p1" path="res://resources/outlines/basic_cube_outline.png" id="3_yhayk"]
+[ext_resource type="Texture2D" uid="uid://gah0gparp5p1" path="res://cubes/outlines/basic_cube_outline.png" id="3_yhayk"]
 
 [node name="BasicCube" instance=ExtResource("1_imgid")]
 

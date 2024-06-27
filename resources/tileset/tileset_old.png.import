@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cecq2my065f8b"
-path="res://.godot/imported/light_cube_outline.png-fcd3ec942aaa0b226a957f4bf04a4e7b.ctex"
+uid="uid://cvvd3ac6f4wlf"
+path="res://.godot/imported/tileset_old.png-4950b7d09e13f44d7f8f57f4e7aaa276.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/outlines/light_cube_outline.png"
-dest_files=["res://.godot/imported/light_cube_outline.png-fcd3ec942aaa0b226a957f4bf04a4e7b.ctex"]
+source_file="res://resources/tileset/tileset_old.png"
+dest_files=["res://.godot/imported/tileset_old.png-4950b7d09e13f44d7f8f57f4e7aaa276.ctex"]
 
 [params]
 

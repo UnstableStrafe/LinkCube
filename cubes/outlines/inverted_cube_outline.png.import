@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3acvtviuk4vf"
-path="res://.godot/imported/player_outline.png-2a0e1f5e1572eb61da965aaf7ebb646a.ctex"
+uid="uid://dq51jk5ymew1k"
+path="res://.godot/imported/inverted_cube_outline.png-734016a90e9d3ea62e1ce038e8c4cd9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/outlines/player_outline.png"
-dest_files=["res://.godot/imported/player_outline.png-2a0e1f5e1572eb61da965aaf7ebb646a.ctex"]
+source_file="res://cubes/outlines/inverted_cube_outline.png"
+dest_files=["res://.godot/imported/inverted_cube_outline.png-734016a90e9d3ea62e1ce038e8c4cd9c.ctex"]
 
 [params]
 

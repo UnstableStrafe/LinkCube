@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://resources/nodes/mover.gd" id="3_fe1cs"]
 [ext_resource type="Resource" uid="uid://byyr64e855oey" path="res://resources/primary_mover.tres" id="4_13b4b"]
 [ext_resource type="AudioStream" uid="uid://bvcemm85cngny" path="res://resources/sfx/move.wav" id="6_3vsyy"]
-[ext_resource type="Texture2D" uid="uid://b3acvtviuk4vf" path="res://resources/outlines/player_outline.png" id="6_rsgi8"]
+[ext_resource type="Texture2D" uid="uid://b3acvtviuk4vf" path="res://cubes/outlines/player_outline.png" id="6_rsgi8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlyv5"]
 size = Vector2(16, 16)
