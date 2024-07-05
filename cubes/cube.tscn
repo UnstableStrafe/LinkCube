@@ -165,6 +165,8 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="WinSound" type="AudioStreamPlayer" parent="."]
+volume_db = -16.0
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

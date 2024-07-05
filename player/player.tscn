@@ -53,5 +53,6 @@ shape = SubResource("RectangleShape2D_jlyv5")
 [node name="MoveSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_m3jw6")
 volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
