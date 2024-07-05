@@ -1,7 +1,5 @@
 extends Control
 
-## The config to load when "Default" is hit
-@export_file("cfg") var default_config_path: String
 
 @onready var current: Settings:
 	set(settings):
@@ -14,6 +12,7 @@ func _ready() -> void:
 
 ## Render the settings
 func view_current() -> void:
+	%VolumeSlider.value = current.get_val("volume")
 	%FullscreenToggle.button_pressed = current.get_val("fullscreen")
 
 # This can be connected to toggles etc to set a setting
@@ -26,7 +25,7 @@ func _on_back_button_pressed() -> void:
 	queue_free()
 
 func _on_default_pressed() -> void:
-	current = Settings.from_file(default_config_path)
+	current = Settings.from_file(Global.DEFAULT_SETTINGS_PATH)
 
 func _on_apply_pressed() -> void:
 	current.apply()

@@ -22,6 +22,12 @@ static func from_current() -> Settings:
 		"fullscreen",
 		DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 	)
+	settings.set_val(
+		"volume",
+		db_to_linear(AudioServer.get_bus_volume_db(
+			AudioServer.get_bus_index("Master")
+		)) * 100
+	)
 
 	return settings
 
@@ -35,6 +41,10 @@ static func from_file(file: String) -> Settings:
 func apply() -> void:
 	DisplayServer.window_set_mode(
 		DisplayServer.WINDOW_MODE_FULLSCREEN if get_val("fullscreen") else DisplayServer.WINDOW_MODE_WINDOWED
+	)
+	AudioServer.set_bus_volume_db(
+		AudioServer.get_bus_index("Master"),
+		linear_to_db(get_val("volume") / 100)
 	)
 
 	# Save the applied settings

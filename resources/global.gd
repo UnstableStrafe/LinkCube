@@ -10,10 +10,13 @@ var levels: Array[Level] = load("res://resources/level_index.tres").levels
 
 const SAVE_FILE := "user://level_scores.json"
 const SETTINGS_FILE := "user://settings.cfg"
+const DEFAULT_SETTINGS_PATH := "res://ui/settings/settings.cfg"
 
 func _ready() -> void:
-	# Apply saved settings
-	var settings := Settings.from_file(SETTINGS_FILE)
+	# Apply saved settings or defaults
+	var path := SETTINGS_FILE if FileAccess.file_exists(SETTINGS_FILE) else DEFAULT_SETTINGS_PATH
+
+	var settings := Settings.from_file(path)
 	settings.apply()
 
 ## Loads the next level

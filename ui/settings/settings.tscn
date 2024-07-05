@@ -14,7 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cc4qg")
-default_config_path = "res://ui/settings/settings.cfg"
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -51,7 +50,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Label" type="Label" parent="SettingsPage/ScrollContainer/SettingsList"]
+[node name="VolLabel" type="Label" parent="SettingsPage/ScrollContainer/SettingsList"]
+layout_mode = 2
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsPage/ScrollContainer/SettingsList"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+rounded = true
+
+[node name="VidLabel" type="Label" parent="SettingsPage/ScrollContainer/SettingsList"]
 layout_mode = 2
 text = "Video"
 horizontal_alignment = 1
@@ -79,6 +89,7 @@ text = "Default"
 layout_mode = 2
 text = "Apply"
 
+[connection signal="value_changed" from="SettingsPage/ScrollContainer/SettingsList/VolumeSlider" to="." method="_on_setting_changed" binds= ["volume"]]
 [connection signal="toggled" from="SettingsPage/ScrollContainer/SettingsList/FullscreenToggle" to="." method="_on_setting_changed" binds= ["fullscreen"]]
 [connection signal="pressed" from="SettingsPage/Buttons/CancelButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="SettingsPage/Buttons/ResetButton" to="." method="_on_default_pressed"]
