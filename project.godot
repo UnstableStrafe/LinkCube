@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://resources/global.gd"
 Tiles="*res://resources/tiles.gd"
+ClickSound="res://resources/sfx/global_click_sound.gd"
 
 [display]
 
