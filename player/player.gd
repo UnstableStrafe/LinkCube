@@ -63,7 +63,6 @@ func initiate_move(direction: Vector2i):
 	# Tell auto cubes to move
 	get_tree().call_group("auto", "move")
 
-	# TODO: Work out if the queue was cleared at some point
 	# Otherwise shit will move anyway lol
 
 	# Commit moves if all are valid
