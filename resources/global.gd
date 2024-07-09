@@ -21,9 +21,9 @@ func _ready() -> void:
 
 ## Loads the next level
 func next_level() -> void:
-	var player = get_tree().get_first_node_in_group("player")
-	SceneTransition.play_out(Vector2(player.global_position.x / 432,player.global_position.y / 243))
-	await SceneTransition.transition_end
+	var player := get_tree().get_first_node_in_group("player")
+	SceneTransition.play_out(player.global_position)
+	await SceneTransition.transition_ended
 	# level_index technically isn't the index but the level number
 	#  (level_index - 1) = The actual index
 	#  (level_index - 1) + 1 = The next level
@@ -32,8 +32,9 @@ func next_level() -> void:
 	level_index += 1
 	get_tree().change_scene_to_packed(level.scene)
 	await get_tree().process_frame
+
 	player = get_tree().get_first_node_in_group("player")
-	SceneTransition.play_in(Vector2(player.global_position.x / 432,player.global_position.y / 243))
+	SceneTransition.play_in(player.global_position)
 
 ## Serialisation ##
 

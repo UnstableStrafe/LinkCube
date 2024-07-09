@@ -1,31 +1,41 @@
 extends Control
 
-signal transition_end
+signal transition_ended
+
+
+@onready var shader: ShaderMaterial = $ColorRect.material
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$ColorRect.visible = false
 	$ColorRect.color = RenderingServer.get_default_clear_color() # this will dynamically change the color of the transtion overlay to fit the background color
-	($ColorRect.material as ShaderMaterial).set_shader_parameter("screen_width", size.x)
-	($ColorRect.material as ShaderMaterial).set_shader_parameter("screen_height", size.y)
-##Feed in Vector2.ZERO to have it play at center of screen
-func play_out(target_pos: Vector2):
-	if target_pos != Vector2.ZERO:
-		($ColorRect.material as ShaderMaterial).set_shader_parameter("pos", target_pos)
+
+	shader.set_shader_parameter("screen_width", size.x)
+	shader.set_shader_parameter("screen_height", size.y)
+
+
+## Translate global_position of a node to a Vector2 representing
+##  how far across the screen the point is from 0 to 1
+func _global_coord_to_screen(pos: Vector2) -> Vector2:
+	var cam_size := get_viewport_rect().size as Vector2
+
+	return pos / cam_size
+
+# Feed in Vector2.ZERO to have it play at center of screen
+func _set_center_at(pos: Vector2) -> void:
+	if pos == Vector2.ZERO:
+		pos = Vector2(0.5,0.5)
 	else:
-		($ColorRect.material as ShaderMaterial).set_shader_parameter("pos", Vector2(0.5,0.5))
-	$AnimationPlayer.play("fade_out")
-##Feed in Vector2.ZERO to have it play at center of screen
-func play_in(target_pos:  Vector2):
-	if target_pos != Vector2.ZERO:
-		($ColorRect.material as ShaderMaterial).set_shader_parameter("pos", target_pos)
-	else:
-		($ColorRect.material as ShaderMaterial).set_shader_parameter("pos", Vector2(0.5,0.5))
+		pos = _global_coord_to_screen(pos)
+
+	shader.set_shader_parameter("pos", pos)
+
+func play_in(target_pos: Vector2):
+	_set_center_at(target_pos)
 	$AnimationPlayer.play("fade_in")
 
+func play_out(target_pos: Vector2):
+	_set_center_at(target_pos)
+	$AnimationPlayer.play("fade_out")
 
-
-
-func _on_animation_player_animation_finished(anim_name):
-	$ColorRect.visible = false
-	transition_end.emit()
+func _on_animation_player_animation_finished(_anim_name: StringName):
+	transition_ended.emit()
