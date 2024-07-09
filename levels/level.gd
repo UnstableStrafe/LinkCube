@@ -14,7 +14,7 @@ func _on_win():
 	can_progress = true
 	player.input_lock = true
 	%NextLevelPrompt.visible = true
-
+	
 	# Save move count
 	_save_score()
 

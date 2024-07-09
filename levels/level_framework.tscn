@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://7pbu3m2f4nfr"]
+[gd_scene load_steps=11 format=3 uid="uid://7pbu3m2f4nfr"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_e1tw1"]
 [ext_resource type="PackedScene" uid="uid://d0nmhojnw88sl" path="res://ui/pause_menu/pause_menu.tscn" id="2_b2xs7"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://uok6yxg0qbyc" path="res://ui/sprites/pause.png" id="5_qjxx0"]
 [ext_resource type="Script" path="res://ui/standalone_scripts/pause_button.gd" id="6_wye2u"]
 [ext_resource type="TileSet" uid="uid://bbykwo35isbtl" path="res://resources/tileset/tiles.tres" id="7_nj4fy"]
-[ext_resource type="PackedScene" uid="uid://cvxqy8t70uotb" path="res://ui/scene_transition/scene_transition.tscn" id="7_xcvrf"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_ehgyd"]
 action = &"pause"
@@ -66,8 +65,6 @@ stretch_mode = 0
 script = ExtResource("6_wye2u")
 pause_menu = ExtResource("2_b2xs7")
 
-[node name="SceneTransition" parent="UI" instance=ExtResource("7_xcvrf")]
-
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -2
 tile_set = ExtResource("7_nj4fy")
@@ -76,7 +73,7 @@ layer_0/name = "World"
 layer_1/name = "Cubes"
 layer_1/tile_data = PackedInt32Array()
 
-[node name="Player" parent="." instance=ExtResource("3_j5vv5")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("3_j5vv5")]
 unique_name_in_owner = true
 position = Vector2(216, 121)
 

@@ -9,7 +9,7 @@ var input_lock := true
 func _ready() -> void:
 	# Prevent keys held over from the previous level from doing anything
 	input_lock = true
-	var timer = get_tree().create_timer(Global.move_time)
+	var timer = get_tree().create_timer(1) #1 sec is duration of fade in animation
 	await timer.timeout
 	input_lock = false
 
