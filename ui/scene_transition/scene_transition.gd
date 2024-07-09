@@ -39,3 +39,14 @@ func play_out(target_pos: Vector2):
 
 func _on_animation_player_animation_finished(_anim_name: StringName):
 	transition_ended.emit()
+
+
+func cover_player() -> void:
+	var player: Node2D = get_tree().get_first_node_in_group("player")
+	play_out(player.global_position)
+
+func reveal_player() -> void:
+	await get_tree().process_frame
+
+	var player: Node2D = get_tree().get_first_node_in_group("player")
+	play_in(player.global_position)

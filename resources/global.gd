@@ -5,7 +5,7 @@ signal sweet_victory
 signal tile_targetted
 
 var move_time := 0.2
-var level_index := 1
+var level_number := 1
 var levels: Array[Level] = load("res://resources/level_index.tres").levels
 
 const SAVE_FILE := "user://level_scores.json"
@@ -21,20 +21,14 @@ func _ready() -> void:
 
 ## Loads the next level
 func next_level() -> void:
-	var player := get_tree().get_first_node_in_group("player")
-	SceneTransition.play_out(player.global_position)
+	SceneTransition.cover_player()
 	await SceneTransition.transition_ended
-	# level_index technically isn't the index but the level number
-	#  (level_index - 1) = The actual index
-	#  (level_index - 1) + 1 = The next level
-	var level := levels[level_index]
 
-	level_index += 1
+	var level := levels[level_number]
 	get_tree().change_scene_to_packed(level.scene)
-	await get_tree().process_frame
+	level_number += 1
 
-	player = get_tree().get_first_node_in_group("player")
-	SceneTransition.play_in(player.global_position)
+	SceneTransition.reveal_player()
 
 ## Serialisation ##
 
