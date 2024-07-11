@@ -1,0 +1,5 @@
+-2 - Tilemap
+-1 - Outlines
+0 - Default. Tilemap, cubes etc
+1 - Sits on top of tilemap - Crowns, move previews
+2 - On top of world (ui)

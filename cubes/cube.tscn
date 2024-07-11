@@ -144,13 +144,14 @@ script = ExtResource("3_psaf6")
 [node name="Crown" type="Sprite2D" parent="Sprite2D"]
 unique_name_in_owner = true
 visible = false
-z_index = 2
+z_index = 1
 z_as_relative = false
 position = Vector2(0, -9)
 texture = ExtResource("3_r12mc")
 
 [node name="Outline" type="Sprite2D" parent="Sprite2D"]
 z_index = -1
+z_as_relative = false
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 0

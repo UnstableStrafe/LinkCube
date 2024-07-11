@@ -67,6 +67,7 @@ pause_menu = ExtResource("2_b2xs7")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -2
+z_as_relative = false
 tile_set = ExtResource("7_nj4fy")
 format = 2
 layer_0/name = "World"
