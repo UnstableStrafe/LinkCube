@@ -38,11 +38,6 @@ var mov_dir: Vector2i:
 		$RayCast2D.target_position = mov_dir * Tiles.tile_size
 		$RayCast2D.force_raycast_update()
 
-## Keeps track of the tiles that all the cubes are trying to move to
-## This prevents the auto cube from going onto a space that is going to be occupied
-## by a pushed cube
-var targeted_tiles: Array[Vector2i] = []
-
 func _ready():
 	super()
 
@@ -69,8 +64,9 @@ func _ready():
 #  move to the given tile
 #  because if an autocube can't move, other cubes still can
 func move() -> void:
+	var target_tile := Tiles.global_to_tile(global_position) + mov_dir
 	# If unable to move in the given direction (something is there)
-	if not can_move(mov_dir):
+	if not can_move(mov_dir) or move_tracker.is_tile_registered(target_tile):
 		# Change move direction according to rules
 		if auto_type == AutoType.BOUNCE:
 			# Invert mov dir
@@ -79,12 +75,12 @@ func move() -> void:
 			# Rotate mov dir clockwise 90 degrees
 			mov_dir = Vector2(mov_dir).rotated(deg_to_rad(90))
 
+		target_tile = Tiles.global_to_tile(global_position) + mov_dir
+
 	# If we still can't move - don't until the next action
 	if not can_move(mov_dir): return
 
 	# Move :3
-
-	var target_tile := Tiles.global_to_tile(global_position) + mov_dir
 
 	# Push any cubes in the target square
 	var body := _get_object_in_dir(mov_dir)
